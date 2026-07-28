@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Disney World • Nov 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #707070;
+            --accent: #4a9eff;
+            --accent-hover: #3a8eef;
+            --p1-color: #ff6b9d;
+            --p2-color: #a78bfa;
+            --food-color: #fbbf24;
+            --dining-color: #34d399;
+            --success: #10b981;
+            --border: #333333;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 12px 16px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .progress-ring {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            overflow-x: auto;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            flex: 0 0 auto;
+            padding: 14px 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 16px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sections */
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-progress {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .section-content {
+            padding: 0 16px 16px 16px;
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        /* Checklist Items */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:active {
+            background: #2a2a2a;
+        }
+
+        .checklist-item.checked {
+            opacity: 0.6;
+        }
+
+        .checklist-item.checked .item-text {
+            text-decoration: line-through;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .checklist-item.checked .checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .checklist-item.checked .checkbox::after {
+            opacity: 1;
+        }
+
+        .item-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .item-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .badge-p1 { background: var(--p1-color); color: white; }
+        .badge-p2 { background: var(--p2-color); color: white; }
+        .badge-food { background: var(--food-color); color: black; }
+        .badge-dining { background: var(--dining-color); color: black; }
+        .badge-ll { background: var(--accent); color: white; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 12px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 16px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--accent);
+        }
+
+        .timeline-item.current::before {
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.2);
+        }
+
+        .timeline-time {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Notes */
+        .notes-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .notes-area:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:active {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--bg-tertiary);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .info-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        .info-card p, .info-card ul {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 4px 0;
+        }
+
+        .info-card li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+        }
+
+        /* Table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .table th {
+            background: var(--bg-tertiary);
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .bottom-nav .btn {
+            flex: 1;
+            justify-content: center;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .modal h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+        }
+
+        /* Export textarea */
+        .export-text {
+            width: 100%;
+            height: 300px;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 12px;
+            font-family: monospace;
+            margin-bottom: 16px;
+        }
+
+        /* Utility classes */
+        .mb-8 { margin-bottom: 8px; }
+        .mb-12 { margin-bottom: 12px; }
+        .mb-16 { margin-bottom: 16px; }
+        .text-center { text-align: center; }
+        .text-secondary { color: var(--text-secondary); }
+        .text-small { font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Disney World • Nov 21-28 2026</h1>
+            <div class="progress-ring" id="totalProgress">0%</div>
+        </div>
+    </div>
+
+    <nav class="tab-nav" id="tabNav">
+        <button class="tab-btn active" data-tab="overview">Start</button>
+        <button class="tab-btn" data-tab="sat-epcot">Sat 11/21</button>
+        <button class="tab-btn" data-tab="sun-mk">Sun 11/22</button>
+        <button class="tab-btn" data-tab="mon-hs">Mon 11/23</button>
+        <button class="tab-btn" data-tab="tue-ak">Tue 11/24</button>
+        <button class="tab-btn" data-tab="wed-ds">Wed 11/25</button>
+        <button class="tab-btn" data-tab="thu-mk">Thu 11/26</button>
+        <button class="tab-btn" data-tab="fri-epcot">Fri 11/27</button>
+        <button class="tab-btn" data-tab="sat-depart">Sat 11/28</button>
+        <button class="tab-btn" data-tab="rides">Rides</button>
+    </nav>
+
+    <!-- OVERVIEW TAB -->
+    <div class="tab-content active" id="overview">
+        <div class="section">
+            <div class="section-header">
+                <h2>🏰 Trip Summary</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <h3>Resort</h3>
+                    <p><strong>Disney's BoardWalk Inn</strong><br>
+                    Family of 4 • November 21-28, 2026</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>⚡ Lightning Lane Booking Day</h3>
+                    <p><strong>Saturday, November 14, 2026 at 7:00 AM Eastern</strong><br>
+                    Book 7 days of Multi Pass & Single Pass on this date</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="snackCount">0</div>
+                        <div class="stat-label">Snacks Tried</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="overallProgress">0%</div>
+                        <div class="stat-label">Complete</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>💳 Lightning Lane Purchase Plan</h2>
+            </div>
+            <div class="section-content">
+                <div style="overflow-x: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Park</th>
+                                <th>Multi Pass</th>
+                                <th>Single Pass</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sat 11/21</td>
+                                <td>EPCOT</td>
+                                <td>❌ No</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Sun 11/22</td>
+                                <td>Magic Kingdom</td>
+                                <td>✅ Yes</td>
+                                <td>✅ Yes (TRON)</td>
+                            </tr>
+                            <tr>
+                                <td>Mon 11/23</td>
+                                <td>Hollywood Studios</td>
+                                <td>✅ Yes</td>
+                                <td>✅ Yes (Rise)</td>
+                            </tr>
+                            <tr>
+                                <td>Tue 11/24</td>
+                                <td>Animal Kingdom</td>
+                                <td>❓ Optional</td>
+                                <td>✅ Yes (Flight)</td>
+                            </tr>
+                            <tr>
+                                <td>Wed 11/25</td>
+                                <td>Disney Springs</td>
+                                <td>❌ No</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Thu 11/26</td>
+                                <td>Magic Kingdom</td>
+                                <td>✅ Yes (Cleanup)</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Fri 11/27</td>
+                                <td>EPCOT</td>
+                                <td>✅ Yes</td>
+                                <td>✅ Yes (Guardians)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>✅ Final Check Reminders</h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Book Lightning Lane Multi Pass & Single Pass (Nov 14, 7:00 AM)</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Confirm all dining reservations</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Download My Disney Experience app</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Link park tickets to MDE account</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pack portable chargers</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Check weather forecast week before</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'overview-check-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Print/save BoardWalk confirmation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>🌤️ Weather & Park Hours</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <h3>Weather</h3>
+                    <p><a href="https://weather.com/weather/tenday/l/Orlando+FL" target="_blank" style="color: var(--accent);">Check 10-day forecast for Orlando, FL →</a></p>
+                    <p class="text-small">Expected: High 70s°F, Low 60s°F. Pack layers for evenings.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Park Hours</h3>
+                    <p><a href="https://disneyworld.disney.go.com/calendars/" target="_blank" style="color: var(--accent);">View official park hours calendar →</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>🚨 Emergency Info</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <h3>Important Numbers</h3>
+                    <ul>
+                        <li><strong>BoardWalk Inn:</strong> (407) 939-5100</li>
+                        <li><strong>Disney Security:</strong> (407) 560-7959</li>
+                        <li><strong>Guest Relations:</strong> (407) 939-4357</li>
+                        <li><strong>Lost & Found:</strong> (407) 824-4245</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>First Aid Locations</h3>
+                    <ul>
+                        <li><strong>Magic Kingdom:</strong> Main Street USA (next to Crystal Palace)</li>
+                        <li><strong>EPCOT:</strong> Future World (Odyssey Center)</li>
+                        <li><strong>Hollywood Studios:</strong> Hollywood Blvd (near Guest Relations)</li>
+                        <li><strong>Animal Kingdom:</strong> Discovery Island (near Island Mercantile)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAT 11/21 EPCOT (ARRIVAL) -->
+    <div class="tab-content" id="sat-epcot">
+        <div class="section">
+            <div class="section-header">
+                <h2>🎯 Saturday Nov 21 • EPCOT (Arrival)</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>No Lightning Lane</strong> • Arrival day, relaxed pace</p>
+                    <p>🍽️ <strong>Dining:</strong> GEO-82 (drinks) • Spice Road Table (dinner)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Check in at BoardWalk Inn</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">Walk to EPCOT via International Gateway</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">France snacks + festival booths</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">GEO-82 for drinks</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">Spice Road Table</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00 PM</div>
+                        <div class="timeline-text">Luminous fireworks (Morocco/Japan side)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Post-show</div>
+                        <div class="timeline-text">AbracadaBar or Jellyrolls at BoardWalk</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Rides <span class="section-progress" id="sat-rides-progress">0/4</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Guardians of the Galaxy <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">(only if convenient)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Remy's Ratatouille Adventure <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">(reasonable wait)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Spaceship Earth <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Journey of Water <span class="item-badge badge-p2">P2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="sat-food-progress">0/7</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Fresh Baguette <span class="text-small text-secondary">(Les Halles, France)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces, France)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan, France)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">School Bread <span class="text-small text-secondary">(Kringla Bakeri, Norway)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 1</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 2</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="sat-notes" placeholder="Jot down wait times, favorite moments, what to skip next time..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUN 11/22 MAGIC KINGDOM -->
+    <div class="tab-content" id="sun-mk">
+        <div class="section">
+            <div class="section-header">
+                <h2>🏰 Sunday Nov 22 • Magic Kingdom (Primary)</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>Multi Pass:</strong> Tiana's (G1), Haunted Mansion (G2), Buzz (G2)</p>
+                    <p>⚡ <strong>Single Pass:</strong> TRON</p>
+                    <p>⚡ <strong>Optional:</strong> Seven Dwarfs Mine Train</p>
+                    <p>🍽️ <strong>Dining:</strong> Tony's Town Square (2:15 PM) • Skipper Canteen (dinner)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Early Entry</div>
+                        <div class="timeline-text">Space Mountain or Seven Dwarfs at rope drop</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Tomorrowland: TRON + Space + Buzz</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Cheshire Tail + Haunted Mansion (Fantasyland/Liberty Square)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">2:15 PM</div>
+                        <div class="timeline-text">Tony's Town Square Restaurant (lunch)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Adventureland/Frontierland: Jungle Cruise, Pirates, Tiana's, Big Thunder</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">Beak and Barrel for drinks</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">Skipper Canteen</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00 PM</div>
+                        <div class="timeline-text">Happily Ever After fireworks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Rides <span class="section-progress" id="sun-rides-progress">0/9</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">TRON Lightcycle Run <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Big Thunder Mountain Railroad <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tiana's Bayou Adventure <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Haunted Mansion <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Buzz Lightyear's Space Ranger Spin <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Seven Dwarfs Mine Train <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Space Mountain <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pirates of the Caribbean <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-ride-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Jungle Cruise <span class="item-badge badge-p2">P2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="sun-food-progress">0/5</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland bridge)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pineapple Upside Down Cake + Dole Whip <span class="text-small text-secondary">(Aloha Isle)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🗺️ Land Flow Guide</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <p><strong>Route:</strong> Tomorrowland → Fantasyland → Liberty Square → Adventureland → Frontierland</p>
+                    <p class="text-small">Early Entry rope drop options at Main Street hub. TRON is far left (Tomorrowland). Seven Dwarfs is far right (Fantasyland).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="sun-notes" placeholder="Track wait times, Lightning Lane return times, crowd observations..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- MON 11/23 HOLLYWOOD STUDIOS -->
+    <div class="tab-content" id="mon-hs">
+        <div class="section">
+            <div class="section-header">
+                <h2>🎬 Monday Nov 23 • Hollywood Studios</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>Multi Pass:</strong> Slinky Dog (G1), Tower of Terror (G2), Toy Story Mania (G2)</p>
+                    <p>⚡ <strong>Single Pass:</strong> Rise of the Resistance</p>
+                    <p>⚡ <strong>After first tap:</strong> Rock 'n' Roller Coaster or Smugglers Run</p>
+                    <p>🍽️ <strong>Dining:</strong> Ronto Wrap (lunch) • Flying Fish (dinner, BoardWalk)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Early Entry</div>
+                        <div class="timeline-text">Rock 'n' Roller Coaster or Tower of Terror</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Sunset Blvd: Tower + Rock 'n' Roller</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Toy Story Land: Slinky + Mania</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Lunch</div>
+                        <div class="timeline-text">Ronto Wrap at Galaxy's Edge</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Galaxy's Edge: Rise + Smugglers Run + Black Caf</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">Mickey & Minnie's Runaway Railway</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">Walk/boat to BoardWalk</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">Flying Fish (BoardWalk)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Rides <span class="section-progress" id="mon-rides-progress">0/8</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Rise of the Resistance <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tower of Terror <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Slinky Dog Dash <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Rock 'n' Roller Coaster Starring The Muppets <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Millennium Falcon: Smugglers Run <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mickey & Minnie's Runaway Railway <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Toy Story Mania <span class="item-badge badge-p2">P2</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-ride-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Magic of Disney Animation <span class="item-badge badge-p2">P2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="mon-food-progress">0/5</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Ronto Wrap <span class="text-small text-secondary">(Ronto Roasters, Galaxy's Edge)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cold Brew Black Caf <span class="text-small text-secondary">(Kat Saka's Kettle)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Jack-Jack Cookie <span class="text-small text-secondary">(Pixar Plaza)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Carrot Cake Whoopie Pie <span class="text-small text-secondary">(Trolley Car Café)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Wookiee Cookie <span class="text-small text-secondary">(Backlot Express)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🗺️ Land Flow Guide</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <p><strong>Route:</strong> Sunset Blvd → Toy Story Land → Galaxy's Edge → Hollywood Blvd</p>
+                    <p class="text-small">Tower and Rock 'n' Roller are both on Sunset Blvd. Galaxy's Edge is back left of park. Toy Story Land is back right.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="mon-notes" placeholder="Note Rise boarding group time, Smugglers Run pilot scores..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- TUE 11/24 ANIMAL KINGDOM -->
+    <div class="tab-content" id="tue-ak">
+        <div class="section">
+            <div class="section-header">
+                <h2>🦁 Tuesday Nov 24 • Animal Kingdom</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>Single Pass:</strong> Flight of Passage</p>
+                    <p>⚡ <strong>Optional Multi Pass:</strong> Safaris, Zootopia, Na'vi River Journey</p>
+                    <p>🍽️ <strong>Dining:</strong> Nomad Lounge (lunch) • Toledo (dinner, Gran Destino Tower)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Early Entry</div>
+                        <div class="timeline-text">Pandora (Flight of Passage or Na'vi River)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Africa: Kilimanjaro Safaris + Gorilla Falls Trail</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Festival of the Lion King (Harambe Theatre)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Lunch</div>
+                        <div class="timeline-text">Nomad Lounge (Discovery Island)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Asia: Everest + Maharajah Jungle Trek + Feathered Friends</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">Zootopia + Tree of Life exhibits</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">Rideshare to Gran Destino Tower</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">Toledo (Gran Destino Tower)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Rides <span class="section-progress" id="tue-rides-progress">0/10</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Avatar Flight of Passage <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Kilimanjaro Safaris <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Expedition Everest <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pandora (day) <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pandora (night) <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Gorilla Falls Exploration Trail <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Zootopia: Better Zoogether! <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Na'vi River Journey <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival of the Lion King <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-ride-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Maharajah Jungle Trek <span class="item-badge badge-p2">P2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="tue-food-progress">0/8</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Nomad Lounge Churros <span class="text-small text-secondary">(Discovery Island)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mr. Kamal's Seasoned Fries <span class="text-small text-secondary">(Asia path)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Night Blossom <span class="text-small text-secondary">(Pongu Pongu, Pandora)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Arepas <span class="text-small text-secondary">(Kusafiri, Africa)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tropical Slushy <span class="text-small text-secondary">(Harambe Market)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Trader's Tailwind <span class="text-small text-secondary">(Harambe Market)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Vietnamese Iced Coffee <span class="text-small text-secondary">(Royal Anandapur Tea Company)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cookie Dough Ice Cream Sandwich <span class="text-small text-secondary">(verify venue)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🗺️ Land Flow Guide</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <p><strong>Route:</strong> Pandora (back left) → Africa (left) → Discovery Island (center) → Asia (right) → Zootopia (back right)</p>
+                    <p class="text-small">Plan to experience Pandora twice: once during day, once at night for bioluminescence. Tree of Life is center hub.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="tue-notes" placeholder="Safari animals spotted, Flight of Passage sensations, Pandora night lighting..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- WED 11/25 DISNEY SPRINGS -->
+    <div class="tab-content" id="wed-ds">
+        <div class="section">
+            <div class="section-header">
+                <h2>🛍️ Wednesday Nov 25 • Disney Springs (Rest Day)</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>No Lightning Lane</strong> • Rest and relaxation day</p>
+                    <p>🍽️ <strong>Dining:</strong> Cake Bake Shop (breakfast, BoardWalk) • The Boathouse (dinner)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Sleep in!</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Cake Bake Shop (BoardWalk)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Pool time / resort relaxation</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">Disney Springs shopping</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">Gideon's Bakehouse (virtual queue)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Pre-Dinner</div>
+                        <div class="timeline-text">Jock Lindsey's Hangar Bar (drinks)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">The Boathouse</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="wed-food-progress">0/3</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Gideon's Cookie <span class="text-small text-secondary">(The Landing)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cake Bake Pastry <span class="text-small text-secondary">(BoardWalk)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Jock Lindsey's Specialty Drink <span class="text-small text-secondary">(The Landing)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🛍️ Shopping Notes</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <h3>Key Stops</h3>
+                    <ul>
+                        <li>World of Disney (largest Disney store)</li>
+                        <li>Gideon's Bakehouse (join virtual queue early!)</li>
+                        <li>Everglazed Donuts & Cold Brew</li>
+                        <li>LEGO Store</li>
+                        <li>Star Wars Trading Post</li>
+                        <li>Basin (custom bath products)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="wed-notes" placeholder="Shopping finds, Gideon's flavors tried, BoardWalk entertainment..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- THU 11/26 MAGIC KINGDOM (THANKSGIVING) -->
+    <div class="tab-content" id="thu-mk">
+        <div class="section">
+            <div class="section-header">
+                <h2>🦃 Thursday Nov 26 • Magic Kingdom (Thanksgiving Cleanup)</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>Multi Pass:</strong> Decide after Sunday (missed priorities)</p>
+                    <p>🍽️ <strong>Dining:</strong> Wailulu (lunch, Polynesian) • Flexible dinner</p>
+                    <p><strong>Focus:</strong> Catch missed rides/snacks from Sunday</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Magic Kingdom cleanup rides</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Snack cleanup (Dole Whip, beignets, etc.)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Lunch</div>
+                        <div class="timeline-text">Wailulu Bar & Grill (Polynesian)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Trader Sam's Grog Grotto (Polynesian)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">Enchanted Rose (Grand Floridian)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Evening</div>
+                        <div class="timeline-text">Flexible dinner</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00 PM</div>
+                        <div class="timeline-text">Optional: Happily Ever After fireworks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Cleanup Rides <span class="section-progress" id="thu-rides-progress">0/0</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <p class="text-secondary">Add any missed Priority 1 or Priority 2 rides from Sunday here. Check Sunday tab for what you didn't complete.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food Cleanup <span class="section-progress" id="thu-food-progress">0/5</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Dole Whip <span class="text-small text-secondary">(Aloha Isle, if missed Sunday)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tiana's Beignets <span class="text-small text-secondary">(verify venue)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Banana Beignets <span class="text-small text-secondary">(verify venue)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mac & Cheese Hand Pie <span class="text-small text-secondary">(verify venue)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cold Brew Float <span class="text-small text-secondary">(verify venue)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="thu-notes" placeholder="Thanksgiving vibes, what you caught up on, Polynesian/Grand Floridian lounge notes..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRI 11/27 EPCOT (FULL RIDE DAY) -->
+    <div class="tab-content" id="fri-epcot">
+        <div class="section">
+            <div class="section-header">
+                <h2>🌍 Friday Nov 27 • EPCOT (Full Ride Day)</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>Multi Pass:</strong> Test Track (G1), Soarin' (G2), Living with the Land (G2)</p>
+                    <p>⚡ <strong>Single Pass:</strong> Guardians of the Galaxy</p>
+                    <p>⚡ <strong>After first tap:</strong> Remy or Frozen</p>
+                    <p>🍽️ <strong>Dining:</strong> Space 220 (lunch) • Via Napoli (dinner, Italy)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Early Entry</div>
+                        <div class="timeline-text">Remy or Frozen (via International Gateway)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">World Showcase to front: Remy, Frozen, Test Track</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">The Land: Soarin' + Living with the Land (Holiday)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Lunch</div>
+                        <div class="timeline-text">Space 220</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Guardians + Mission: SPACE + Spaceship Earth</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Afternoon</div>
+                        <div class="timeline-text">GEO-82 (if missed Saturday)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Dinner</div>
+                        <div class="timeline-text">Via Napoli (Italy)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00 PM</div>
+                        <div class="timeline-text">Luminous fireworks + walk home to BoardWalk</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎢 Rides <span class="section-progress" id="fri-rides-progress">0/9</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Guardians of the Galaxy: Cosmic Rewind <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Test Track <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Remy's Ratatouille Adventure <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Soarin' Around the World <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Living with the Land (Holiday) <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Frozen Ever After <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Spaceship Earth <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Journey of Water <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-ride-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mission: SPACE Orange <span class="item-badge badge-p2">P2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍦 Food <span class="section-progress" id="fri-food-progress">0/5</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tanghulu <span class="text-small text-secondary">(China kiosk)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Japan)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Café Glacé <span class="text-small text-secondary">(L'Artisan, France)</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Missed Festival Item from Saturday</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Missed EPCOT Snack from Saturday</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🗺️ Land Flow Guide</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card">
+                    <p><strong>Route:</strong> International Gateway (back) → France → Norway → Future World → World Showcase loop</p>
+                    <p class="text-small">Enter via International Gateway from BoardWalk. Test Track is front right. The Land is front left. Guardians is front center.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Live Notes</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="fri-notes" placeholder="Guardians song, Test Track design score, Space 220 experience, festival favorites..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAT 11/28 DEPARTURE -->
+    <div class="tab-content" id="sat-depart">
+        <div class="section">
+            <div class="section-header">
+                <h2>✈️ Saturday Nov 28 • Departure</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>⚡ <strong>No Lightning Lane</strong> • Checkout and departure</p>
+                    <p>🍽️ <strong>Optional:</strong> Les Halles breakfast (if time/admission)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 Day Flow</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Morning</div>
+                        <div class="timeline-text">Crescent Lake walk (BoardWalk → Beach Club → Yacht Club → Swan/Dolphin)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
+                        <div class="timeline-text">Optional: Les Halles breakfast (if park admission available)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Checkout</div>
+                        <div class="timeline-text">Return to BoardWalk, checkout</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Airport</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>✅ Departure Checklist <span class="section-progress" id="depart-check-progress">0/7</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pack all belongings</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Check room safe</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Check all drawers and closets</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Charge portable chargers for travel</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Review resort charges</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Checkout at front desk</div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'depart-check-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Arrange airport transportation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Trip Reflections</h2>
+            </div>
+            <div class="section-content">
+                <textarea class="notes-area" id="depart-notes" placeholder="Favorite moments, what to do differently next time, must-repeat experiences..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- MASTER RIDES TAB -->
+    <div class="tab-content" id="rides">
+        <div class="section">
+            <div class="section-header">
+                <h2>🎢 Master Ride List</h2>
+            </div>
+            <div class="section-content expanded">
+                <div class="info-card">
+                    <p>Complete list of all rides across all parks. Check them off as you go!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Magic Kingdom <span class="section-progress" id="master-mk-progress">0/9</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">TRON Lightcycle Run <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Big Thunder Mountain Railroad <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tiana's Bayou Adventure <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Haunted Mansion <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Buzz Lightyear's Space Ranger Spin <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Seven Dwarfs Mine Train <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby or Early Entry</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Space Mountain <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Early Entry or Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pirates of the Caribbean <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-mk-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Jungle Cruise <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>EPCOT <span class="section-progress" id="master-epcot-progress">0/9</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Guardians of the Galaxy: Cosmic Rewind <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Test Track <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Remy's Ratatouille Adventure <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Early Entry or Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Soarin' Around the World <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Living with the Land (Holiday) <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Frozen Ever After <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby or Early Entry</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Spaceship Earth <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby anytime</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Journey of Water <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Walkthrough</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-epcot-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mission: SPACE Orange <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Hollywood Studios <span class="section-progress" id="master-hs-progress">0/8</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Rise of the Resistance <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tower of Terror <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass or Early Entry</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Slinky Dog Dash <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Rock 'n' Roller Coaster Starring The Muppets <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Early Entry or Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Millennium Falcon: Smugglers Run <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mickey & Minnie's Runaway Railway <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Toy Story Mania <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-hs-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Magic of Disney Animation <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Walkthrough</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Animal Kingdom <span class="section-progress" id="master-ak-progress">0/10</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Avatar Flight of Passage <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Single Pass</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Kilimanjaro Safaris <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Early morning best</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Expedition Everest <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Standby</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pandora (day) <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Experience during daylight</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Pandora (night) <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Return after dark for bioluminescence</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Gorilla Falls Exploration Trail <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Walkthrough</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Zootopia: Better Zoogether! <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">• Boat ride</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Na'vi River Journey <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Standby or Early Entry</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival of the Lion King <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Check showtimes</span></div>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this, 'master-ak-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Maharajah Jungle Trek <span class="item-badge badge-p2">P2</span> <span class="text-small text-secondary">• Walkthrough</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <button class="btn btn-secondary" onclick="showExportModal()">📤 Export</button>
+        <button class="btn btn-secondary" onclick="showResetModal()">🔄 Reset</button>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal" id="exportModal">
+        <div class="modal-content">
+            <h3>Export Trip Data</h3>
+            <textarea class="export-text" id="exportText" readonly></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('exportModal')">Close</button>
+                <button class="btn btn-primary" onclick="copyExportData()">📋 Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Modal -->
+    <div class="modal" id="resetModal">
+        <div class="modal-content">
+            <h3>Reset All Data?</h3>
+            <p>This will clear all checkboxes, notes, and snack counter. This cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('resetModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmReset()">Reset Everything</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        const state = {
+            checks: {},
+            notes: {},
+            snackCount: 0
+        };
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadState();
+            updateAllProgress();
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 60000); // Update every minute
+
+            // Load all notes
+            document.querySelectorAll('.notes-area').forEach(textarea => {
+                textarea.value = state.notes[textarea.id] || '';
+                textarea.addEventListener('input', function() {
+                    state.notes[this.id] = this.value;
+                    saveState();
+                });
+            });
+
+            // Restore all checkboxes
+            document.querySelectorAll('.checklist-item').forEach(item => {
+                const id = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (state.checks[id]) {
+                    item.classList.add('checked');
+                }
+            });
+        });
+
+        // Tab navigation
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+
+                // Update buttons
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update content
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+
+                // Scroll tab into view
+                this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+        });
+
+        // Section toggle
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('expanded');
+        }
+
+        // Checkbox toggle
+        function toggleCheck(element, id) {
+            element.classList.toggle('checked');
+            state.checks[id] = element.classList.contains('checked');
+
+            // Update snack counter if it's a food item
+            if (id.includes('food')) {
+                updateSnackCount();
+            }
+
+            saveState();
+            updateAllProgress();
+        }
+
+        // Update snack counter
+        function updateSnackCount() {
+            let count = 0;
+            Object.keys(state.checks).forEach(key => {
+                if (key.includes('food') && state.checks[key]) {
+                    count++;
+                }
+            });
+            state.snackCount = count;
+            document.getElementById('snackCount').textContent = count;
+        }
+
+        // Update all progress indicators
+        function updateAllProgress() {
+            // Day-specific progress
+            updateProgress('sat-rides-progress', 'sat-ride-');
+            updateProgress('sat-food-progress', 'sat-food-');
+            updateProgress('sun-rides-progress', 'sun-ride-');
+            updateProgress('sun-food-progress', 'sun-food-');
+            updateProgress('mon-rides-progress', 'mon-ride-');
+            updateProgress('mon-food-progress', 'mon-food-');
+            updateProgress('tue-rides-progress', 'tue-ride-');
+            updateProgress('tue-food-progress', 'tue-food-');
+            updateProgress('wed-food-progress', 'wed-food-');
+            updateProgress('thu-rides-progress', 'thu-ride-');
+            updateProgress('thu-food-progress', 'thu-food-');
+            updateProgress('fri-rides-progress', 'fri-ride-');
+            updateProgress('fri-food-progress', 'fri-food-');
+            updateProgress('depart-check-progress', 'depart-check-');
+
+            // Master rides progress
+            updateProgress('master-mk-progress', 'master-mk-');
+            updateProgress('master-epcot-progress', 'master-epcot-');
+            updateProgress('master-hs-progress', 'master-hs-');
+            updateProgress('master-ak-progress', 'master-ak-');
+
+            // Overall progress
+            const totalItems = Object.keys(state.checks).length;
+            const checkedItems = Object.values(state.checks).filter(v => v).length;
+            const overallPercent = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
+            document.getElementById('totalProgress').textContent = overallPercent + '%';
+            document.getElementById('overallProgress').textContent = overallPercent + '%';
+
+            updateSnackCount();
+        }
+
+        function updateProgress(elementId, prefix) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            let total = 0;
+            let checked = 0;
+
+            Object.keys(state.checks).forEach(key => {
+                if (key.startsWith(prefix)) {
+                    total++;
+                    if (state.checks[key]) checked++;
+                }
+            });
+
+            element.textContent = `${checked}/${total}`;
+        }
+
+        // Update current time indicator
+        function updateCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.remove('current');
+                const timeText = item.querySelector('.timeline-time').textContent;
+
+                // Simple time matching (can be enhanced)
+                if (timeText.includes('Morning') && hours >= 8 && hours < 12) {
+                    item.classList.add('current');
+                } else if (timeText.includes('Afternoon') && hours >= 12 && hours < 17) {
+                    item.classList.add('current');
+                } else if (timeText.includes('Evening') && hours >= 17 && hours < 21) {
+                    item.classList.add('current');
+                }
+            });
+        }
+
+        // Modal functions
+        function showExportModal() {
+            const exportData = generateExportData();
+            document.getElementById('exportText').value = exportData;
+            document.getElementById('exportModal').classList.add('show');
+        }
+
+        function showResetModal() {
+            document.getElementById('resetModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        function confirmReset() {
+            if (confirm('Are you absolutely sure? This will delete all your trip data.')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        function copyExportData() {
+            const textarea = document.getElementById('exportText');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Trip data copied to clipboard!');
+        }
+
+        function generateExportData() {
+            let output = 'DISNEY WORLD TRIP • NOV 21-28, 2026\n';
+            output += '='.repeat(50) + '\n\n';
+
+            output += 'COMPLETED ITEMS:\n';
+            output += '-'.repeat(50) + '\n';
+
+            const checked = Object.keys(state.checks).filter(k => state.checks[k]);
+            output += `Total: ${checked.length} items\n\n`;
+
+            output += '\nNOTES:\n';
+            output += '-'.repeat(50) + '\n';
+            Object.keys(state.notes).forEach(key => {
+                if (state.notes[key]) {
+                    output += `${key}:\n${state.notes[key]}\n\n`;
+                }
+            });
+
+            output += `\nSnacks Tried: ${state.snackCount}\n`;
+
+            return output;
+        }
+
+        // State persistence
+        function saveState() {
+            localStorage.setItem('disneyTripState', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('disneyTripState');
+            if (saved) {
+                Object.assign(state, JSON.parse(saved));
+            }
+        }
+
+        // Close modals on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
