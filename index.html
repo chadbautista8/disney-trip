@@ -766,60 +766,95 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🎢 Rides <span class="section-progress" id="sat-rides-progress">0/4</span></h2>
+                <h2>🎢 Rides <span class="section-progress" id="sat-rides-progress">0/9</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-1')">
+                <div class="checklist-item" data-id="epcot-ride-1" onclick="toggleCheck(this, 'epcot-ride-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Guardians of the Galaxy <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">(only if convenient)</span></div>
+                    <div class="item-text">Guardians of the Galaxy: Cosmic Rewind <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Single Pass</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-2')">
+                <div class="checklist-item" data-id="epcot-ride-2" onclick="toggleCheck(this, 'epcot-ride-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Remy's Ratatouille Adventure <span class="item-badge badge-p1">P1</span> <span class="text-small text-secondary">(reasonable wait)</span></div>
+                    <div class="item-text">Test Track <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-3')">
+                <div class="checklist-item" data-id="epcot-ride-3" onclick="toggleCheck(this, 'epcot-ride-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Remy's Ratatouille Adventure <span class="item-badge badge-p1">P1</span></div>
+                </div>
+                <div class="checklist-item" data-id="epcot-ride-4" onclick="toggleCheck(this, 'epcot-ride-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Soarin' Around the World <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" data-id="epcot-ride-5" onclick="toggleCheck(this, 'epcot-ride-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Living with the Land Holiday Overlay <span class="item-badge badge-p1">P1</span> <span class="item-badge badge-ll">Multi Pass</span></div>
+                </div>
+                <div class="checklist-item" data-id="epcot-ride-6" onclick="toggleCheck(this, 'epcot-ride-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Frozen Ever After <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" data-id="epcot-ride-7" onclick="toggleCheck(this, 'epcot-ride-7')">
                     <div class="checkbox"></div>
                     <div class="item-text">Spaceship Earth <span class="item-badge badge-p2">P2</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-ride-4')">
+                <div class="checklist-item" data-id="epcot-ride-8" onclick="toggleCheck(this, 'epcot-ride-8')">
                     <div class="checkbox"></div>
                     <div class="item-text">Journey of Water <span class="item-badge badge-p2">P2</span></div>
+                </div>
+                <div class="checklist-item" data-id="epcot-ride-9" onclick="toggleCheck(this, 'epcot-ride-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mission: SPACE Orange <span class="item-badge badge-p2">P2</span></div>
                 </div>
             </div>
         </div>
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="sat-food-progress">0/7</span></h2>
+                <h2>🍦 EPCOT Food <span class="section-progress" id="sat-epcot-food-progress">0/10</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-1')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">Fresh Baguette <span class="text-small text-secondary">(Les Halles, France)</span></div>
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Shared with Friday EPCOT — check off either day</p>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-2')">
+                <div class="checklist-item" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces, France)</span></div>
+                    <div class="item-text">Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, left side near back entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-3')">
+                <div class="checklist-item" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan, France)</span></div>
+                    <div class="item-text">Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream window next to Les Halles)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-4')">
+                <div class="checklist-item" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">School Bread <span class="text-small text-secondary">(Kringla Bakeri, Norway)</span></div>
+                    <div class="item-text">Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream window)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-5')">
+                <div class="checklist-item" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Festival Booth Item 1</div>
+                    <div class="item-text">School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery counter on left side)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-6')">
+                <div class="checklist-item" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Festival Booth Item 2</div>
+                    <div class="item-text">Tanghulu (candied fruit skewers) <span class="text-small text-secondary">(Joy of Tea kiosk • China Pavilion, outdoor stand near lake)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sat-food-7')">
+                <div class="checklist-item" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Festival Booth Item 3</div>
+                    <div class="item-text">Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Cafe • Japan Pavilion, walk-up window near Torii gate)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Café Glacé (espresso ice cream) <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream window)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-8" onclick="toggleCheck(this, 'epcot-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 1 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 2 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 3 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
                 </div>
             </div>
         </div>
@@ -938,28 +973,51 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="sun-food-progress">0/5</span></h2>
+                <h2>🍦 MK Food <span class="section-progress" id="sun-mk-food-progress">0/10</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-1')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland bridge)</span></div>
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Shared with Thursday MK cleanup day — check off either day</p>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-2')">
+                <div class="checklist-item" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Pineapple Upside Down Cake + Dole Whip <span class="text-small text-secondary">(Aloha Isle)</span></div>
+                    <div class="item-text">Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland cart • bridge between hub and Adventureland entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-3')">
+                <div class="checklist-item" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café)</span></div>
+                    <div class="item-text">Pineapple Upside Down Cake + Dole Whip <span class="text-small text-secondary">(Aloha Isle • Adventureland, across from Magic Carpets of Aladdin)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-4')">
+                <div class="checklist-item" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern)</span></div>
+                    <div class="item-text">Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Fantasyland, right side near Mad Tea Party entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'sun-food-5')">
+                <div class="checklist-item" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern)</span></div>
+                    <div class="item-text">Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, next to Be Our Guest/Mine Train area)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, same location)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Dole Whip Float <span class="text-small text-secondary">(Aloha Isle • Adventureland, across from Magic Carpets of Aladdin)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tiana's Beignets <span class="text-small text-secondary">(Tiana's Palace cart • Frontierland/Liberty Square border, near Tiana's ride exit)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Banana Beignets <span class="text-small text-secondary">(Tiana's Palace cart • same location as above)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mac & Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Fantasyland, near Little Mermaid)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cold Brew Float <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • Main Street U.S.A., right side heading toward hub)</span></div>
                 </div>
             </div>
         </div>
@@ -1091,23 +1149,23 @@
             <div class="section-content">
                 <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Ronto Wrap <span class="text-small text-secondary">(Ronto Roasters, Galaxy's Edge)</span></div>
+                    <div class="item-text">Ronto Wrap <span class="text-small text-secondary">(Ronto Roasters • Galaxy's Edge, left side near Millennium Falcon)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Cold Brew Black Caf <span class="text-small text-secondary">(Kat Saka's Kettle)</span></div>
+                    <div class="item-text">Cold Brew Black Caf <span class="text-small text-secondary">(Docking Bay 7 / Kat Saka's • Galaxy's Edge, main marketplace area)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Jack-Jack Cookie <span class="text-small text-secondary">(Pixar Plaza)</span></div>
+                    <div class="item-text">Jack-Jack Cookie <span class="text-small text-secondary">(Woody's Lunch Box • Toy Story Land, walk-up window)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Carrot Cake Whoopie Pie <span class="text-small text-secondary">(Trolley Car Café)</span></div>
+                    <div class="item-text">Carrot Cake Whoopie Pie <span class="text-small text-secondary">(Trolley Car Café • Hollywood Blvd, main Starbucks location near park entrance)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Wookiee Cookie <span class="text-small text-secondary">(Backlot Express)</span></div>
+                    <div class="item-text">Wookiee Cookie <span class="text-small text-secondary">(Backlot Express • Echo Lake area, between Star Tours and Indiana Jones)</span></div>
                 </div>
             </div>
         </div>
@@ -1246,35 +1304,35 @@
             <div class="section-content">
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Nomad Lounge Churros <span class="text-small text-secondary">(Discovery Island)</span></div>
+                    <div class="item-text">Nomad Lounge Churros <span class="text-small text-secondary">(Nomad Lounge • Discovery Island, attached to Tiffins restaurant near bridge to Pandora)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Mr. Kamal's Seasoned Fries <span class="text-small text-secondary">(Asia path)</span></div>
+                    <div class="item-text">Mr. Kamal's Seasoned Fries <span class="text-small text-secondary">(Mr. Kamal's • Asia, outdoor stand on walkway between Everest and Feathered Friends)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Night Blossom <span class="text-small text-secondary">(Pongu Pongu, Pandora)</span></div>
+                    <div class="item-text">Night Blossom (frozen drink) <span class="text-small text-secondary">(Pongu Pongu • Pandora, outdoor bar on left before Flight of Passage queue)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Arepas <span class="text-small text-secondary">(Kusafiri, Africa)</span></div>
+                    <div class="item-text">Arepas <span class="text-small text-secondary">(Kusafiri Coffee Shop & Bakery • Africa, next to Kilimanjaro Safaris entrance)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Tropical Slushy <span class="text-small text-secondary">(Harambe Market)</span></div>
+                    <div class="item-text">Tropical Slushy <span class="text-small text-secondary">(Harambe Market • Africa, outdoor food court past Safaris exit)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Trader's Tailwind <span class="text-small text-secondary">(Harambe Market)</span></div>
+                    <div class="item-text">Trader's Tailwind <span class="text-small text-secondary">(Harambe Market • Africa, same food court area)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Vietnamese Iced Coffee <span class="text-small text-secondary">(Royal Anandapur Tea Company)</span></div>
+                    <div class="item-text">Vietnamese Iced Coffee <span class="text-small text-secondary">(Royal Anandapur Tea Company • Asia, walk-up window near Everest entrance)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Cookie Dough Ice Cream Sandwich <span class="text-small text-secondary">(verify venue)</span></div>
+                    <div class="item-text">Cookie Dough Ice Cream Sandwich <span class="text-small text-secondary">(Restaurantosaurus • DinoLand U.S.A., quick service near TriceraTop Spin)</span></div>
                 </div>
             </div>
         </div>
@@ -1360,15 +1418,15 @@
             <div class="section-content">
                 <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Gideon's Cookie <span class="text-small text-secondary">(The Landing)</span></div>
+                    <div class="item-text">Gideon's Cookie <span class="text-small text-secondary">(Gideon's Bakehouse • The Landing, near Jock Lindsey's — join virtual queue early!)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Cake Bake Pastry <span class="text-small text-secondary">(BoardWalk)</span></div>
+                    <div class="item-text">Cake Bake Pastry <span class="text-small text-secondary">(The Cake Bake Shop • BoardWalk Inn, ground floor near lobby)</span></div>
                 </div>
                 <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Jock Lindsey's Specialty Drink <span class="text-small text-secondary">(The Landing)</span></div>
+                    <div class="item-text">Jock Lindsey's Specialty Drink <span class="text-small text-secondary">(Jock Lindsey's Hangar Bar • The Landing, waterfront — Indiana Jones themed)</span></div>
                 </div>
             </div>
         </div>
@@ -1468,28 +1526,51 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food Cleanup <span class="section-progress" id="thu-food-progress">0/5</span></h2>
+                <h2>🍦 MK Food <span class="section-progress" id="thu-mk-food-progress">0/10</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-1')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">Dole Whip <span class="text-small text-secondary">(Aloha Isle, if missed Sunday)</span></div>
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Shared with Sunday MK day — check off either day</p>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-2')">
+                <div class="checklist-item" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Tiana's Beignets <span class="text-small text-secondary">(verify venue)</span></div>
+                    <div class="item-text">Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland cart • bridge between hub and Adventureland entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-3')">
+                <div class="checklist-item" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Banana Beignets <span class="text-small text-secondary">(verify venue)</span></div>
+                    <div class="item-text">Pineapple Upside Down Cake + Dole Whip <span class="text-small text-secondary">(Aloha Isle • Adventureland, across from Magic Carpets of Aladdin)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-4')">
+                <div class="checklist-item" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Mac & Cheese Hand Pie <span class="text-small text-secondary">(verify venue)</span></div>
+                    <div class="item-text">Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Fantasyland, right side near Mad Tea Party entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'thu-food-5')">
+                <div class="checklist-item" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Cold Brew Float <span class="text-small text-secondary">(verify venue)</span></div>
+                    <div class="item-text">Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, next to Be Our Guest/Mine Train area)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, same location)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Dole Whip Float <span class="text-small text-secondary">(Aloha Isle • Adventureland, across from Magic Carpets of Aladdin)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tiana's Beignets <span class="text-small text-secondary">(Tiana's Palace cart • Frontierland/Liberty Square border, near Tiana's ride exit)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Banana Beignets <span class="text-small text-secondary">(Tiana's Palace cart • same location as above)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Mac & Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Fantasyland, near Little Mermaid)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Cold Brew Float <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • Main Street U.S.A., right side heading toward hub)</span></div>
                 </div>
             </div>
         </div>
@@ -1608,28 +1689,51 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="fri-food-progress">0/5</span></h2>
+                <h2>🍦 EPCOT Food <span class="section-progress" id="fri-epcot-food-progress">0/10</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-1')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">Tanghulu <span class="text-small text-secondary">(China kiosk)</span></div>
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Shared with Saturday EPCOT — check off either day</p>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-2')">
+                <div class="checklist-item" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Japan)</span></div>
+                    <div class="item-text">Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, left side near back entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-3')">
+                <div class="checklist-item" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Café Glacé <span class="text-small text-secondary">(L'Artisan, France)</span></div>
+                    <div class="item-text">Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream window next to Les Halles)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-4')">
+                <div class="checklist-item" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Missed Festival Item from Saturday</div>
+                    <div class="item-text">Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream window)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'fri-food-5')">
+                <div class="checklist-item" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">Missed EPCOT Snack from Saturday</div>
+                    <div class="item-text">School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery counter on left side)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Tanghulu (candied fruit skewers) <span class="text-small text-secondary">(Joy of Tea kiosk • China Pavilion, outdoor stand near lake)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Cafe • Japan Pavilion, walk-up window near Torii gate)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Café Glacé (espresso ice cream) <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream window)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-8" onclick="toggleCheck(this, 'epcot-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 1 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 2 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
+                </div>
+                <div class="checklist-item" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">Festival Booth Item 3 <span class="text-small text-secondary">(Festival booths • scattered along World Showcase promenade)</span></div>
                 </div>
             </div>
         </div>
@@ -1988,7 +2092,11 @@
 
             // Restore all checkboxes
             document.querySelectorAll('.checklist-item').forEach(item => {
-                const id = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const onclickAttr = item.getAttribute('onclick');
+                if (!onclickAttr) return;
+                const match = onclickAttr.match(/'([^']+)'/);
+                if (!match) return;
+                const id = match[1];
                 if (state.checks[id]) {
                     item.classList.add('checked');
                 }
@@ -2024,6 +2132,20 @@
             element.classList.toggle('checked');
             state.checks[id] = element.classList.contains('checked');
 
+            // Sync shared items across days
+            const shared = element.getAttribute('data-shared');
+            if (shared) {
+                document.querySelectorAll(`[data-shared="${shared}"]`).forEach(item => {
+                    if (item !== element) {
+                        if (state.checks[id]) {
+                            item.classList.add('checked');
+                        } else {
+                            item.classList.remove('checked');
+                        }
+                    }
+                });
+            }
+
             // Update snack counter if it's a food item
             if (id.includes('food')) {
                 updateSnackCount();
@@ -2049,19 +2171,21 @@
         function updateAllProgress() {
             // Day-specific progress
             updateProgress('sat-rides-progress', 'sat-ride-');
-            updateProgress('sat-food-progress', 'sat-food-');
             updateProgress('sun-rides-progress', 'sun-ride-');
-            updateProgress('sun-food-progress', 'sun-food-');
             updateProgress('mon-rides-progress', 'mon-ride-');
             updateProgress('mon-food-progress', 'mon-food-');
             updateProgress('tue-rides-progress', 'tue-ride-');
             updateProgress('tue-food-progress', 'tue-food-');
             updateProgress('wed-food-progress', 'wed-food-');
             updateProgress('thu-rides-progress', 'thu-ride-');
-            updateProgress('thu-food-progress', 'thu-food-');
             updateProgress('fri-rides-progress', 'fri-ride-');
-            updateProgress('fri-food-progress', 'fri-food-');
             updateProgress('depart-check-progress', 'depart-check-');
+
+            // Shared food progress (EPCOT and MK)
+            updateProgress('sat-epcot-food-progress', 'epcot-food-');
+            updateProgress('fri-epcot-food-progress', 'epcot-food-');
+            updateProgress('sun-mk-food-progress', 'mk-food-');
+            updateProgress('thu-mk-food-progress', 'mk-food-');
 
             // Master rides progress
             updateProgress('master-mk-progress', 'master-mk-');
@@ -2083,13 +2207,21 @@
             const element = document.getElementById(elementId);
             if (!element) return;
 
+            // Count from DOM: find all checklist items whose onclick ID starts with prefix
             let total = 0;
             let checked = 0;
+            const seen = new Set();
 
-            Object.keys(state.checks).forEach(key => {
-                if (key.startsWith(prefix)) {
+            document.querySelectorAll('.checklist-item').forEach(item => {
+                const onclickAttr = item.getAttribute('onclick');
+                if (!onclickAttr) return;
+                const match = onclickAttr.match(/'([^']+)'/);
+                if (!match) return;
+                const id = match[1];
+                if (id.startsWith(prefix) && !seen.has(id)) {
+                    seen.add(id);
                     total++;
-                    if (state.checks[key]) checked++;
+                    if (state.checks[id]) checked++;
                 }
             });
 
