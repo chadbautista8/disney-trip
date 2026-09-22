@@ -593,8 +593,8 @@
         .res-badge { display: block; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; width: fit-content; margin-top: 1px; }
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.walk { background: rgba(251,191,36,0.25); color: #fbbf24; }
-        .res-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #34d399; margin-right: 3px; vertical-align: middle; flex-shrink: 0; }
-        .de-res-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #34d399; margin-right: 5px; vertical-align: middle; }
+        .res-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 3px; vertical-align: middle; flex-shrink: 0; }
+        .de-res-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
         .wt-ev.has-link { cursor: pointer; }
         .wt-ev .link-icon { position: absolute; top: 2px; right: 3px; font-size: 7px; opacity: 0.5; }
         .wt-ev:hover .link-icon { opacity: 1; }
@@ -2653,7 +2653,8 @@
                     const showTime = h >= 34;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
                     const linkIcon = ev.link ? '<span class="link-icon">&#8599;</span>' : '';
-                    const resDot = (ev.link && !ev.res) ? '<span class="res-dot"></span>' : '';
+                    const dotColor = ev.link && !ev.res ? `var(--cat-${ev.cat})` : '';
+                    const resDot = dotColor ? `<span class="res-dot" style="background:${dotColor}"></span>` : '';
                     el.innerHTML = `<div class="ev-name">${resDot}${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${linkIcon}`;
                     if (ev.link) el.addEventListener('click', () => window.open(ev.link, '_blank'));
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
@@ -2704,7 +2705,7 @@
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
                         <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
-                            <div class="de-name">${(ev.link && !ev.res) ? '<span class="de-res-dot"></span>' : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
+                            <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
                         </div>
