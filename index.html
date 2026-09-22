@@ -590,6 +590,9 @@
         .wt-ev.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge);  color: var(--cat-lounge); }
         .wt-ev.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); color: var(--cat-leisure); }
         .wt-ev.alt-opt  { opacity: 0.55; border-left-style: dashed; }
+        .res-badge { position: absolute; top: 2px; right: 3px; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; }
+        .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
+        .res-badge.walk { background: rgba(251,191,36,0.25); color: #fbbf24; }
 
         /* Tooltip */
         .tooltip {
@@ -628,6 +631,9 @@
         .dt-dot.travel  { background: var(--cat-travel); }
         .dt-dot.lounge  { background: var(--cat-lounge); }
         .dt-dot.leisure { background: var(--cat-leisure); }
+        .de-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.3px; padding: 2px 5px; border-radius: 4px; margin-left: 8px; text-transform: uppercase; vertical-align: middle; }
+        .de-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
+        .de-badge.walk { background: rgba(251,191,36,0.25); color: #fbbf24; }
 
         @media (max-width: 768px) {
             .week-table { min-width: 900px; }
@@ -2213,6 +2219,8 @@
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-travel)"></div>Travel</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-lounge)"></div>Drinks / Lounge</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-leisure)"></div>Leisure</div>
+            <div class="legend-item"><span class="de-badge vq" style="margin-left:0">VQ</span>Virtual Queue</div>
+            <div class="legend-item"><span class="de-badge walk" style="margin-left:0">WALK</span>Walk-Up</div>
         </div>
         <div class="controls">
             <button class="view-btn active" onclick="setScheduleView('weekly')">Weekly</button>
@@ -2544,21 +2552,21 @@
             { d:1, s:855,  dur:90,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM' },
             { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM' },
             { d:1, s:1200, dur:30,  name:'Happily Ever After (8 PM)', cat:'show',   time:'8:00 PM' },
-            { d:2, s:720,  dur:60,  name:'BaseLine Tap House',       cat:'lounge',  time:'12:00 PM' },
+            { d:2, s:720,  dur:60,  name:'BaseLine Tap House',       cat:'lounge',  time:'12:00 PM', res:'walk' },
             { d:2, s:855,  dur:60,  name:"Oga's Cantina",            cat:'lounge',  time:'2:15 PM' },
             { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM' },
             { d:2, s:1230, dur:30,  name:'Fantasmic! (8:30 PM)',     cat:'show',    time:'8:30 PM' },
-            { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'~1:00 PM' },
+            { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'~1:00 PM', res:'vq' },
             { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM' },
-            { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM' },
-            { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'3:00 PM' },
+            { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM', res:'walk' },
+            { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'3:00 PM', res:'walk' },
             { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM' },
             { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner' },
             { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
             { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
             { d:5, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM' },
-            { d:5, s:780,  dur:60,  name:"Trader Sam's",             cat:'lounge',  time:'1:00 PM' },
-            { d:5, s:900,  dur:60,  name:'Enchanted Rose',           cat:'lounge',  time:'3:00 PM' },
+            { d:5, s:780,  dur:60,  name:"Trader Sam's",             cat:'lounge',  time:'1:00 PM', res:'vq' },
+            { d:5, s:900,  dur:60,  name:'Enchanted Rose',           cat:'lounge',  time:'3:00 PM', res:'vq' },
             { d:5, s:1050, dur:60,  name:'Steakhouse 71 Lounge',    cat:'lounge',  time:'5:30 PM' },
             { d:5, s:1140, dur:90,  name:'Toledo',                   cat:'dining',  time:'7:00 PM', group:'thu-dinner' },
             { d:5, s:1150, dur:120, name:'California Grill',         cat:'dining',  time:'7:10 PM', group:'thu-dinner', alt:true },
@@ -2633,7 +2641,8 @@
                     el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}`;
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
                     const showTime = h >= 34;
-                    el.innerHTML = `<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}`;
+                    const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
+                    el.innerHTML = `${resBadge}<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}`;
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
                     el.addEventListener('mouseleave', hideSchedTooltip);
                     el.addEventListener('mousemove', moveSchedTooltip);
@@ -2645,7 +2654,8 @@
         function showSchedTooltip(e, ev) {
             const tt = document.getElementById('schedTooltip');
             tt.querySelector('.tt-name').textContent = ev.name;
-            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min';
+            const resLabel = ev.res === 'vq' ? ' · Virtual Queue' : ev.res === 'walk' ? ' · Walk-Up' : '';
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel;
             const catEl = tt.querySelector('.tt-cat');
             catEl.textContent = SCHED_CAT_LABELS[ev.cat];
             catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
@@ -2678,7 +2688,7 @@
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
                         <div class="dt-event ${ev.cat}">
-                            <div class="de-name">${ev.name}</div>
+                            <div class="de-name">${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}</div>` : ''}
                         </div>
