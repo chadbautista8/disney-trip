@@ -593,6 +593,13 @@
         .res-badge { display: block; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; width: fit-content; margin-top: 1px; }
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.walk { background: rgba(251,191,36,0.25); color: #fbbf24; }
+        .wt-ev.has-link { cursor: pointer; }
+        .wt-ev .link-icon { position: absolute; top: 2px; right: 3px; font-size: 7px; opacity: 0.5; }
+        .wt-ev:hover .link-icon { opacity: 1; }
+        .de-manage { display: inline-block; font-size: 10px; font-weight: 600; color: #4a9eff; margin-left: 8px; text-decoration: none; opacity: 0.7; }
+        .de-manage:hover { opacity: 1; text-decoration: underline; }
+        .dt-event.has-link { cursor: pointer; }
+        .dt-event.has-link:hover { border-color: #4a9eff; }
 
         /* Tooltip */
         .tooltip {
@@ -2540,43 +2547,44 @@
             dining:'Dining', show:'Show / Fireworks', ride:'Ride / Attraction',
             travel:'Travel', lounge:'Drinks / Lounge', leisure:'Leisure'
         };
+        const MDE = 'https://disneyworld.disney.go.com/dining-reservations/';
         const EVENTS = [
             { d:0, s:420,  dur:177, name:'EWR → MCO',                cat:'travel',  time:'7:00 AM → 9:57 AM' },
-            { d:0, s:910,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'3:10 PM' },
+            { d:0, s:910,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'3:10 PM', link:MDE },
             { d:0, s:990,  dur:60,  name:'Guardians of the Galaxy',  cat:'ride',    time:'4:30 PM' },
-            { d:0, s:1135, dur:90,  name:'Via Napoli',               cat:'dining',  time:'6:55 PM' },
+            { d:0, s:1135, dur:90,  name:'Via Napoli',               cat:'dining',  time:'6:55 PM', link:MDE },
             { d:0, s:1260, dur:30,  name:'Luminous (9 PM)',          cat:'show',    time:'9:00 PM' },
-            { d:2, s:465,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'7:45 AM' },
-            { d:1, s:720,  dur:60,  name:'Beak & Barrel',            cat:'lounge',  time:'12:00 PM' },
-            { d:1, s:855,  dur:90,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM' },
-            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM' },
+            { d:2, s:465,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'7:45 AM', link:MDE },
+            { d:1, s:720,  dur:60,  name:'Beak & Barrel',            cat:'lounge',  time:'12:00 PM', link:MDE },
+            { d:1, s:855,  dur:90,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM', link:MDE },
+            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM', link:MDE },
             { d:1, s:1200, dur:30,  name:'Happily Ever After (8 PM)', cat:'show',   time:'8:00 PM' },
             { d:2, s:720,  dur:60,  name:'BaseLine Tap House',       cat:'lounge',  time:'12:00 PM', res:'walk' },
-            { d:2, s:855,  dur:60,  name:"Oga's Cantina",            cat:'lounge',  time:'2:15 PM' },
-            { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM' },
+            { d:2, s:855,  dur:60,  name:"Oga's Cantina",            cat:'lounge',  time:'2:15 PM', link:MDE },
+            { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM', link:MDE },
             { d:2, s:1230, dur:30,  name:'Fantasmic! (8:30 PM)',     cat:'show',    time:'8:30 PM' },
             { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'~1:00 PM', res:'vq' },
-            { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM' },
+            { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM', link:MDE },
             { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM', res:'walk' },
             { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'3:00 PM', res:'walk' },
-            { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM' },
-            { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner' },
-            { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
-            { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
-            { d:5, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM' },
+            { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM', link:'https://www.cirquedusoleil.com/drawn-to-life' },
+            { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', link:'https://www.opentable.com/r/morimoto-asia-orlando' },
+            { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:'https://www.opentable.com/r/chef-art-smiths-homecomin-orlando' },
+            { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:'https://www.opentable.com/r/the-boathouse-orlando' },
+            { d:5, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM', link:MDE },
             { d:5, s:780,  dur:60,  name:"Trader Sam's",             cat:'lounge',  time:'1:00 PM', res:'vq' },
             { d:5, s:900,  dur:60,  name:'Enchanted Rose',           cat:'lounge',  time:'3:00 PM', res:'vq' },
             { d:5, s:1050, dur:60,  name:'Steakhouse 71 Lounge',    cat:'lounge',  time:'~5:30 PM', res:'walk' },
-            { d:5, s:1140, dur:90,  name:'Toledo',                   cat:'dining',  time:'7:00 PM', group:'thu-dinner' },
-            { d:5, s:1150, dur:120, name:'California Grill',         cat:'dining',  time:'7:10 PM', group:'thu-dinner', alt:true },
+            { d:5, s:1140, dur:90,  name:'Toledo',                   cat:'dining',  time:'7:00 PM', group:'thu-dinner', link:MDE },
+            { d:5, s:1150, dur:120, name:'California Grill',         cat:'dining',  time:'7:10 PM', group:'thu-dinner', alt:true, link:MDE },
             { d:5, s:1200, dur:30,  name:'Happily Ever After (8 PM)', cat:'show',   time:'8:00 PM' },
             { d:6, s:540,  dur:60,  name:'Les Halles',               cat:'dining',  time:'~9:00 AM', res:'walk' },
-            { d:6, s:750,  dur:90,  name:'Space 220',                cat:'dining',  time:'12:30 PM' },
-            { d:6, s:990,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'4:30 PM' },
+            { d:6, s:750,  dur:90,  name:'Space 220',                cat:'dining',  time:'12:30 PM', link:'https://www.space220.com' },
+            { d:6, s:990,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'4:30 PM', link:MDE },
             { d:6, s:1110, dur:60,  name:'Candlelight Processional', cat:'show',    time:'6:30 PM', res:'walk' },
-            { d:6, s:1215, dur:90,  name:'Spice Road Table',         cat:'dining',  time:'8:15 PM' },
+            { d:6, s:1215, dur:90,  name:'Spice Road Table',         cat:'dining',  time:'8:15 PM', link:MDE },
             { d:6, s:1260, dur:30,  name:'Luminous (9 PM)',          cat:'show',    time:'9:00 PM' },
-            { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM' },
+            { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM', link:MDE },
             { d:7, s:600,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'~10:00 AM', res:'walk' },
             { d:7, s:1154, dur:163, name:'MCO → EWR',                cat:'travel',  time:'7:34 PM → 10:17 PM' }
         ];
@@ -2637,11 +2645,13 @@
                     const top = minToTop(ev.s);
                     const h = Math.max(minToH(ev.dur) - 1, 16);
                     const el = document.createElement('div');
-                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}`;
+                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}`;
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
                     const showTime = h >= 34;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
-                    el.innerHTML = `<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}`;
+                    const linkIcon = ev.link ? '<span class="link-icon">&#8599;</span>' : '';
+                    el.innerHTML = `<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${linkIcon}`;
+                    if (ev.link) el.addEventListener('click', () => window.open(ev.link, '_blank'));
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
                     el.addEventListener('mouseleave', hideSchedTooltip);
                     el.addEventListener('mousemove', moveSchedTooltip);
@@ -2654,7 +2664,8 @@
             const tt = document.getElementById('schedTooltip');
             tt.querySelector('.tt-name').textContent = ev.name;
             const resLabel = ev.res === 'vq' ? ' · Virtual Queue' : ev.res === 'walk' ? ' · Walk-Up' : '';
-            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel;
+            const linkLabel = ev.link ? ' · Tap to manage' : '';
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + linkLabel;
             const catEl = tt.querySelector('.tt-cat');
             catEl.textContent = SCHED_CAT_LABELS[ev.cat];
             catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
@@ -2682,14 +2693,16 @@
             let html = `<div class="daily-header"><h2>${day.day}, ${day.date}</h2><div class="dp-park">${day.park}</div></div><div class="daily-tl">`;
             evs.forEach(ev => {
                 const alts = ev.group ? EVENTS.filter(o => o.group === ev.group && o.alt) : [];
+                const manageLink = ev.link ? `<a class="de-manage" href="${ev.link}" target="_blank" onclick="event.stopPropagation()">Manage &#8599;</a>` : '';
+                const altManageLinks = alts.map(a => a.link ? `<a class="de-manage" href="${a.link}" target="_blank" onclick="event.stopPropagation()">${a.name} &#8599;</a>` : '').filter(Boolean).join(' ');
                 html += `<div class="dt-row">
                     <div class="dt-time">${ev.time}</div>
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
-                        <div class="dt-event ${ev.cat}">
-                            <div class="de-name">${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}</div>
+                        <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
+                            <div class="de-name">${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
-                            ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}</div>` : ''}
+                            ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
                         </div>
                     </div>
                 </div>`;
