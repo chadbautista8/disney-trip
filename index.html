@@ -2651,7 +2651,7 @@
                     const top = minToTop(ev.s);
                     const h = Math.max(minToH(ev.dur) - 1, 16);
                     const el = document.createElement('div');
-                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}${(!ev.link && !ev.res) ? ' no-res' : ''}`;
+                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}${ev.res ? ' no-res' : ''}`;
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
                     const showTime = h >= 24;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
@@ -2707,7 +2707,7 @@
                     <div class="dt-time">${ev.time}</div>
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
-                        <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${(!ev.link && !ev.res) ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
+                        <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${ev.res ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
                             <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
