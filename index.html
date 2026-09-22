@@ -522,44 +522,117 @@
         .text-small { font-size: 13px; }
 
         /* Weekly Schedule Grid */
-        #schedule.tab-content { padding:8px 0; }
-        .schedule-legend { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; padding:10px 20px 14px; }
-        .schedule-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-secondary); font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
-        .schedule-legend-dot { width:10px; height:10px; border-radius:50%; }
-        .weekly-wrap { overflow-x:auto; padding:0 0 20px; }
-        .weekly-wrap::-webkit-scrollbar { height:6px; }
-        .weekly-wrap::-webkit-scrollbar-track { background:var(--bg-primary); }
-        .weekly-wrap::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-        .week-table { display:flex; min-width:1280px; }
-        .wt-times { width:54px; flex-shrink:0; padding-top:62px; }
-        .wt-time { height:32px; font-size:11px; color:var(--text-tertiary); font-weight:500; text-align:right; padding-right:8px; line-height:32px; }
-        .wt-day { flex:1; min-width:140px; border-left:1px solid var(--border); }
-        .wt-day:last-child { border-right:1px solid var(--border); }
-        .wt-day-header { height:62px; padding:8px 6px; text-align:center; border-bottom:1px solid var(--border); background:var(--bg-secondary); cursor:pointer; transition:background 0.15s; }
-        .wt-day-header:hover { background:var(--bg-tertiary); }
-        .wt-day-header .dh-day { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-tertiary); }
-        .wt-day-header .dh-date { font-size:16px; font-weight:700; margin:2px 0; }
-        .wt-day-header .dh-park { font-size:10px; font-weight:600; color:#a78bfa; }
-        .wt-body { position:relative; }
-        .wt-grid-line { height:32px; border-top:1px solid rgba(255,255,255,0.06); }
-        .wt-grid-line.hour { border-top:1px solid rgba(255,255,255,0.12); }
-        .wt-ev { position:absolute; left:3px; right:3px; border-radius:5px; padding:3px 6px; font-size:11px; font-weight:600; line-height:1.3; border-left:3px solid; overflow:hidden; cursor:default; z-index:2; transition:filter 0.15s; }
-        .wt-ev:hover { filter:brightness(1.25); z-index:10; }
-        .wt-ev .ev-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .wt-ev .ev-time { font-size:9px; font-weight:500; opacity:0.7; }
-        .wt-ev.dining { background:var(--cat-dining-bg); border-color:var(--cat-dining); color:var(--cat-dining); }
-        .wt-ev.show { background:var(--cat-show-bg); border-color:var(--cat-show); color:var(--cat-show); }
-        .wt-ev.ride { background:var(--cat-ride-bg); border-color:var(--cat-ride); color:var(--cat-ride); }
-        .wt-ev.travel { background:var(--cat-travel-bg); border-color:var(--cat-travel); color:var(--cat-travel); }
-        .wt-ev.lounge { background:var(--cat-lounge-bg); border-color:var(--cat-lounge); color:var(--cat-lounge); }
-        .wt-ev.leisure { background:var(--cat-leisure-bg); border-color:var(--cat-leisure); color:var(--cat-leisure); }
-        .wt-ev.alt-opt { opacity:0.55; border-left-style:dashed; }
-        .schedule-tooltip { display:none; position:fixed; z-index:200; background:#2a2a2a; border:1px solid #555; border-radius:8px; padding:10px 14px; max-width:260px; pointer-events:none; font-size:12px; box-shadow:0 6px 24px rgba(0,0,0,0.6); }
-        .schedule-tooltip .tt-name { font-weight:700; margin-bottom:2px; }
-        .schedule-tooltip .tt-time { color:var(--text-secondary); font-size:11px; }
-        .schedule-tooltip .tt-cat { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
-        .schedule-tooltip .tt-alt { font-size:10px; color:var(--text-tertiary); margin-top:4px; font-style:italic; }
-        @media (max-width:768px) { .week-table { min-width:1080px; } }
+        /* Schedule tab - no side padding */
+        #schedule.tab-content { padding: 0; }
+
+        /* Legend */
+        .legend {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+            padding: 12px 20px; border-bottom: 1px solid var(--border);
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        /* Controls */
+        .controls {
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+            padding: 12px 20px; position: sticky; top: 0; z-index: 50;
+            background: var(--bg-primary); border-bottom: 1px solid var(--border);
+        }
+        .view-btn {
+            padding: 7px 16px; border: 1px solid var(--border); border-radius: 6px;
+            background: transparent; color: var(--text-secondary); font-family: inherit;
+            font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+        }
+        .view-btn.active { background: #a78bfa; color: #fff; border-color: #a78bfa; }
+        .view-btn:hover:not(.active) { background: var(--bg-tertiary); color: var(--text-primary); }
+        .day-selector { display: none; margin-left: 12px; gap: 4px; align-items: center; overflow-x: auto; }
+        .day-selector.visible { display: flex; }
+        .day-chip {
+            padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
+            background: transparent; color: var(--text-secondary); font-family: inherit;
+            font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+        }
+        .day-chip.active { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--text-tertiary); }
+        .day-chip:hover:not(.active) { background: var(--bg-tertiary); }
+
+        /* Weekly grid */
+        .weekly-wrap { overflow-x: auto; padding: 0 8px 20px; }
+        .weekly-wrap::-webkit-scrollbar { height: 6px; }
+        .weekly-wrap::-webkit-scrollbar-track { background: var(--bg-primary); }
+        .weekly-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        .week-table { display: flex; min-width: 1080px; }
+        .wt-times { width: 50px; flex-shrink: 0; padding-top: 58px; }
+        .wt-time { height: 28px; font-size: 10px; color: var(--text-tertiary); font-weight: 500; text-align: right; padding-right: 6px; line-height: 28px; }
+        .wt-day { flex: 1; min-width: 120px; border-left: 1px solid var(--border); }
+        .wt-day-header { height: 58px; padding: 8px 6px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-secondary); cursor: pointer; transition: background 0.15s; }
+        .wt-day-header:hover { background: var(--bg-tertiary); }
+        .wt-day-header .dh-day { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); }
+        .wt-day-header .dh-date { font-size: 15px; font-weight: 700; margin: 1px 0; }
+        .wt-day-header .dh-park { font-size: 9px; font-weight: 600; color: #a78bfa; }
+        .wt-body { position: relative; }
+        .wt-grid-line { height: 28px; border-top: 1px solid var(--border-light); }
+        .wt-grid-line.hour { border-top-color: var(--border); }
+        .wt-ev {
+            position: absolute; left: 2px; right: 2px;
+            border-radius: 4px; padding: 2px 5px;
+            font-size: 10px; font-weight: 600; line-height: 1.25;
+            border-left: 3px solid; overflow: hidden;
+            cursor: default; z-index: 2; transition: filter 0.15s, z-index 0s;
+        }
+        .wt-ev:hover { filter: brightness(1.25); z-index: 10; }
+        .wt-ev .ev-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .wt-ev .ev-time { font-size: 8px; font-weight: 500; opacity: 0.7; }
+        .wt-ev.dining   { background: var(--cat-dining-bg);  border-color: var(--cat-dining);  color: var(--cat-dining); }
+        .wt-ev.show     { background: var(--cat-show-bg);    border-color: var(--cat-show);    color: var(--cat-show); }
+        .wt-ev.ride     { background: var(--cat-ride-bg);    border-color: var(--cat-ride);    color: var(--cat-ride); }
+        .wt-ev.travel   { background: var(--cat-travel-bg);  border-color: var(--cat-travel);  color: var(--cat-travel); }
+        .wt-ev.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge);  color: var(--cat-lounge); }
+        .wt-ev.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); color: var(--cat-leisure); }
+        .wt-ev.alt-opt  { opacity: 0.55; border-left-style: dashed; }
+
+        /* Tooltip */
+        .tooltip {
+            display: none; position: fixed; z-index: 200;
+            background: #2a2a2a; border: 1px solid #555; border-radius: 8px;
+            padding: 10px 14px; max-width: 240px; pointer-events: none;
+            font-size: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.6);
+        }
+        .tt-name { font-weight: 700; margin-bottom: 2px; }
+        .tt-time { color: var(--text-secondary); font-size: 11px; }
+        .tt-cat  { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+        .tt-alt  { font-size: 10px; color: var(--text-tertiary); margin-top: 4px; font-style: italic; }
+
+        /* Daily view */
+        .daily-view { display: none; padding: 0 16px 30px; max-width: 660px; margin: 0 auto; }
+        .daily-header { text-align: center; padding: 20px 0 16px; }
+        .daily-header h2 { font-size: 22px; font-weight: 800; }
+        .daily-header .dp-park { font-size: 12px; font-weight: 600; color: #a78bfa; margin-top: 4px; }
+        .dt-row { display: flex; align-items: stretch; min-height: 56px; border-bottom: 1px solid var(--border-light); }
+        .dt-time { width: 72px; flex-shrink: 0; font-size: 13px; font-weight: 600; color: var(--text-secondary); padding: 14px 12px 14px 0; text-align: right; }
+        .dt-track { flex: 1; position: relative; padding: 8px 0 8px 18px; border-left: 2px solid var(--border); }
+        .dt-dot { position: absolute; left: -6px; top: 18px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-primary); }
+        .dt-event { padding: 8px 14px; border-radius: 8px; border-left: 3px solid; }
+        .dt-event .de-name { font-size: 15px; font-weight: 700; }
+        .dt-event .de-detail { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+        .dt-event .de-alt { font-size: 11px; color: var(--text-tertiary); margin-top: 5px; font-style: italic; }
+        .dt-event.dining   { background: var(--cat-dining-bg);  border-color: var(--cat-dining); }  .dt-event.dining .de-name  { color: var(--cat-dining); }
+        .dt-event.show     { background: var(--cat-show-bg);    border-color: var(--cat-show); }    .dt-event.show .de-name    { color: var(--cat-show); }
+        .dt-event.ride     { background: var(--cat-ride-bg);    border-color: var(--cat-ride); }    .dt-event.ride .de-name    { color: var(--cat-ride); }
+        .dt-event.travel   { background: var(--cat-travel-bg);  border-color: var(--cat-travel); }  .dt-event.travel .de-name  { color: var(--cat-travel); }
+        .dt-event.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge); }  .dt-event.lounge .de-name  { color: var(--cat-lounge); }
+        .dt-event.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); }  .dt-event.leisure .de-name { color: var(--cat-leisure); }
+        .dt-dot.dining  { background: var(--cat-dining); }
+        .dt-dot.show    { background: var(--cat-show); }
+        .dt-dot.ride    { background: var(--cat-ride); }
+        .dt-dot.travel  { background: var(--cat-travel); }
+        .dt-dot.lounge  { background: var(--cat-lounge); }
+        .dt-dot.leisure { background: var(--cat-leisure); }
+
+        @media (max-width: 768px) {
+            .week-table { min-width: 900px; }
+            .day-selector { flex-wrap: nowrap; overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
@@ -2133,11 +2206,29 @@
 
     <!-- SCHEDULE TAB -->
     <div class="tab-content active" id="schedule">
-        <div class="schedule-legend" id="scheduleLegend"></div>
-        <div class="weekly-wrap">
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-dining)"></div>Dining</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-show)"></div>Show / Fireworks</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-ride)"></div>Ride / Attraction</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-travel)"></div>Travel</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-lounge)"></div>Drinks / Lounge</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-leisure)"></div>Leisure</div>
+        </div>
+        <div class="controls">
+            <button class="view-btn active" onclick="setScheduleView('weekly')">Weekly</button>
+            <button class="view-btn" onclick="setScheduleView('daily')">Daily</button>
+            <div class="day-selector" id="daySelector"></div>
+        </div>
+        <div class="tooltip" id="schedTooltip">
+            <div class="tt-name"></div>
+            <div class="tt-time"></div>
+            <div class="tt-cat"></div>
+            <div class="tt-alt"></div>
+        </div>
+        <div class="weekly-wrap" id="weeklyView">
             <div class="week-table" id="weekTable"></div>
         </div>
-        <div class="schedule-tooltip" id="scheduleTooltip"></div>
+        <div class="daily-view" id="dailyView"></div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -2426,108 +2517,201 @@
             });
         });
 
-        // ── Weekly Schedule Grid ──
-        const DAYS = [
-            {label:'Sat 11/21', park:'EPCOT (Food & Wine)'},
-            {label:'Sun 11/22', park:'Magic Kingdom'},
-            {label:'Mon 11/23', park:"Hollywood Studios"},
-            {label:'Tue 11/24', park:'Animal Kingdom'},
-            {label:'Wed 11/25', park:'Disney Springs'},
-            {label:'Thu 11/26', park:'Resort Crawl / MK'},
-            {label:'Fri 11/27', park:'EPCOT (Festival of Holidays)'},
-            {label:'Sat 11/28', park:'Departure'}
+        // ── Schedule (Weekly + Daily) ──
+        const SCHED_DAYS = [
+            { date:'Nov 21', day:'Saturday',  park:'EPCOT (Food & Wine)' },
+            { date:'Nov 22', day:'Sunday',    park:'Magic Kingdom' },
+            { date:'Nov 23', day:'Monday',    park:'Hollywood Studios' },
+            { date:'Nov 24', day:'Tuesday',   park:'Animal Kingdom' },
+            { date:'Nov 25', day:'Wednesday', park:'Disney Springs' },
+            { date:'Nov 26', day:'Thursday',  park:'Resort Crawl / MK' },
+            { date:'Nov 27', day:'Friday',    park:'EPCOT (Festival of Holidays)' },
+            { date:'Nov 28', day:'Saturday',  park:'Departure' }
         ];
+        const SCHED_CAT_LABELS = {
+            dining:'Dining', show:'Show / Fireworks', ride:'Ride / Attraction',
+            travel:'Travel', lounge:'Drinks / Lounge', leisure:'Leisure'
+        };
         const EVENTS = [
-            {d:0,s:420,dur:30,name:'Flight Departs',cat:'travel',time:'7:00 AM'},
-            {d:0,s:600,dur:30,name:'Flight Lands',cat:'travel',time:'10:00 AM'},
-            {d:0,s:910,dur:60,name:'GEO-82',cat:'lounge',time:'3:10 PM'},
-            {d:0,s:990,dur:60,name:'Guardians of the Galaxy',cat:'ride',time:'4:30 PM'},
-            {d:0,s:1135,dur:90,name:'Via Napoli',cat:'dining',time:'6:55 PM'},
-            {d:0,s:1260,dur:30,name:'Luminous (9 PM)',cat:'show',time:'9:00 PM'},
-            {d:1,s:465,dur:90,name:'Cake Bake',cat:'dining',time:'7:45 AM'},
-            {d:1,s:720,dur:60,name:'Beak & Barrel',cat:'lounge',time:'12:00 PM'},
-            {d:1,s:855,dur:90,name:"Tony's Town Square",cat:'dining',time:'2:15 PM'},
-            {d:1,s:1080,dur:90,name:'Skipper Canteen',cat:'dining',time:'6:00 PM'},
-            {d:1,s:1200,dur:30,name:'Happily Ever After (8 PM)',cat:'show',time:'8:00 PM'},
-            {d:2,s:1125,dur:105,name:'Flying Fish',cat:'dining',time:'6:45 PM'},
-            {d:2,s:1230,dur:30,name:'Fantasmic! (8:30 PM)',cat:'show',time:'8:30 PM'},
-            {d:3,s:780,dur:60,name:'Nomad Lounge',cat:'lounge',time:'~1:00 PM'},
-            {d:3,s:1140,dur:90,name:'Yachtsman Steakhouse',cat:'dining',time:'7:00 PM'},
-            {d:4,s:665,dur:90,name:'Wailulu',cat:'dining',time:'11:05 AM'},
-            {d:4,s:720,dur:90,name:'Polite Pig',cat:'dining',time:'~12:00 PM'},
-            {d:4,s:900,dur:60,name:"Jock Lindsey's",cat:'lounge',time:'3:00 PM'},
-            {d:4,s:1050,dur:90,name:'Cirque du Soleil',cat:'show',time:'5:30 PM'},
-            {d:4,s:1170,dur:90,name:'Morimoto Asia',cat:'dining',time:'7:30 PM',group:'wed-dinner'},
-            {d:4,s:1170,dur:90,name:"Chef Art Smith's",cat:'dining',time:'7:30 PM',group:'wed-dinner',alt:true},
-            {d:4,s:1170,dur:90,name:'The Boathouse',cat:'dining',time:'7:30 PM',group:'wed-dinner',alt:true},
-            {d:5,s:665,dur:90,name:'Wailulu',cat:'dining',time:'11:05 AM'},
-            {d:5,s:780,dur:60,name:"Trader Sam's",cat:'lounge',time:'1:00 PM'},
-            {d:5,s:900,dur:60,name:'Enchanted Rose',cat:'lounge',time:'3:00 PM'},
-            {d:5,s:1050,dur:60,name:'Steakhouse 71 Lounge',cat:'lounge',time:'5:30 PM'},
-            {d:5,s:1140,dur:90,name:'Toledo',cat:'dining',time:'7:00 PM'},
-            {d:5,s:1150,dur:120,name:'California Grill',cat:'dining',time:'7:10 PM'},
-            {d:5,s:1200,dur:30,name:'Happily Ever After (8 PM)',cat:'show',time:'8:00 PM'},
-            {d:6,s:540,dur:60,name:'Les Halles',cat:'dining',time:'9:00 AM'},
-            {d:6,s:750,dur:90,name:'Space 220',cat:'dining',time:'12:30 PM'},
-            {d:6,s:990,dur:60,name:'GEO-82',cat:'lounge',time:'4:30 PM'},
-            {d:6,s:1110,dur:60,name:'Candlelight Processional',cat:'show',time:'6:30 PM'},
-            {d:6,s:1215,dur:90,name:'Spice Road Table',cat:'dining',time:'8:15 PM'},
-            {d:6,s:1260,dur:30,name:'Luminous (9 PM)',cat:'show',time:'9:00 PM'},
-            {d:7,s:510,dur:90,name:'Cake Bake',cat:'dining',time:'8:30 AM'},
-            {d:7,s:600,dur:90,name:'Mini Golf',cat:'leisure',time:'10:00 AM'},
-            {d:7,s:1080,dur:30,name:'Flight Departs',cat:'travel',time:'6:00 PM'}
+            { d:0, s:420,  dur:30,  name:'Flight Departs',           cat:'travel',  time:'7:00 AM' },
+            { d:0, s:600,  dur:30,  name:'Flight Lands',             cat:'travel',  time:'10:00 AM' },
+            { d:0, s:910,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'3:10 PM' },
+            { d:0, s:990,  dur:60,  name:'Guardians of the Galaxy',  cat:'ride',    time:'4:30 PM' },
+            { d:0, s:1135, dur:90,  name:'Via Napoli',               cat:'dining',  time:'6:55 PM' },
+            { d:0, s:1260, dur:30,  name:'Luminous (9 PM)',          cat:'show',    time:'9:00 PM' },
+            { d:1, s:465,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'7:45 AM' },
+            { d:1, s:720,  dur:60,  name:'Beak & Barrel',            cat:'lounge',  time:'12:00 PM' },
+            { d:1, s:855,  dur:90,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM' },
+            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM' },
+            { d:1, s:1200, dur:30,  name:'Happily Ever After (8 PM)', cat:'show',   time:'8:00 PM' },
+            { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM' },
+            { d:2, s:1230, dur:30,  name:'Fantasmic! (8:30 PM)',     cat:'show',    time:'8:30 PM' },
+            { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'~1:00 PM' },
+            { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM' },
+            { d:4, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM' },
+            { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM' },
+            { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'3:00 PM' },
+            { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM' },
+            { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner' },
+            { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
+            { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true },
+            { d:5, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM' },
+            { d:5, s:780,  dur:60,  name:"Trader Sam's",             cat:'lounge',  time:'1:00 PM' },
+            { d:5, s:900,  dur:60,  name:'Enchanted Rose',           cat:'lounge',  time:'3:00 PM' },
+            { d:5, s:1050, dur:60,  name:'Steakhouse 71 Lounge',    cat:'lounge',  time:'5:30 PM' },
+            { d:5, s:1140, dur:90,  name:'Toledo',                   cat:'dining',  time:'7:00 PM' },
+            { d:5, s:1150, dur:120, name:'California Grill',         cat:'dining',  time:'7:10 PM' },
+            { d:5, s:1200, dur:30,  name:'Happily Ever After (8 PM)', cat:'show',   time:'8:00 PM' },
+            { d:6, s:540,  dur:60,  name:'Les Halles',               cat:'dining',  time:'9:00 AM' },
+            { d:6, s:750,  dur:90,  name:'Space 220',                cat:'dining',  time:'12:30 PM' },
+            { d:6, s:990,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'4:30 PM' },
+            { d:6, s:1110, dur:60,  name:'Candlelight Processional', cat:'show',    time:'6:30 PM' },
+            { d:6, s:1215, dur:90,  name:'Spice Road Table',         cat:'dining',  time:'8:15 PM' },
+            { d:6, s:1260, dur:30,  name:'Luminous (9 PM)',          cat:'show',    time:'9:00 PM' },
+            { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM' },
+            { d:7, s:600,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'10:00 AM' },
+            { d:7, s:1080, dur:30,  name:'Flight Departs',           cat:'travel',  time:'6:00 PM' }
         ];
-        const dayTabMap = ['sat-epcot','sun-mk','mon-hs','tue-ak','wed-ds','thu-mk','fri-epcot','sat-depart'];
-        const CAT_COLORS = {dining:'#34d399',show:'#a78bfa',ride:'#4a9eff',travel:'#e34948',lounge:'#fbbf24',leisure:'#e87ba4'};
-        const CAT_LABELS = {dining:'Dining',show:'Show',ride:'Ride',travel:'Travel',lounge:'Lounge',leisure:'Leisure'};
 
-        function buildWeekly(){
-            const startHour=7, endHour=22, slots=(endHour-startHour)*2;
-            const pxPerSlot=32, startMin=startHour*60;
-            // Legend
-            const legend=document.getElementById('scheduleLegend');
-            legend.innerHTML=Object.keys(CAT_COLORS).map(c=>`<span class="schedule-legend-item"><span class="schedule-legend-dot" style="background:${CAT_COLORS[c]}"></span>${CAT_LABELS[c]}</span>`).join('');
-            // Grid
-            const wrap=document.getElementById('weekTable');
-            let html='<div class="wt-times">';
-            for(let i=0;i<slots;i++){
-                const h=startHour+Math.floor(i/2), m=i%2===0?'00':'30';
-                html+=`<div class="wt-time${i%2===0?' hour':''}">${i%2===0?(h>12?h-12:h)+(h>=12?'p':'a'):''}</div>`;
+        const START_H = 7, END_H = 22, SLOT_PX = 28;
+        const totalSlots = (END_H - START_H) * 2;
+        function minToTop(m) { return ((m - START_H * 60) / 30) * SLOT_PX; }
+        function minToH(m) { return (m / 30) * SLOT_PX; }
+        function fmtTime(m) { const h = Math.floor(m/60), mm = m%60, ap = h>=12?'PM':'AM', h12 = h>12?h-12:h===0?12:h; return mm===0?`${h12} ${ap}`:`${h12}:${String(mm).padStart(2,'0')} ${ap}`; }
+
+        function buildWeekly() {
+            const table = document.getElementById('weekTable');
+            let html = '';
+            html += '<div class="wt-times">';
+            for (let i = 0; i < totalSlots; i++) {
+                const m = (START_H * 60) + i * 30;
+                html += `<div class="wt-time">${i % 2 === 0 ? fmtTime(m) : ''}</div>`;
             }
-            html+='</div>';
-            DAYS.forEach((day,di)=>{
-                html+=`<div class="wt-day"><div class="wt-day-header" onclick="switchToDay(${di})"><div class="dh-day">${day.label.split(' ')[0]}</div><div class="dh-date">${day.label.split(' ')[1]||''}</div><div class="dh-park">${day.park}</div></div><div class="wt-body" style="height:${slots*pxPerSlot}px">`;
-                for(let i=0;i<slots;i++) html+=`<div class="wt-grid-line${i%2===0?' hour':''}"></div>`;
-                EVENTS.filter(e=>e.d===di).forEach(ev=>{
-                    const top=((ev.s-startMin)/30)*pxPerSlot;
-                    const h=(ev.dur/30)*pxPerSlot;
-                    const cls=ev.alt?'wt-ev '+ev.cat+' alt-opt':'wt-ev '+ev.cat;
-                    html+=`<div class="${cls}" style="top:${top}px;height:${h}px" data-name="${ev.name}" data-time="${ev.time}" data-cat="${CAT_LABELS[ev.cat]}"${ev.alt?' data-alt="Alternative option"':''}${ev.group?' data-group="'+ev.group+'"':''}><div class="ev-name">${ev.name}</div>${h>=40?'<div class="ev-time">'+ev.time+'</div>':''}</div>`;
-                });
-                html+='</div></div>';
+            html += '</div>';
+            SCHED_DAYS.forEach((day, di) => {
+                html += `<div class="wt-day">`;
+                html += `<div class="wt-day-header" onclick="setScheduleView('daily');selectDay(${di})">
+                    <div class="dh-day">${day.day}</div>
+                    <div class="dh-date">${day.date}</div>
+                    <div class="dh-park">${day.park}</div>
+                </div>`;
+                html += `<div class="wt-body" data-day="${di}">`;
+                for (let i = 0; i < totalSlots; i++) {
+                    html += `<div class="wt-grid-line${i % 2 === 0 ? ' hour' : ''}"></div>`;
+                }
+                html += '</div></div>';
             });
-            wrap.innerHTML=html;
-            // Tooltip
-            const tt=document.getElementById('scheduleTooltip');
-            wrap.querySelectorAll('.wt-ev').forEach(el=>{
-                el.addEventListener('mouseenter',function(e){
-                    tt.innerHTML=`<div class="tt-name">${this.dataset.name}</div><div class="tt-time">${this.dataset.time}</div><div class="tt-cat" style="color:${CAT_COLORS[this.classList[1]]}">${this.dataset.cat}</div>${this.dataset.alt?'<div class="tt-alt">'+this.dataset.alt+'</div>':''}`;
-                    tt.style.display='block';
+            table.innerHTML = html;
+
+            SCHED_DAYS.forEach((_, di) => {
+                const body = table.querySelector(`.wt-body[data-day="${di}"]`);
+                const dayEvs = EVENTS.filter(e => e.d === di);
+                const groups = {};
+                dayEvs.forEach(ev => {
+                    if (ev.group) {
+                        if (!groups[ev.group]) groups[ev.group] = [];
+                        groups[ev.group].push(ev);
+                    }
                 });
-                el.addEventListener('mousemove',function(e){
-                    tt.style.left=Math.min(e.clientX+12,window.innerWidth-260)+'px';
-                    tt.style.top=(e.clientY+12)+'px';
+                dayEvs.forEach(ev => {
+                    if (ev.group) {
+                        const g = groups[ev.group];
+                        const gi = g.indexOf(ev);
+                        const gl = g.length;
+                        ev._left = `${(gi / gl) * 100}%`;
+                        ev._width = `${(1 / gl) * 100 - 1}%`;
+                    } else {
+                        ev._left = '2px';
+                        ev._width = 'calc(100% - 4px)';
+                    }
                 });
-                el.addEventListener('mouseleave',function(){tt.style.display='none';});
+                dayEvs.forEach(ev => {
+                    const top = minToTop(ev.s);
+                    const h = Math.max(minToH(ev.dur) - 1, 16);
+                    const el = document.createElement('div');
+                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}`;
+                    el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
+                    const showTime = h >= 34;
+                    el.innerHTML = `<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}`;
+                    el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
+                    el.addEventListener('mouseleave', hideSchedTooltip);
+                    el.addEventListener('mousemove', moveSchedTooltip);
+                    body.appendChild(el);
+                });
             });
         }
-        function switchToDay(idx){
-            const tabId=dayTabMap[idx];
-            document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active'); if(b.dataset.tab===tabId) b.classList.add('active');});
-            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector('[data-tab="'+tabId+'"]').scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+
+        function showSchedTooltip(e, ev) {
+            const tt = document.getElementById('schedTooltip');
+            tt.querySelector('.tt-name').textContent = ev.name;
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min';
+            const catEl = tt.querySelector('.tt-cat');
+            catEl.textContent = SCHED_CAT_LABELS[ev.cat];
+            catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
+            const altEl = tt.querySelector('.tt-alt');
+            if (ev.group) {
+                const others = EVENTS.filter(o => o.group === ev.group && o !== ev);
+                altEl.textContent = others.length ? 'Also considering: ' + others.map(o => o.name).join(', ') : '';
+            } else { altEl.textContent = ''; }
+            tt.style.display = 'block';
+            moveSchedTooltip(e);
         }
+        function moveSchedTooltip(e) {
+            const tt = document.getElementById('schedTooltip'), pad = 14;
+            let x = e.clientX + pad, y = e.clientY + pad;
+            if (x + 240 > window.innerWidth) x = e.clientX - 240 - pad;
+            if (y + 100 > window.innerHeight) y = e.clientY - 100 - pad;
+            tt.style.left = x + 'px'; tt.style.top = y + 'px';
+        }
+        function hideSchedTooltip() { document.getElementById('schedTooltip').style.display = 'none'; }
+
+        function buildDaily(di) {
+            const c = document.getElementById('dailyView');
+            const day = SCHED_DAYS[di];
+            const evs = EVENTS.filter(e => e.d === di && !e.alt).sort((a, b) => a.s - b.s);
+            let html = `<div class="daily-header"><h2>${day.day}, ${day.date}</h2><div class="dp-park">${day.park}</div></div><div class="daily-tl">`;
+            evs.forEach(ev => {
+                const alts = ev.group ? EVENTS.filter(o => o.group === ev.group && o.alt) : [];
+                html += `<div class="dt-row">
+                    <div class="dt-time">${ev.time}</div>
+                    <div class="dt-track">
+                        <div class="dt-dot ${ev.cat}"></div>
+                        <div class="dt-event ${ev.cat}">
+                            <div class="de-name">${ev.name}</div>
+                            <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
+                            ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}</div>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+            });
+            if (!evs.length) html += '<div class="dt-row"><div class="dt-time"></div><div class="dt-track" style="padding:20px 0 20px 18px;color:var(--text-secondary);font-style:italic">Free day</div></div>';
+            html += '</div>';
+            c.innerHTML = html;
+        }
+
+        let curSchedView = 'weekly', curDay = 0;
+        function setScheduleView(v) {
+            curSchedView = v;
+            document.querySelectorAll('.controls .view-btn').forEach(b => {
+                b.classList.toggle('active', (v === 'weekly' && b.textContent === 'Weekly') || (v === 'daily' && b.textContent === 'Daily'));
+            });
+            const sel = document.getElementById('daySelector');
+            document.getElementById('weeklyView').style.display = v === 'weekly' ? 'block' : 'none';
+            document.getElementById('dailyView').style.display = v === 'daily' ? 'block' : 'none';
+            sel.classList.toggle('visible', v === 'daily');
+            if (v === 'daily') buildDaily(curDay);
+        }
+        function selectDay(i) {
+            curDay = i;
+            document.querySelectorAll('.day-chip').forEach((c, j) => c.classList.toggle('active', j === i));
+            if (curSchedView === 'daily') buildDaily(i);
+        }
+        function buildDaySelector() {
+            document.getElementById('daySelector').innerHTML = SCHED_DAYS.map((d, i) =>
+                `<button class="day-chip${i === 0 ? ' active' : ''}" onclick="selectDay(${i})">${d.day.slice(0,3)} ${d.date.split(' ')[1]}</button>`
+            ).join('');
+        }
+        buildDaySelector();
         buildWeekly();
     </script>
 </body>
