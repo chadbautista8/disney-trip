@@ -569,6 +569,9 @@
             border-left: 3px solid; overflow: hidden;
             cursor: default; z-index: 2; transition: filter 0.15s, z-index 0s;
         }
+        .wt-ev.no-res {
+            border-left-style: dotted;
+        }
         .wt-ev:hover { filter: brightness(1.25); z-index: 10; }
         .wt-ev .ev-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .wt-ev .ev-time { font-size: 8px; font-weight: 500; opacity: 0.7; }
@@ -615,6 +618,7 @@
         .dt-track { flex: 1; position: relative; padding: 8px 0 8px 18px; border-left: 2px solid var(--border); }
         .dt-dot { position: absolute; left: -6px; top: 18px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-primary); }
         .dt-event { padding: 8px 14px; border-radius: 8px; border-left: 3px solid; }
+        .dt-event.no-res { border-left-style: dotted; }
         .dt-event .de-name { font-size: 15px; font-weight: 700; }
         .dt-event .de-detail { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
         .dt-event .de-alt { font-size: 11px; color: var(--text-tertiary); margin-top: 5px; font-style: italic; }
@@ -2647,7 +2651,7 @@
                     const top = minToTop(ev.s);
                     const h = Math.max(minToH(ev.dur) - 1, 16);
                     const el = document.createElement('div');
-                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}`;
+                    el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}${(!ev.link && !ev.res) ? ' no-res' : ''}`;
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
                     const showTime = h >= 24;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
@@ -2703,7 +2707,7 @@
                     <div class="dt-time">${ev.time}</div>
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
-                        <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
+                        <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${(!ev.link && !ev.res) ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
                             <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
