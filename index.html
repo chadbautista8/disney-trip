@@ -77,11 +77,16 @@
         /* Tab Navigation */
         .tab-nav {
             display: flex;
+            gap: 6px;
+            padding: 10px 16px;
             overflow-x: auto;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border);
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         .tab-nav::-webkit-scrollbar {
@@ -90,21 +95,28 @@
 
         .tab-btn {
             flex: 0 0 auto;
-            padding: 14px 20px;
-            background: none;
-            border: none;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: transparent;
             color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+            transition: all 0.15s;
             white-space: nowrap;
         }
 
         .tab-btn.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
+            background: #a78bfa;
+            color: #fff;
+            border-color: #a78bfa;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
         }
 
         /* Tab Content */
@@ -533,29 +545,6 @@
         .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
         .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-        /* Controls */
-        .controls {
-            display: flex; justify-content: center; align-items: center; gap: 8px;
-            padding: 12px 20px; position: sticky; top: 0; z-index: 50;
-            background: var(--bg-primary); border-bottom: 1px solid var(--border);
-        }
-        .view-btn {
-            padding: 7px 16px; border: 1px solid var(--border); border-radius: 6px;
-            background: transparent; color: var(--text-secondary); font-family: inherit;
-            font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-        }
-        .view-btn.active { background: #a78bfa; color: #fff; border-color: #a78bfa; }
-        .view-btn:hover:not(.active) { background: var(--bg-tertiary); color: var(--text-primary); }
-        .day-selector { display: none; margin-left: 12px; gap: 4px; align-items: center; overflow-x: auto; }
-        .day-selector.visible { display: flex; }
-        .day-chip {
-            padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
-            background: transparent; color: var(--text-secondary); font-family: inherit;
-            font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; white-space: nowrap;
-        }
-        .day-chip.active { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--text-tertiary); }
-        .day-chip:hover:not(.active) { background: var(--bg-tertiary); }
-
         /* Weekly grid */
         .weekly-wrap { overflow-x: auto; padding: 0 8px 20px; }
         .weekly-wrap::-webkit-scrollbar { height: 6px; }
@@ -617,6 +606,7 @@
 
         /* Daily view */
         .daily-view { display: none; padding: 0 16px 30px; max-width: 660px; margin: 0 auto; }
+        .daily-view-inject { padding: 0 0 8px; max-width: 660px; margin: 0 auto; }
         .daily-header { text-align: center; padding: 20px 0 16px; }
         .daily-header h2 { font-size: 22px; font-weight: 800; }
         .daily-header .dp-park { font-size: 12px; font-weight: 600; color: #a78bfa; margin-top: 4px; }
@@ -659,15 +649,15 @@
     </div>
 
     <nav class="tab-nav" id="tabNav">
-        <button class="tab-btn active" data-tab="schedule">Schedule</button>
-        <button class="tab-btn" data-tab="sat-epcot">Sat 11/21</button>
-        <button class="tab-btn" data-tab="sun-mk">Sun 11/22</button>
-        <button class="tab-btn" data-tab="mon-hs">Mon 11/23</button>
-        <button class="tab-btn" data-tab="tue-ak">Tue 11/24</button>
-        <button class="tab-btn" data-tab="wed-ds">Wed 11/25</button>
-        <button class="tab-btn" data-tab="thu-mk">Thu 11/26</button>
-        <button class="tab-btn" data-tab="fri-epcot">Fri 11/27</button>
-        <button class="tab-btn" data-tab="sat-depart">Sat 11/28</button>
+        <button class="tab-btn active" data-tab="schedule">Weekly</button>
+        <button class="tab-btn" data-tab="sat-epcot" data-day="0">Sat 11/21</button>
+        <button class="tab-btn" data-tab="sun-mk" data-day="1">Sun 11/22</button>
+        <button class="tab-btn" data-tab="mon-hs" data-day="2">Mon 11/23</button>
+        <button class="tab-btn" data-tab="tue-ak" data-day="3">Tue 11/24</button>
+        <button class="tab-btn" data-tab="wed-ds" data-day="4">Wed 11/25</button>
+        <button class="tab-btn" data-tab="thu-mk" data-day="5">Thu 11/26</button>
+        <button class="tab-btn" data-tab="fri-epcot" data-day="6">Fri 11/27</button>
+        <button class="tab-btn" data-tab="sat-depart" data-day="7">Sat 11/28</button>
         <button class="tab-btn" data-tab="rides">Rides</button>
         <button class="tab-btn" data-tab="overview">Trip Info</button>
     </nav>
@@ -850,6 +840,7 @@
 
     <!-- SAT 11/21 EPCOT (ARRIVAL) -->
     <div class="tab-content" id="sat-epcot">
+        <div class="daily-view-inject" data-day="0"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🎯 Saturday Nov 21 • EPCOT (Arrival)</h2>
@@ -1017,6 +1008,7 @@
 
     <!-- SUN 11/22 MAGIC KINGDOM -->
     <div class="tab-content" id="sun-mk">
+        <div class="daily-view-inject" data-day="1"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🏰 Sunday Nov 22 • Magic Kingdom (Primary)</h2>
@@ -1199,6 +1191,7 @@
 
     <!-- MON 11/23 HOLLYWOOD STUDIOS -->
     <div class="tab-content" id="mon-hs">
+        <div class="daily-view-inject" data-day="2"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🎬 Monday Nov 23 • Hollywood Studios</h2>
@@ -1352,6 +1345,7 @@
 
     <!-- TUE 11/24 ANIMAL KINGDOM -->
     <div class="tab-content" id="tue-ak">
+        <div class="daily-view-inject" data-day="3"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🦁 Tuesday Nov 24 • Animal Kingdom</h2>
@@ -1520,6 +1514,7 @@
 
     <!-- WED 11/25 DISNEY SPRINGS -->
     <div class="tab-content" id="wed-ds">
+        <div class="daily-view-inject" data-day="4"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🛍️ Wednesday Nov 25 • Disney Springs (Rest Day)</h2>
@@ -1624,6 +1619,7 @@
 
     <!-- THU 11/26 MAGIC KINGDOM (THANKSGIVING) -->
     <div class="tab-content" id="thu-mk">
+        <div class="daily-view-inject" data-day="5"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🦃 Thursday Nov 26 • Magic Kingdom (Thanksgiving Cleanup)</h2>
@@ -1751,6 +1747,7 @@
 
     <!-- FRI 11/27 EPCOT (FULL RIDE DAY) -->
     <div class="tab-content" id="fri-epcot">
+        <div class="daily-view-inject" data-day="6"></div>
         <div class="section">
             <div class="section-header">
                 <h2>🌍 Friday Nov 27 • EPCOT (Full Ride Day)</h2>
@@ -1935,6 +1932,7 @@
 
     <!-- SAT 11/28 DEPARTURE -->
     <div class="tab-content" id="sat-depart">
+        <div class="daily-view-inject" data-day="7"></div>
         <div class="section">
             <div class="section-header">
                 <h2>✈️ Saturday Nov 28 • Departure</h2>
@@ -2232,11 +2230,6 @@
             <div class="legend-item"><span class="de-badge walk" style="margin-left:0">WALK</span>Walk-Up</div>
             <div class="legend-item"><span class="de-res-dot" style="margin-right:0"></span>Reserved</div>
         </div>
-        <div class="controls">
-            <button class="view-btn active" onclick="setScheduleView('weekly')">Weekly</button>
-            <button class="view-btn" onclick="setScheduleView('daily')">Daily</button>
-            <div class="day-selector" id="daySelector"></div>
-        </div>
         <div class="tooltip" id="schedTooltip">
             <div class="tt-name"></div>
             <div class="tt-time"></div>
@@ -2246,7 +2239,6 @@
         <div class="weekly-wrap" id="weeklyView">
             <div class="week-table" id="weekTable"></div>
         </div>
-        <div class="daily-view" id="dailyView"></div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -2320,6 +2312,7 @@
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const tabId = this.dataset.tab;
+                const dayIdx = this.dataset.day;
 
                 // Update buttons
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -2328,6 +2321,12 @@
                 // Update content
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 document.getElementById(tabId).classList.add('active');
+
+                // Build daily schedule into day tab
+                if (dayIdx !== undefined) {
+                    const inject = document.querySelector(`#${tabId} .daily-view-inject`);
+                    if (inject) buildDaily(parseInt(dayIdx), inject);
+                }
 
                 // Scroll tab into view
                 this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -2609,7 +2608,7 @@
             html += '</div>';
             SCHED_DAYS.forEach((day, di) => {
                 html += `<div class="wt-day">`;
-                html += `<div class="wt-day-header" onclick="setScheduleView('daily');selectDay(${di})">
+                html += `<div class="wt-day-header" onclick="document.querySelector('.tab-btn[data-day=&quot;${di}&quot;]').click()">
                     <div class="dh-day">${day.day}</div>
                     <div class="dh-date">${day.date}</div>
                     <div class="dh-park">${day.park}</div>
@@ -2691,11 +2690,11 @@
         }
         function hideSchedTooltip() { document.getElementById('schedTooltip').style.display = 'none'; }
 
-        function buildDaily(di) {
-            const c = document.getElementById('dailyView');
+        function buildDaily(di, container) {
+            const c = container;
             const day = SCHED_DAYS[di];
             const evs = EVENTS.filter(e => e.d === di && !e.alt).sort((a, b) => a.s - b.s);
-            let html = `<div class="daily-header"><h2>${day.day}, ${day.date}</h2><div class="dp-park">${day.park}</div></div><div class="daily-tl">`;
+            let html = '<div class="daily-tl">';
             evs.forEach(ev => {
                 const alts = ev.group ? EVENTS.filter(o => o.group === ev.group && o.alt) : [];
                 const manageLink = ev.link ? `<a class="de-manage" href="${ev.link}" target="_blank" onclick="event.stopPropagation()">Manage &#8599;</a>` : '';
@@ -2716,30 +2715,6 @@
             html += '</div>';
             c.innerHTML = html;
         }
-
-        let curSchedView = 'weekly', curDay = 0;
-        function setScheduleView(v) {
-            curSchedView = v;
-            document.querySelectorAll('.controls .view-btn').forEach(b => {
-                b.classList.toggle('active', (v === 'weekly' && b.textContent === 'Weekly') || (v === 'daily' && b.textContent === 'Daily'));
-            });
-            const sel = document.getElementById('daySelector');
-            document.getElementById('weeklyView').style.display = v === 'weekly' ? 'block' : 'none';
-            document.getElementById('dailyView').style.display = v === 'daily' ? 'block' : 'none';
-            sel.classList.toggle('visible', v === 'daily');
-            if (v === 'daily') buildDaily(curDay);
-        }
-        function selectDay(i) {
-            curDay = i;
-            document.querySelectorAll('.day-chip').forEach((c, j) => c.classList.toggle('active', j === i));
-            if (curSchedView === 'daily') buildDaily(i);
-        }
-        function buildDaySelector() {
-            document.getElementById('daySelector').innerHTML = SCHED_DAYS.map((d, i) =>
-                `<button class="day-chip${i === 0 ? ' active' : ''}" onclick="selectDay(${i})">${d.day.slice(0,3)} ${d.date.split(' ')[1]}</button>`
-            ).join('');
-        }
-        buildDaySelector();
         buildWeekly();
     </script>
 </body>
