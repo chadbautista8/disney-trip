@@ -590,7 +590,7 @@
         .wt-ev.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge);  color: var(--cat-lounge); }
         .wt-ev.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); color: var(--cat-leisure); }
         .wt-ev.alt-opt  { opacity: 0.55; border-left-style: dashed; }
-        .res-badge { position: absolute; top: 2px; right: 3px; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; }
+        .res-badge { display: block; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; width: fit-content; margin-top: 1px; }
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.walk { background: rgba(251,191,36,0.25); color: #fbbf24; }
 
@@ -2642,7 +2642,7 @@
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
                     const showTime = h >= 34;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
-                    el.innerHTML = `${resBadge}<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}`;
+                    el.innerHTML = `<div class="ev-name">${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}`;
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
                     el.addEventListener('mouseleave', hideSchedTooltip);
                     el.addEventListener('mousemove', moveSchedTooltip);
