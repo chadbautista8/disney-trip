@@ -29,6 +29,13 @@
             --success: #10b981;
             --border: #333333;
             --shadow: rgba(0, 0, 0, 0.5);
+            --border-light: rgba(51,51,51,0.4);
+            --cat-dining: #34d399; --cat-dining-bg: rgba(52,211,153,0.15);
+            --cat-show: #a78bfa; --cat-show-bg: rgba(167,139,250,0.15);
+            --cat-ride: #4a9eff; --cat-ride-bg: rgba(74,158,255,0.15);
+            --cat-travel: #e34948; --cat-travel-bg: rgba(227,73,72,0.15);
+            --cat-lounge: #fbbf24; --cat-lounge-bg: rgba(251,191,36,0.15);
+            --cat-leisure: #e87ba4; --cat-leisure-bg: rgba(232,123,164,0.15);
         }
 
         body {
@@ -513,6 +520,44 @@
         .text-center { text-align: center; }
         .text-secondary { color: var(--text-secondary); }
         .text-small { font-size: 13px; }
+
+        /* Weekly Schedule Grid */
+        .schedule-legend { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; padding:12px 20px; }
+        .schedule-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-secondary); font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
+        .schedule-legend-dot { width:8px; height:8px; border-radius:50%; }
+        .weekly-wrap { overflow-x:auto; padding:0 8px 20px; }
+        .weekly-wrap::-webkit-scrollbar { height:6px; }
+        .weekly-wrap::-webkit-scrollbar-track { background:var(--bg-primary); }
+        .weekly-wrap::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+        .week-table { display:flex; min-width:1080px; }
+        .wt-times { width:50px; flex-shrink:0; padding-top:58px; }
+        .wt-time { height:28px; font-size:10px; color:var(--text-tertiary); font-weight:500; text-align:right; padding-right:6px; line-height:28px; }
+        .wt-day { flex:1; min-width:120px; border-left:1px solid var(--border); }
+        .wt-day-header { height:58px; padding:8px 6px; text-align:center; border-bottom:1px solid var(--border); background:var(--bg-secondary); cursor:pointer; transition:background 0.15s; }
+        .wt-day-header:hover { background:var(--bg-tertiary); }
+        .wt-day-header .dh-day { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-tertiary); }
+        .wt-day-header .dh-date { font-size:15px; font-weight:700; margin:1px 0; }
+        .wt-day-header .dh-park { font-size:9px; font-weight:600; color:#a78bfa; }
+        .wt-body { position:relative; }
+        .wt-grid-line { height:28px; border-top:1px solid var(--border-light); }
+        .wt-grid-line.hour { border-top-color:var(--border); }
+        .wt-ev { position:absolute; left:2px; right:2px; border-radius:4px; padding:2px 5px; font-size:10px; font-weight:600; line-height:1.25; border-left:3px solid; overflow:hidden; cursor:default; z-index:2; transition:filter 0.15s; }
+        .wt-ev:hover { filter:brightness(1.25); z-index:10; }
+        .wt-ev .ev-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .wt-ev .ev-time { font-size:8px; font-weight:500; opacity:0.7; }
+        .wt-ev.dining { background:var(--cat-dining-bg); border-color:var(--cat-dining); color:var(--cat-dining); }
+        .wt-ev.show { background:var(--cat-show-bg); border-color:var(--cat-show); color:var(--cat-show); }
+        .wt-ev.ride { background:var(--cat-ride-bg); border-color:var(--cat-ride); color:var(--cat-ride); }
+        .wt-ev.travel { background:var(--cat-travel-bg); border-color:var(--cat-travel); color:var(--cat-travel); }
+        .wt-ev.lounge { background:var(--cat-lounge-bg); border-color:var(--cat-lounge); color:var(--cat-lounge); }
+        .wt-ev.leisure { background:var(--cat-leisure-bg); border-color:var(--cat-leisure); color:var(--cat-leisure); }
+        .wt-ev.alt-opt { opacity:0.55; border-left-style:dashed; }
+        .schedule-tooltip { display:none; position:fixed; z-index:200; background:#2a2a2a; border:1px solid #555; border-radius:8px; padding:10px 14px; max-width:240px; pointer-events:none; font-size:12px; box-shadow:0 6px 24px rgba(0,0,0,0.6); }
+        .schedule-tooltip .tt-name { font-weight:700; margin-bottom:2px; }
+        .schedule-tooltip .tt-time { color:var(--text-secondary); font-size:11px; }
+        .schedule-tooltip .tt-cat { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
+        .schedule-tooltip .tt-alt { font-size:10px; color:var(--text-tertiary); margin-top:4px; font-style:italic; }
+        @media (max-width:768px) { .week-table { min-width:900px; } }
     </style>
 </head>
 <body>
@@ -534,6 +579,7 @@
         <button class="tab-btn" data-tab="fri-epcot">Fri 11/27</button>
         <button class="tab-btn" data-tab="sat-depart">Sat 11/28</button>
         <button class="tab-btn" data-tab="rides">Rides</button>
+        <button class="tab-btn" data-tab="schedule">Schedule</button>
     </nav>
 
     <!-- OVERVIEW TAB -->
@@ -721,7 +767,9 @@
             <div class="section-content expanded">
                 <div class="info-card">
                     <p>⚡ <strong>No Lightning Lane</strong> • Arrival day, relaxed pace</p>
-                    <p>🍽️ <strong>Dining:</strong> GEO-82 (drinks) • Spice Road Table (dinner)</p>
+                    <p>🍽️ <strong>Dining:</strong> Via Napoli 6:55 PM (Italy)</p>
+                    <p>🍸 <strong>Drinks:</strong> GEO-82 3:10 PM</p>
+                    <p>🎆 <strong>Shows:</strong> Guardians 4:30 PM • Luminous 9:00 PM</p>
                 </div>
             </div>
         </div>
@@ -733,28 +781,36 @@
             <div class="section-content">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-time">7:00 AM</div>
+                        <div class="timeline-text">✈️ Flight departs</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">10:00 AM</div>
+                        <div class="timeline-text">✈️ Flight lands Orlando</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">Late Morning</div>
                         <div class="timeline-text">Check in at BoardWalk Inn</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">Walk to EPCOT via International Gateway</div>
+                        <div class="timeline-time">Afternoon</div>
+                        <div class="timeline-text">Explore EPCOT + Food & Wine Festival booths</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">France snacks + festival booths</div>
+                        <div class="timeline-time">3:10 PM</div>
+                        <div class="timeline-text">🍸 GEO-82 (drinks)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">GEO-82 for drinks</div>
+                        <div class="timeline-time">4:30 PM</div>
+                        <div class="timeline-text">🎢 Guardians of the Galaxy</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">Spice Road Table</div>
+                        <div class="timeline-time">6:55 PM</div>
+                        <div class="timeline-text">🍽️ Via Napoli (Italy Pavilion)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">Luminous fireworks (Morocco/Japan side)</div>
+                        <div class="timeline-text">🎆 Luminous (9:00 PM) (Morocco/Japan side)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Post-show</div>
@@ -880,7 +936,10 @@
                     <p>⚡ <strong>Multi Pass:</strong> Tiana's (G1), Haunted Mansion (G2), Buzz (G2)</p>
                     <p>⚡ <strong>Single Pass:</strong> TRON</p>
                     <p>⚡ <strong>Optional:</strong> Seven Dwarfs Mine Train</p>
-                    <p>🍽️ <strong>Dining:</strong> Tony's Town Square (2:15 PM) • Skipper Canteen (dinner)</p>
+                    <p>🍽️ <strong>Dining:</strong> Cake Bake 7:45 AM • Tony's 2:15 PM • Skipper Canteen 6:00 PM
+                    </p>
+                    <p>🍸 <strong>Lounge:</strong> Beak & Barrel 12:00 PM</p>
+                    <p>🎆 <strong>Shows:</strong> Happily Ever After 8:00 PM</p>
                 </div>
             </div>
         </div>
@@ -891,6 +950,10 @@
             </div>
             <div class="section-content">
                 <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">7:45 AM</div>
+                        <div class="timeline-text">🍽️ Cake Bake (BoardWalk Inn)</div>
+                    </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Early Entry</div>
                         <div class="timeline-text">Space Mountain or Seven Dwarfs at rope drop</div>
@@ -904,24 +967,24 @@
                         <div class="timeline-text">Cheshire Tail + Haunted Mansion (Fantasyland/Liberty Square)</div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-time">12:00 PM</div>
+                        <div class="timeline-text">🍸 Beak & Barrel (lounge)</div>
+                    </div>
+                    <div class="timeline-item">
                         <div class="timeline-time">2:15 PM</div>
-                        <div class="timeline-text">Tony's Town Square Restaurant (lunch)</div>
+                        <div class="timeline-text">🍽️ Tony's Town Square Restaurant</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Afternoon</div>
                         <div class="timeline-text">Adventureland/Frontierland: Jungle Cruise, Pirates, Tiana's, Big Thunder</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Beak and Barrel for drinks</div>
+                        <div class="timeline-time">6:00 PM</div>
+                        <div class="timeline-text">🍽️ Skipper Canteen (dinner)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">Skipper Canteen</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">Happily Ever After fireworks</div>
+                        <div class="timeline-time">8:00 PM</div>
+                        <div class="timeline-text">🎆 Happily Ever After (8:00 PM)</div>
                     </div>
                 </div>
             </div>
@@ -1055,7 +1118,8 @@
                     <p>⚡ <strong>Multi Pass:</strong> Slinky Dog (G1), Tower of Terror (G2), Toy Story Mania (G2)</p>
                     <p>⚡ <strong>Single Pass:</strong> Rise of the Resistance</p>
                     <p>⚡ <strong>After first tap:</strong> Rock 'n' Roller Coaster or Smugglers Run</p>
-                    <p>🍽️ <strong>Dining:</strong> Ronto Wrap (lunch) • Flying Fish (dinner, BoardWalk)</p>
+                    <p>🍽️ <strong>Dining:</strong> Flying Fish 6:45 PM (BoardWalk)</p>
+                    <p>🎆 <strong>Shows:</strong> Fantasmic 8:30 PM</p>
                 </div>
             </div>
         </div>
@@ -1095,8 +1159,12 @@
                         <div class="timeline-text">Walk/boat to BoardWalk</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">Flying Fish (BoardWalk)</div>
+                        <div class="timeline-time">6:45 PM</div>
+                        <div class="timeline-text">🍽️ Flying Fish (BoardWalk)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:30 PM</div>
+                        <div class="timeline-text">🎆 Fantasmic! (8:30 PM)</div>
                     </div>
                 </div>
             </div>
@@ -1202,7 +1270,8 @@
                 <div class="info-card">
                     <p>⚡ <strong>Single Pass:</strong> Flight of Passage</p>
                     <p>⚡ <strong>Optional Multi Pass:</strong> Safaris, Zootopia, Na'vi River Journey</p>
-                    <p>🍽️ <strong>Dining:</strong> Nomad Lounge (lunch) • Toledo (dinner, Gran Destino Tower)</p>
+                    <p>🍸 <strong>Drinks:</strong> Nomad Lounge ~1:00 PM</p>
+                    <p>🍽️ <strong>Dining:</strong> Yachtsman 7:00 PM (Yacht Club)</p>
                 </div>
             </div>
         </div>
@@ -1226,8 +1295,8 @@
                         <div class="timeline-text">Festival of the Lion King (Harambe Theatre)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Lunch</div>
-                        <div class="timeline-text">Nomad Lounge (Discovery Island)</div>
+                        <div class="timeline-time">~1:00 PM</div>
+                        <div class="timeline-text">🍸 Nomad Lounge (Discovery Island)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Afternoon</div>
@@ -1239,11 +1308,11 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Rideshare to Gran Destino Tower</div>
+                        <div class="timeline-text">Rideshare to Yacht Club</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">Toledo (Gran Destino Tower)</div>
+                        <div class="timeline-time">7:00 PM</div>
+                        <div class="timeline-text">🍽️ Yachtsman Steakhouse (Yacht Club)</div>
                     </div>
                 </div>
             </div>
@@ -1368,7 +1437,10 @@
             <div class="section-content expanded">
                 <div class="info-card">
                     <p>⚡ <strong>No Lightning Lane</strong> • Rest and relaxation day</p>
-                    <p>🍽️ <strong>Dining:</strong> Cake Bake Shop (breakfast, BoardWalk) • The Boathouse (dinner)</p>
+                    <p>🍽️ <strong>Dining:</strong> Wailulu 11:05 AM • Polite Pig ~12:00 PM</p>
+                    <p>🍸 <strong>Drinks:</strong> Jock Lindsey's 3:00 PM</p>
+                    <p>🎆 <strong>Shows:</strong> Cirque du Soleil 5:30 PM</p>
+                    <p>🍽️ <strong>Dinner:</strong> Morimoto 7:30 PM <em>(or Chef Art Smith's / Boathouse)</em></p>
                 </div>
             </div>
         </div>
@@ -1384,28 +1456,28 @@
                         <div class="timeline-text">Sleep in!</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Cake Bake Shop (BoardWalk)</div>
+                        <div class="timeline-time">11:05 AM</div>
+                        <div class="timeline-text">🍽️ Wailulu Bar & Grill (Polynesian)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">~12:00 PM</div>
+                        <div class="timeline-text">🍽️ Polite Pig (Disney Springs)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Pool time / resort relaxation</div>
+                        <div class="timeline-text">Disney Springs shopping + Gideon's (virtual queue)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">Disney Springs shopping</div>
+                        <div class="timeline-time">3:00 PM</div>
+                        <div class="timeline-text">🍸 Jock Lindsey's Hangar Bar (drinks)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Gideon's Bakehouse (virtual queue)</div>
+                        <div class="timeline-time">5:30 PM</div>
+                        <div class="timeline-text">🎆 Cirque du Soleil</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Pre-Dinner</div>
-                        <div class="timeline-text">Jock Lindsey's Hangar Bar (drinks)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">The Boathouse</div>
+                        <div class="timeline-time">7:30 PM</div>
+                        <div class="timeline-text">🍽️ Morimoto Asia (dinner) <em>- or Chef Art Smith's / Boathouse</em></div>
                     </div>
                 </div>
             </div>
@@ -1469,8 +1541,10 @@
             <div class="section-content expanded">
                 <div class="info-card">
                     <p>⚡ <strong>Multi Pass:</strong> Decide after Sunday (missed priorities)</p>
-                    <p>🍽️ <strong>Dining:</strong> Wailulu (lunch, Polynesian) • Flexible dinner</p>
-                    <p><strong>Focus:</strong> Catch missed rides/snacks from Sunday</p>
+                    <p>🍽️ <strong>Dining:</strong> Wailulu 11:05 AM (Polynesian) • California Grill 7:10 PM (Contemporary) • Toledo 7:00 PM (Gran Destino)</p>
+                    <p>🍸 <strong>Drinks:</strong> Trader Sam's 1:00 PM • Enchanted Rose 3:00 PM • Steakhouse 71 Lounge 5:30 PM</p>
+                    <p>🎆 <strong>Shows:</strong> Happily Ever After 8:00 PM</p>
+                    <p><strong>Focus:</strong> Catch missed rides/snacks from Sunday + resort bar crawl</p>
                 </div>
             </div>
         </div>
@@ -1482,32 +1556,32 @@
             <div class="section-content">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Magic Kingdom cleanup rides</div>
+                        <div class="timeline-time">11:05 AM</div>
+                        <div class="timeline-text">🍽️ Wailulu (Polynesian Village)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Snack cleanup (Dole Whip, beignets, etc.)</div>
+                        <div class="timeline-time">1:00 PM</div>
+                        <div class="timeline-text">🍸 Trader Sam's Grog Grotto (Polynesian)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Lunch</div>
-                        <div class="timeline-text">Wailulu Bar & Grill (Polynesian)</div>
+                        <div class="timeline-time">3:00 PM</div>
+                        <div class="timeline-text">🍸 Enchanted Rose (Grand Floridian)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Trader Sam's Grog Grotto (Polynesian)</div>
+                        <div class="timeline-time">5:30 PM</div>
+                        <div class="timeline-text">🍸 Steakhouse 71 Lounge (Contemporary)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">Enchanted Rose (Grand Floridian)</div>
+                        <div class="timeline-time">7:00 PM</div>
+                        <div class="timeline-text">🍽️ Toledo (Gran Destino Tower)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Flexible dinner</div>
+                        <div class="timeline-time">7:10 PM</div>
+                        <div class="timeline-text">🍽️ California Grill (Contemporary)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">Optional: Happily Ever After fireworks</div>
+                        <div class="timeline-time">8:00 PM</div>
+                        <div class="timeline-text">🎆 Happily Ever After (8:00 PM)</div>
                     </div>
                 </div>
             </div>
@@ -1596,7 +1670,12 @@
                     <p>⚡ <strong>Multi Pass:</strong> Test Track (G1), Soarin' (G2), Living with the Land (G2)</p>
                     <p>⚡ <strong>Single Pass:</strong> Guardians of the Galaxy</p>
                     <p>⚡ <strong>After first tap:</strong> Remy or Frozen</p>
-                    <p>🍽️ <strong>Dining:</strong> Space 220 (lunch) • Via Napoli (dinner, Italy)</p>
+                    <p>🎉 <strong>Festival of the Holidays</strong> (EPCOT seasonal event)</p>
+                    <p>🍽️ <strong>Dining:</strong> Les Halles 9:00 AM • Space 220 12:30 PM</p>
+                    <p>🍸 <strong>Drinks:</strong> GEO-82 4:30 PM</p>
+                    <p>🍽️ <strong>Dining (evening):</strong> Spice Road Table 8:15 PM
+                    </p>
+                    <p>🎆 <strong>Shows:</strong> Candlelight 6:30 PM • Luminous 9:00 PM</p>
                 </div>
             </div>
         </div>
@@ -1608,8 +1687,8 @@
             <div class="section-content">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-time">Early Entry</div>
-                        <div class="timeline-text">Remy or Frozen (via International Gateway)</div>
+                        <div class="timeline-time">9:00 AM</div>
+                        <div class="timeline-text">🍽️ Les Halles Boulangerie (France Pavilion)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Morning</div>
@@ -1620,24 +1699,28 @@
                         <div class="timeline-text">The Land: Soarin' + Living with the Land (Holiday)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Lunch</div>
-                        <div class="timeline-text">Space 220</div>
+                        <div class="timeline-time">12:30 PM</div>
+                        <div class="timeline-text">🍽️ Space 220 (lunch)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Afternoon</div>
                         <div class="timeline-text">Guardians + Mission: SPACE + Spaceship Earth</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">GEO-82 (if missed Saturday)</div>
+                        <div class="timeline-time">4:30 PM</div>
+                        <div class="timeline-text">🍸 GEO-82 (drinks)</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">Dinner</div>
-                        <div class="timeline-text">Via Napoli (Italy)</div>
+                        <div class="timeline-time">6:30 PM</div>
+                        <div class="timeline-text">🎆 Candlelight Processional (6:30 PM)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:15 PM</div>
+                        <div class="timeline-text">🍽️ Spice Road Table (8:15 PM)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">Luminous fireworks + walk home to BoardWalk</div>
+                        <div class="timeline-text">🎆 Luminous (9:00 PM) + walk home to BoardWalk</div>
                     </div>
                 </div>
             </div>
@@ -1769,7 +1852,9 @@
             <div class="section-content expanded">
                 <div class="info-card">
                     <p>⚡ <strong>No Lightning Lane</strong> • Checkout and departure</p>
-                    <p>🍽️ <strong>Optional:</strong> Les Halles breakfast (if time/admission)</p>
+                    <p>🍽️ <strong>Dining:</strong> Cake Bake 8:30 AM (BoardWalk)</p>
+                    <p>🎾 <strong>Activity:</strong> Mini Golf 10:00 AM</p>
+                    <p>✈️ <strong>Flight:</strong> Departs 6:00 PM</p>
                 </div>
             </div>
         </div>
@@ -1781,12 +1866,16 @@
             <div class="section-content">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Crescent Lake walk (BoardWalk → Beach Club → Yacht Club → Swan/Dolphin)</div>
+                        <div class="timeline-time">8:30 AM</div>
+                        <div class="timeline-text">🍽️ Cake Bake (BoardWalk Inn)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">10:00 AM</div>
+                        <div class="timeline-text">🎾 Mini Golf</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Optional: Les Halles breakfast (if park admission available)</div>
+                        <div class="timeline-text">Crescent Lake walk (BoardWalk → Beach Club → Yacht Club → Swan/Dolphin)</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Checkout</div>
@@ -1794,7 +1883,11 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Airport</div>
+                        <div class="timeline-text">Head to airport</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">6:00 PM</div>
+                        <div class="timeline-text">✈️ Flight departs</div>
                     </div>
                 </div>
             </div>
@@ -2034,6 +2127,15 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- SCHEDULE TAB -->
+    <div class="tab-content" id="schedule">
+        <div class="schedule-legend" id="scheduleLegend"></div>
+        <div class="weekly-wrap">
+            <div class="week-table" id="weekTable"></div>
+        </div>
+        <div class="schedule-tooltip" id="scheduleTooltip"></div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -2321,6 +2423,110 @@
                 }
             });
         });
+
+        // ── Weekly Schedule Grid ──
+        const DAYS = [
+            {label:'Sat 11/21', park:'EPCOT (Food & Wine)'},
+            {label:'Sun 11/22', park:'Magic Kingdom'},
+            {label:'Mon 11/23', park:"Hollywood Studios"},
+            {label:'Tue 11/24', park:'Animal Kingdom'},
+            {label:'Wed 11/25', park:'Disney Springs'},
+            {label:'Thu 11/26', park:'Resort Crawl / MK'},
+            {label:'Fri 11/27', park:'EPCOT (Festival of Holidays)'},
+            {label:'Sat 11/28', park:'Departure'}
+        ];
+        const EVENTS = [
+            {d:0,s:420,dur:30,name:'Flight Departs',cat:'travel',time:'7:00 AM'},
+            {d:0,s:600,dur:30,name:'Flight Lands',cat:'travel',time:'10:00 AM'},
+            {d:0,s:910,dur:60,name:'GEO-82',cat:'lounge',time:'3:10 PM'},
+            {d:0,s:990,dur:60,name:'Guardians of the Galaxy',cat:'ride',time:'4:30 PM'},
+            {d:0,s:1135,dur:90,name:'Via Napoli',cat:'dining',time:'6:55 PM'},
+            {d:0,s:1260,dur:30,name:'Luminous (9 PM)',cat:'show',time:'9:00 PM'},
+            {d:1,s:465,dur:90,name:'Cake Bake',cat:'dining',time:'7:45 AM'},
+            {d:1,s:720,dur:60,name:'Beak & Barrel',cat:'lounge',time:'12:00 PM'},
+            {d:1,s:855,dur:90,name:"Tony's Town Square",cat:'dining',time:'2:15 PM'},
+            {d:1,s:1080,dur:90,name:'Skipper Canteen',cat:'dining',time:'6:00 PM'},
+            {d:1,s:1200,dur:30,name:'Happily Ever After (8 PM)',cat:'show',time:'8:00 PM'},
+            {d:2,s:1125,dur:105,name:'Flying Fish',cat:'dining',time:'6:45 PM'},
+            {d:2,s:1230,dur:30,name:'Fantasmic! (8:30 PM)',cat:'show',time:'8:30 PM'},
+            {d:3,s:780,dur:60,name:'Nomad Lounge',cat:'lounge',time:'~1:00 PM'},
+            {d:3,s:1140,dur:90,name:'Yachtsman Steakhouse',cat:'dining',time:'7:00 PM'},
+            {d:4,s:665,dur:90,name:'Wailulu',cat:'dining',time:'11:05 AM'},
+            {d:4,s:720,dur:90,name:'Polite Pig',cat:'dining',time:'~12:00 PM'},
+            {d:4,s:900,dur:60,name:"Jock Lindsey's",cat:'lounge',time:'3:00 PM'},
+            {d:4,s:1050,dur:90,name:'Cirque du Soleil',cat:'show',time:'5:30 PM'},
+            {d:4,s:1170,dur:90,name:'Morimoto Asia',cat:'dining',time:'7:30 PM',group:'wed-dinner'},
+            {d:4,s:1170,dur:90,name:"Chef Art Smith's",cat:'dining',time:'7:30 PM',group:'wed-dinner',alt:true},
+            {d:4,s:1170,dur:90,name:'The Boathouse',cat:'dining',time:'7:30 PM',group:'wed-dinner',alt:true},
+            {d:5,s:665,dur:90,name:'Wailulu',cat:'dining',time:'11:05 AM'},
+            {d:5,s:780,dur:60,name:"Trader Sam's",cat:'lounge',time:'1:00 PM'},
+            {d:5,s:900,dur:60,name:'Enchanted Rose',cat:'lounge',time:'3:00 PM'},
+            {d:5,s:1050,dur:60,name:'Steakhouse 71 Lounge',cat:'lounge',time:'5:30 PM'},
+            {d:5,s:1140,dur:90,name:'Toledo',cat:'dining',time:'7:00 PM'},
+            {d:5,s:1150,dur:120,name:'California Grill',cat:'dining',time:'7:10 PM'},
+            {d:5,s:1200,dur:30,name:'Happily Ever After (8 PM)',cat:'show',time:'8:00 PM'},
+            {d:6,s:540,dur:60,name:'Les Halles',cat:'dining',time:'9:00 AM'},
+            {d:6,s:750,dur:90,name:'Space 220',cat:'dining',time:'12:30 PM'},
+            {d:6,s:990,dur:60,name:'GEO-82',cat:'lounge',time:'4:30 PM'},
+            {d:6,s:1110,dur:60,name:'Candlelight Processional',cat:'show',time:'6:30 PM'},
+            {d:6,s:1215,dur:90,name:'Spice Road Table',cat:'dining',time:'8:15 PM'},
+            {d:6,s:1260,dur:30,name:'Luminous (9 PM)',cat:'show',time:'9:00 PM'},
+            {d:7,s:510,dur:90,name:'Cake Bake',cat:'dining',time:'8:30 AM'},
+            {d:7,s:600,dur:90,name:'Mini Golf',cat:'leisure',time:'10:00 AM'},
+            {d:7,s:1080,dur:30,name:'Flight Departs',cat:'travel',time:'6:00 PM'}
+        ];
+        const dayTabMap = ['sat-epcot','sun-mk','mon-hs','tue-ak','wed-ds','thu-mk','fri-epcot','sat-depart'];
+        const CAT_COLORS = {dining:'#34d399',show:'#a78bfa',ride:'#4a9eff',travel:'#e34948',lounge:'#fbbf24',leisure:'#e87ba4'};
+        const CAT_LABELS = {dining:'Dining',show:'Show',ride:'Ride',travel:'Travel',lounge:'Lounge',leisure:'Leisure'};
+
+        function buildWeekly(){
+            const startHour=7, endHour=22, slots=(endHour-startHour)*2;
+            const pxPerSlot=28, startMin=startHour*60;
+            // Legend
+            const legend=document.getElementById('scheduleLegend');
+            legend.innerHTML=Object.keys(CAT_COLORS).map(c=>`<span class="schedule-legend-item"><span class="schedule-legend-dot" style="background:${CAT_COLORS[c]}"></span>${CAT_LABELS[c]}</span>`).join('');
+            // Grid
+            const wrap=document.getElementById('weekTable');
+            let html='<div class="wt-times">';
+            for(let i=0;i<slots;i++){
+                const h=startHour+Math.floor(i/2), m=i%2===0?'00':'30';
+                html+=`<div class="wt-time${i%2===0?' hour':''}">${i%2===0?(h>12?h-12:h)+(h>=12?'p':'a'):''}</div>`;
+            }
+            html+='</div>';
+            DAYS.forEach((day,di)=>{
+                html+=`<div class="wt-day"><div class="wt-day-header" onclick="switchToDay(${di})"><div class="dh-day">${day.label.split(' ')[0]}</div><div class="dh-date">${day.label.split(' ')[1]||''}</div><div class="dh-park">${day.park}</div></div><div class="wt-body" style="height:${slots*pxPerSlot}px">`;
+                for(let i=0;i<slots;i++) html+=`<div class="wt-grid-line${i%2===0?' hour':''}"></div>`;
+                EVENTS.filter(e=>e.d===di).forEach(ev=>{
+                    const top=((ev.s-startMin)/30)*pxPerSlot;
+                    const h=(ev.dur/30)*pxPerSlot;
+                    const cls=ev.alt?'wt-ev '+ev.cat+' alt-opt':'wt-ev '+ev.cat;
+                    html+=`<div class="${cls}" style="top:${top}px;height:${h}px" data-name="${ev.name}" data-time="${ev.time}" data-cat="${CAT_LABELS[ev.cat]}"${ev.alt?' data-alt="Alternative option"':''}${ev.group?' data-group="'+ev.group+'"':''}><div class="ev-name">${ev.name}</div>${h>=36?'<div class="ev-time">'+ev.time+'</div>':''}</div>`;
+                });
+                html+='</div></div>';
+            });
+            wrap.innerHTML=html;
+            // Tooltip
+            const tt=document.getElementById('scheduleTooltip');
+            wrap.querySelectorAll('.wt-ev').forEach(el=>{
+                el.addEventListener('mouseenter',function(e){
+                    tt.innerHTML=`<div class="tt-name">${this.dataset.name}</div><div class="tt-time">${this.dataset.time}</div><div class="tt-cat" style="color:${CAT_COLORS[this.classList[1]]}">${this.dataset.cat}</div>${this.dataset.alt?'<div class="tt-alt">'+this.dataset.alt+'</div>':''}`;
+                    tt.style.display='block';
+                });
+                el.addEventListener('mousemove',function(e){
+                    tt.style.left=Math.min(e.clientX+12,window.innerWidth-260)+'px';
+                    tt.style.top=(e.clientY+12)+'px';
+                });
+                el.addEventListener('mouseleave',function(){tt.style.display='none';});
+            });
+        }
+        function switchToDay(idx){
+            const tabId=dayTabMap[idx];
+            document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active'); if(b.dataset.tab===tabId) b.classList.add('active');});
+            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector('[data-tab="'+tabId+'"]').scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+        }
+        buildWeekly();
     </script>
 </body>
 </html>
