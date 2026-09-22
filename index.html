@@ -2650,7 +2650,7 @@
                     const el = document.createElement('div');
                     el.className = `wt-ev ${ev.cat}${ev.alt ? ' alt-opt' : ''}${ev.link ? ' has-link' : ''}`;
                     el.style.cssText = `top:${top}px;height:${h}px;left:${ev._left};width:${ev._width};`;
-                    const showTime = h >= 34;
+                    const showTime = h >= 24;
                     const resBadge = ev.res ? `<span class="res-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK'}</span>` : '';
                     const linkIcon = ev.link ? '<span class="link-icon">&#8599;</span>' : '';
                     const dotColor = (ev.link && !ev.res) ? `var(--cat-${ev.cat})` : '';
