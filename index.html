@@ -522,29 +522,31 @@
         .text-small { font-size: 13px; }
 
         /* Weekly Schedule Grid */
-        .schedule-legend { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; padding:12px 20px; }
+        #schedule.tab-content { padding:8px 0; }
+        .schedule-legend { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; padding:10px 20px 14px; }
         .schedule-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-secondary); font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
-        .schedule-legend-dot { width:8px; height:8px; border-radius:50%; }
-        .weekly-wrap { overflow-x:auto; padding:0 8px 20px; }
+        .schedule-legend-dot { width:10px; height:10px; border-radius:50%; }
+        .weekly-wrap { overflow-x:auto; padding:0 0 20px; }
         .weekly-wrap::-webkit-scrollbar { height:6px; }
         .weekly-wrap::-webkit-scrollbar-track { background:var(--bg-primary); }
         .weekly-wrap::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-        .week-table { display:flex; min-width:1080px; }
-        .wt-times { width:50px; flex-shrink:0; padding-top:58px; }
-        .wt-time { height:28px; font-size:10px; color:var(--text-tertiary); font-weight:500; text-align:right; padding-right:6px; line-height:28px; }
-        .wt-day { flex:1; min-width:120px; border-left:1px solid var(--border); }
-        .wt-day-header { height:58px; padding:8px 6px; text-align:center; border-bottom:1px solid var(--border); background:var(--bg-secondary); cursor:pointer; transition:background 0.15s; }
+        .week-table { display:flex; min-width:1280px; }
+        .wt-times { width:54px; flex-shrink:0; padding-top:62px; }
+        .wt-time { height:32px; font-size:11px; color:var(--text-tertiary); font-weight:500; text-align:right; padding-right:8px; line-height:32px; }
+        .wt-day { flex:1; min-width:140px; border-left:1px solid var(--border); }
+        .wt-day:last-child { border-right:1px solid var(--border); }
+        .wt-day-header { height:62px; padding:8px 6px; text-align:center; border-bottom:1px solid var(--border); background:var(--bg-secondary); cursor:pointer; transition:background 0.15s; }
         .wt-day-header:hover { background:var(--bg-tertiary); }
-        .wt-day-header .dh-day { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-tertiary); }
-        .wt-day-header .dh-date { font-size:15px; font-weight:700; margin:1px 0; }
-        .wt-day-header .dh-park { font-size:9px; font-weight:600; color:#a78bfa; }
+        .wt-day-header .dh-day { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-tertiary); }
+        .wt-day-header .dh-date { font-size:16px; font-weight:700; margin:2px 0; }
+        .wt-day-header .dh-park { font-size:10px; font-weight:600; color:#a78bfa; }
         .wt-body { position:relative; }
-        .wt-grid-line { height:28px; border-top:1px solid var(--border-light); }
-        .wt-grid-line.hour { border-top-color:var(--border); }
-        .wt-ev { position:absolute; left:2px; right:2px; border-radius:4px; padding:2px 5px; font-size:10px; font-weight:600; line-height:1.25; border-left:3px solid; overflow:hidden; cursor:default; z-index:2; transition:filter 0.15s; }
+        .wt-grid-line { height:32px; border-top:1px solid rgba(255,255,255,0.06); }
+        .wt-grid-line.hour { border-top:1px solid rgba(255,255,255,0.12); }
+        .wt-ev { position:absolute; left:3px; right:3px; border-radius:5px; padding:3px 6px; font-size:11px; font-weight:600; line-height:1.3; border-left:3px solid; overflow:hidden; cursor:default; z-index:2; transition:filter 0.15s; }
         .wt-ev:hover { filter:brightness(1.25); z-index:10; }
         .wt-ev .ev-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .wt-ev .ev-time { font-size:8px; font-weight:500; opacity:0.7; }
+        .wt-ev .ev-time { font-size:9px; font-weight:500; opacity:0.7; }
         .wt-ev.dining { background:var(--cat-dining-bg); border-color:var(--cat-dining); color:var(--cat-dining); }
         .wt-ev.show { background:var(--cat-show-bg); border-color:var(--cat-show); color:var(--cat-show); }
         .wt-ev.ride { background:var(--cat-ride-bg); border-color:var(--cat-ride); color:var(--cat-ride); }
@@ -552,12 +554,12 @@
         .wt-ev.lounge { background:var(--cat-lounge-bg); border-color:var(--cat-lounge); color:var(--cat-lounge); }
         .wt-ev.leisure { background:var(--cat-leisure-bg); border-color:var(--cat-leisure); color:var(--cat-leisure); }
         .wt-ev.alt-opt { opacity:0.55; border-left-style:dashed; }
-        .schedule-tooltip { display:none; position:fixed; z-index:200; background:#2a2a2a; border:1px solid #555; border-radius:8px; padding:10px 14px; max-width:240px; pointer-events:none; font-size:12px; box-shadow:0 6px 24px rgba(0,0,0,0.6); }
+        .schedule-tooltip { display:none; position:fixed; z-index:200; background:#2a2a2a; border:1px solid #555; border-radius:8px; padding:10px 14px; max-width:260px; pointer-events:none; font-size:12px; box-shadow:0 6px 24px rgba(0,0,0,0.6); }
         .schedule-tooltip .tt-name { font-weight:700; margin-bottom:2px; }
         .schedule-tooltip .tt-time { color:var(--text-secondary); font-size:11px; }
         .schedule-tooltip .tt-cat { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
         .schedule-tooltip .tt-alt { font-size:10px; color:var(--text-tertiary); margin-top:4px; font-style:italic; }
-        @media (max-width:768px) { .week-table { min-width:900px; } }
+        @media (max-width:768px) { .week-table { min-width:1080px; } }
     </style>
 </head>
 <body>
@@ -569,7 +571,7 @@
     </div>
 
     <nav class="tab-nav" id="tabNav">
-        <button class="tab-btn active" data-tab="overview">Start</button>
+        <button class="tab-btn active" data-tab="schedule">Schedule</button>
         <button class="tab-btn" data-tab="sat-epcot">Sat 11/21</button>
         <button class="tab-btn" data-tab="sun-mk">Sun 11/22</button>
         <button class="tab-btn" data-tab="mon-hs">Mon 11/23</button>
@@ -579,11 +581,11 @@
         <button class="tab-btn" data-tab="fri-epcot">Fri 11/27</button>
         <button class="tab-btn" data-tab="sat-depart">Sat 11/28</button>
         <button class="tab-btn" data-tab="rides">Rides</button>
-        <button class="tab-btn" data-tab="schedule">Schedule</button>
+        <button class="tab-btn" data-tab="overview">Trip Info</button>
     </nav>
 
     <!-- OVERVIEW TAB -->
-    <div class="tab-content active" id="overview">
+    <div class="tab-content" id="overview">
         <div class="section">
             <div class="section-header">
                 <h2>🏰 Trip Summary</h2>
@@ -2130,7 +2132,7 @@
     </div>
 
     <!-- SCHEDULE TAB -->
-    <div class="tab-content" id="schedule">
+    <div class="tab-content active" id="schedule">
         <div class="schedule-legend" id="scheduleLegend"></div>
         <div class="weekly-wrap">
             <div class="week-table" id="weekTable"></div>
@@ -2481,7 +2483,7 @@
 
         function buildWeekly(){
             const startHour=7, endHour=22, slots=(endHour-startHour)*2;
-            const pxPerSlot=28, startMin=startHour*60;
+            const pxPerSlot=32, startMin=startHour*60;
             // Legend
             const legend=document.getElementById('scheduleLegend');
             legend.innerHTML=Object.keys(CAT_COLORS).map(c=>`<span class="schedule-legend-item"><span class="schedule-legend-dot" style="background:${CAT_COLORS[c]}"></span>${CAT_LABELS[c]}</span>`).join('');
@@ -2500,7 +2502,7 @@
                     const top=((ev.s-startMin)/30)*pxPerSlot;
                     const h=(ev.dur/30)*pxPerSlot;
                     const cls=ev.alt?'wt-ev '+ev.cat+' alt-opt':'wt-ev '+ev.cat;
-                    html+=`<div class="${cls}" style="top:${top}px;height:${h}px" data-name="${ev.name}" data-time="${ev.time}" data-cat="${CAT_LABELS[ev.cat]}"${ev.alt?' data-alt="Alternative option"':''}${ev.group?' data-group="'+ev.group+'"':''}><div class="ev-name">${ev.name}</div>${h>=36?'<div class="ev-time">'+ev.time+'</div>':''}</div>`;
+                    html+=`<div class="${cls}" style="top:${top}px;height:${h}px" data-name="${ev.name}" data-time="${ev.time}" data-cat="${CAT_LABELS[ev.cat]}"${ev.alt?' data-alt="Alternative option"':''}${ev.group?' data-group="'+ev.group+'"':''}><div class="ev-name">${ev.name}</div>${h>=40?'<div class="ev-time">'+ev.time+'</div>':''}</div>`;
                 });
                 html+='</div></div>';
             });
