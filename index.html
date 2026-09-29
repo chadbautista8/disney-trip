@@ -585,6 +585,7 @@
         .res-badge { display: block; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; width: fit-content; margin-top: 1px; }
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.walk { background: rgba(167,139,250,0.3); color: #c4b5fd; }
+        .res-badge.disc { background: rgba(52,211,153,0.25); color: #6ee7b7; }
         .res-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 3px; vertical-align: middle; flex-shrink: 0; }
         .de-res-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
         .wt-ev.has-link { cursor: pointer; }
@@ -637,6 +638,7 @@
         .de-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.3px; padding: 2px 5px; border-radius: 4px; margin-left: 8px; text-transform: uppercase; vertical-align: middle; }
         .de-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .de-badge.walk { background: rgba(167,139,250,0.3); color: #c4b5fd; }
+        .de-badge.disc { background: rgba(52,211,153,0.25); color: #6ee7b7; }
 
         @media (max-width: 768px) {
             .week-table { min-width: 900px; }
@@ -1022,7 +1024,7 @@
                     <p>⚡ <strong>Multi Pass:</strong> Tiana's (G1), Haunted Mansion (G2), Buzz (G2)</p>
                     <p>⚡ <strong>Single Pass:</strong> TRON</p>
                     <p>⚡ <strong>Optional:</strong> Seven Dwarfs Mine Train</p>
-                    <p>🍽️ <strong>Dining:</strong> Cake Bake 7:45 AM • Tony's 2:15 PM • Skipper Canteen 6:00 PM
+                    <p>🍽️ <strong>Dining:</strong> Cake Bake 7:45 AM • Tony's 2:15 PM • Skipper Canteen 6:00 PM <span class="de-badge disc" style="font-size:8px;padding:1px 4px">30% OFF</span>
                     </p>
                     <p>🍸 <strong>Lounge:</strong> Beak & Barrel 12:00 PM</p>
                     <p>🎆 <strong>Shows:</strong> Happily Ever After 8:00 PM</p>
@@ -1205,7 +1207,7 @@
                     <p>⚡ <strong>Multi Pass:</strong> Slinky Dog (G1), Tower of Terror (G2), Toy Story Mania (G2)</p>
                     <p>⚡ <strong>Single Pass:</strong> Rise of the Resistance</p>
                     <p>⚡ <strong>After first tap:</strong> Rock 'n' Roller Coaster or Smugglers Run</p>
-                    <p>🍽️ <strong>Dining:</strong> Flying Fish 6:45 PM (BoardWalk)</p>
+                    <p>🍽️ <strong>Dining:</strong> Flying Fish 6:45 PM (BoardWalk) <span class="de-badge disc" style="font-size:8px;padding:1px 4px">40% OFF</span></p>
                     <p>🎆 <strong>Shows:</strong> Fantasmic 8:30 PM</p>
                 </div>
             </div>
@@ -1359,7 +1361,7 @@
                     <p>⚡ <strong>Single Pass:</strong> Flight of Passage</p>
                     <p>⚡ <strong>Optional Multi Pass:</strong> Safaris, Zootopia, Na'vi River Journey</p>
                     <p>🍸 <strong>Drinks:</strong> Nomad Lounge ~1:00 PM</p>
-                    <p>🍽️ <strong>Dining:</strong> Yachtsman 7:00 PM (Yacht Club)</p>
+                    <p>🍽️ <strong>Dining:</strong> Yachtsman 7:00 PM (Yacht Club) <span class="de-badge disc" style="font-size:8px;padding:1px 4px">50% OFF</span></p>
                 </div>
             </div>
         </div>
@@ -2232,6 +2234,7 @@
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-leisure)"></div>Leisure</div>
             <div class="legend-item"><span class="de-badge vq" style="margin-left:0">VQ</span>Virtual Queue</div>
             <div class="legend-item"><span class="de-badge walk" style="margin-left:0">WALK</span>Walk-Up</div>
+            <div class="legend-item"><span class="de-badge disc" style="margin-left:0">% OFF</span>Coupon</div>
             <div class="legend-item"><span class="de-res-dot" style="margin-right:0"></span>Reserved</div>
         </div>
         <div class="tooltip" id="schedTooltip">
@@ -2563,14 +2566,14 @@
             { d:2, s:465,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'7:45 AM', link:MDE },
             { d:1, s:720,  dur:60,  name:'Beak & Barrel',            cat:'lounge',  time:'12:00 PM', link:MDE },
             { d:1, s:855,  dur:60,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM', link:MDE },
-            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM', link:MDE },
+            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM', link:MDE, discount:30 },
             { d:1, s:1200, dur:30,  name:'Happily Ever After', cat:'show',   time:'8:00 PM' },
             { d:2, s:720,  dur:60,  name:'BaseLine Tap House',       cat:'lounge',  time:'~12:00 PM', res:'walk' },
             { d:2, s:855,  dur:60,  name:"Oga's Cantina",            cat:'lounge',  time:'2:15 PM', link:MDE },
-            { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM', link:MDE },
+            { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM', link:MDE, discount:40 },
             { d:2, s:1230, dur:30,  name:'Fantasmic!',     cat:'show',    time:'8:30 PM' },
             { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'~1:00 PM', res:'vq' },
-            { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM', link:MDE },
+            { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM', link:MDE, discount:50 },
             { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM', res:'walk' },
             { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'~3:00 PM', res:'walk' },
             { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM', link:'https://www.cirquedusoleil.com/drawn-to-life' },
@@ -2658,7 +2661,8 @@
                     const linkIcon = ev.link ? '<span class="link-icon">&#8599;</span>' : '';
                     const dotColor = (ev.link && !ev.res) ? `var(--cat-${ev.cat})` : '';
                     const resDot = dotColor ? `<span class="res-dot" style="background:${dotColor}"></span>` : '';
-                    el.innerHTML = `<div class="ev-name">${resDot}${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${linkIcon}`;
+                    const discBadge = ev.discount ? `<span class="res-badge disc">${ev.discount}% OFF</span>` : '';
+                    el.innerHTML = `<div class="ev-name">${resDot}${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${discBadge}${linkIcon}`;
                     if (ev.link) el.addEventListener('click', () => window.open(ev.link, '_blank'));
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
                     el.addEventListener('mouseleave', hideSchedTooltip);
@@ -2672,8 +2676,9 @@
             const tt = document.getElementById('schedTooltip');
             tt.querySelector('.tt-name').textContent = ev.name;
             const resLabel = ev.res === 'vq' ? ' · Virtual Queue' : ev.res === 'walk' ? ' · Walk-Up' : '';
+            const discLabel = ev.discount ? ` · ${ev.discount}% coupon` : '';
             const linkLabel = ev.link ? ' · Tap to manage' : '';
-            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + linkLabel;
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + discLabel + linkLabel;
             const catEl = tt.querySelector('.tt-cat');
             catEl.textContent = SCHED_CAT_LABELS[ev.cat];
             catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
@@ -2708,7 +2713,7 @@
                     <div class="dt-track">
                         <div class="dt-dot ${ev.cat}"></div>
                         <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${ev.res ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
-                            <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${manageLink}</div>
+                            <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${ev.discount ? `<span class="de-badge disc">${ev.discount}% OFF</span>` : ''}${manageLink}</div>
                             <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
                         </div>
