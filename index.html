@@ -2594,7 +2594,7 @@
             { d:6, s:1215, dur:90,  name:'Spice Road Table',         cat:'dining',  time:'8:15 PM', link:MDE },
             { d:6, s:1260, dur:30,  name:'Luminous',          cat:'show',    time:'9:00 PM' },
             { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM', link:MDE },
-            { d:7, s:705,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'11:45 AM', res:'walk' },
+            { d:7, s:705,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'11:45 AM', conf:'356273232352' },
             { d:7, s:1154, dur:163, name:'MCO → EWR',                cat:'travel',  time:'7:34 PM → 10:17 PM' }
         ];
 
@@ -2678,7 +2678,8 @@
             const resLabel = ev.res === 'vq' ? ' · Virtual Queue' : ev.res === 'walk' ? ' · Walk-Up' : '';
             const discLabel = ev.discount ? ` · ${ev.discount}% coupon` : '';
             const linkLabel = ev.link ? ' · Tap to manage' : '';
-            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + discLabel + linkLabel;
+            const confLabel = ev.conf ? ` · Conf #${ev.conf}` : '';
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + discLabel + linkLabel + confLabel;
             const catEl = tt.querySelector('.tt-cat');
             catEl.textContent = SCHED_CAT_LABELS[ev.cat];
             catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
