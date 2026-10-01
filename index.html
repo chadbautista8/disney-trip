@@ -586,6 +586,7 @@
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.walk { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .res-badge.disc { background: rgba(52,211,153,0.25); color: #6ee7b7; }
+        .res-badge.conf { background: rgba(148,163,184,0.2); color: #94a3b8; }
         .res-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 3px; vertical-align: middle; flex-shrink: 0; }
         .de-res-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
         .wt-ev.has-link { cursor: pointer; }
@@ -2662,7 +2663,8 @@
                     const dotColor = (ev.link && !ev.res) ? `var(--cat-${ev.cat})` : '';
                     const resDot = dotColor ? `<span class="res-dot" style="background:${dotColor}"></span>` : '';
                     const discBadge = ev.discount ? `<span class="res-badge disc">${ev.discount}% OFF</span>` : '';
-                    el.innerHTML = `<div class="ev-name">${resDot}${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${discBadge}${linkIcon}`;
+                    const confBadge = ev.conf ? `<span class="res-badge conf">#${ev.conf}</span>` : '';
+                    el.innerHTML = `<div class="ev-name">${resDot}${ev.name}</div>${showTime ? `<div class="ev-time">${ev.time}</div>` : ''}${resBadge}${discBadge}${confBadge}${linkIcon}`;
                     if (ev.link) el.addEventListener('click', () => window.open(ev.link, '_blank'));
                     el.addEventListener('mouseenter', e => showSchedTooltip(e, ev));
                     el.addEventListener('mouseleave', hideSchedTooltip);
@@ -2678,8 +2680,7 @@
             const resLabel = ev.res === 'vq' ? ' · Virtual Queue' : ev.res === 'walk' ? ' · Walk-Up' : '';
             const discLabel = ev.discount ? ` · ${ev.discount}% coupon` : '';
             const linkLabel = ev.link ? ' · Tap to manage' : '';
-            const confLabel = ev.conf ? ` · Conf #${ev.conf}` : '';
-            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + discLabel + linkLabel + confLabel;
+            tt.querySelector('.tt-time').textContent = ev.time + ' · ' + ev.dur + ' min' + resLabel + discLabel + linkLabel;
             const catEl = tt.querySelector('.tt-cat');
             catEl.textContent = SCHED_CAT_LABELS[ev.cat];
             catEl.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cat-' + ev.cat);
