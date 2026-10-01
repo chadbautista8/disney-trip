@@ -2716,7 +2716,7 @@
                         <div class="dt-dot ${ev.cat}"></div>
                         <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${ev.res ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
                             <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${ev.discount ? `<span class="de-badge disc">${ev.discount}% OFF</span>` : ''}${manageLink}</div>
-                            <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min</div>
+                            <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min${ev.conf ? ` &middot; Conf #${ev.conf}` : ''}</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
                         </div>
                     </div>
