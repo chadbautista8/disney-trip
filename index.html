@@ -612,6 +612,11 @@
         /* Daily view */
         .daily-view { display: none; padding: 0 16px 30px; max-width: 660px; margin: 0 auto; }
         .daily-view-inject { padding: 0 0 8px; max-width: 660px; margin: 0 auto; }
+        .day-title { max-width: 660px; margin: 0 auto; padding: 4px 0 12px; font-size: 20px; font-weight: 700; color: var(--text-primary); }
+        .eat-filter { display: flex; gap: 6px; margin: 4px 0 10px; }
+        .eat-chip { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 14px; padding: 4px 12px; font-size: 12px; cursor: pointer; }
+        .eat-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .area-head { margin: 12px 0 4px; padding-bottom: 3px; border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--food-color); }
         .daily-header { text-align: center; padding: 20px 0 16px; }
         .daily-header h2 { font-size: 22px; font-weight: 800; }
         .daily-header .dp-park { font-size: 12px; font-weight: 600; color: #a78bfa; margin-top: 4px; }
@@ -847,67 +852,8 @@
 
     <!-- SAT 11/21 EPCOT (ARRIVAL) -->
     <div class="tab-content" id="sat-epcot">
+        <div class="day-title">🎯 Saturday Nov 21 • EPCOT (Arrival)</div>
         <div class="daily-view-inject" data-day="0"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🎯 Saturday Nov 21 • EPCOT (Arrival)</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>No Lightning Lane</strong> • Arrival day, relaxed pace</p>
-                    <p>🍽️ <strong>Dining:</strong> Via Napoli 6:55 PM (Italy)</p>
-                    <p>🍸 <strong>Drinks:</strong> GEO-82 3:10 PM</p>
-                    <p>🎆 <strong>Shows:</strong> Guardians 4:30 PM • Luminous 9:00 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:00 AM</div>
-                        <div class="timeline-text">✈️ Flight departs</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">10:00 AM</div>
-                        <div class="timeline-text">✈️ Flight lands Orlando</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Check in at BoardWalk Inn</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Explore EPCOT + Food & Wine Festival booths</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">3:10 PM</div>
-                        <div class="timeline-text">🍸 GEO-82 (drinks)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">4:30 PM</div>
-                        <div class="timeline-text">🎢 Guardians of the Galaxy</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">6:55 PM</div>
-                        <div class="timeline-text">🍽️ Via Napoli (Italy Pavilion)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">🎆 Luminous (9:00 PM) (Morocco/Japan side)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Post-show</div>
-                        <div class="timeline-text">AbracadaBar or Jellyrolls at BoardWalk</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Rides <span class="section-progress" id="sat-rides-progress">0/9</span></h2>
@@ -954,138 +900,139 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 EPCOT Food <span class="section-progress" id="sat-epcot-food-progress">0/7</span></h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="sat-epcot-food-progress">0/29</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Friday EPCOT — check off either day</p>
+                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day</p>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Mexico</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥖 Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, inside the bakery at the back of the pavilion, beyond the fountain courtyard)</span></div>
+                    <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Outdoor stand beside the pyramid)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
+                <div class="area-head">Norway</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍦 Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream shop along the rear courtyard, near Les Halles)</span></div>
+                    <div class="item-text">🥐 School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍨 Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream counter as Croque Glacé)</span></div>
+                    <div class="item-text">☕🍹 Frozen Viking Coffee <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                    <div class="item-text">☕ Kristoff Kaffe <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Same bakery as Frozen Viking Coffee)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
+                <div class="area-head">China</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍓 Tanghulu (Candied Fruit Skewers) <span class="text-small text-secondary">(Joy of Tea • China Pavilion, outdoor kiosk on the World Showcase promenade, facing the lagoon. Availability unconfirmed)</span></div>
+                    <div class="item-text">🍓 Tanghulu (Candied Fruit Skewers) <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk on the World Showcase promenade, facing the lagoon. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍦 Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Café • Japan Pavilion, outdoor kiosk near the red torii gate beside the lagoon. Availability unconfirmed)</span></div>
+                    <div class="item-text">☕🍹 Tipsy Ducks in Love <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk beside the lagoon)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍫 Chocolate-Hazelnut Croissant <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, same bakery counter as the baguette)</span></div>
+                    <div class="item-text">🍹 Kung Fu Punch <span class="text-small text-secondary">(Joy of Tea • Same kiosk as Tipsy Ducks in Love)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 EPCOT Drinks <span class="section-progress" id="sat-epcot-drink-progress">0/22</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Friday EPCOT — check off either day</p>
-                </div>
-                <div class="checklist-item" data-shared="epcot-drink-1" onclick="toggleCheck(this, 'epcot-drink-1')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-8" onclick="toggleCheck(this, 'epcot-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Grand Marnier Orange Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • France Pavilion, outdoor kiosk along the lagoon-side promenade)</span></div>
+                    <div class="item-text">🥤 Honey Hibiscus Iced Tea <span class="text-small text-secondary">(Joy of Tea • Lagoon-side kiosk)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-2" onclick="toggleCheck(this, 'epcot-drink-2')">
+                <div class="area-head">Between China &amp; Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕🍹 Frozen Viking Coffee <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                    <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-3" onclick="toggleCheck(this, 'epcot-drink-3')">
+                <div class="area-head">Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕🍹 Tipsy Ducks in Love <span class="text-small text-secondary">(Joy of Tea • China Pavilion, outdoor kiosk beside the lagoon)</span></div>
+                    <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Outdoor beer stand along the promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-4" onclick="toggleCheck(this, 'epcot-drink-4')">
+                <div class="area-head">Italy</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-11" onclick="toggleCheck(this, 'epcot-food-11')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Violet Sake Slush* <span class="text-small text-secondary">(Japan Pavilion, outdoor sake counter near Mitsukoshi; frozen preparation needs confirmation)</span></div>
+                    <div class="item-text">🍹 Italian Margarita <span class="text-small text-secondary">(Gelateria Toscana • Outdoor gelato stand facing the lagoon)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-5" onclick="toggleCheck(this, 'epcot-drink-5')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-12" onclick="toggleCheck(this, 'epcot-food-12')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Mexico Pavilion, outdoor stand beside the pyramid)</span></div>
+                    <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Wine kiosk along the promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-6" onclick="toggleCheck(this, 'epcot-drink-6')">
+                <div class="area-head">American Adventure</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-13" onclick="toggleCheck(this, 'epcot-food-13')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Grey Goose Citron Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • France Pavilion, same kiosk as the Orange Slush)</span></div>
+                    <div class="item-text">🥤 Berry Sparkler <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-7" onclick="toggleCheck(this, 'epcot-drink-7')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-14" onclick="toggleCheck(this, 'epcot-food-14')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Kristoff Kaffe <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, same bakery as Frozen Viking Coffee)</span></div>
+                    <div class="item-text">🍹 Moonshine Sour <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-8" onclick="toggleCheck(this, 'epcot-drink-8')">
+                <div class="area-head">Japan</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-15" onclick="toggleCheck(this, 'epcot-food-15')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Sake Mist <span class="text-small text-secondary">(Kabuki Café • Japan Pavilion, walk-up kiosk near the red torii gate)</span></div>
+                    <div class="item-text">🍦 Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Café • Outdoor kiosk near the red torii gate beside the lagoon. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-9" onclick="toggleCheck(this, 'epcot-drink-9')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-16" onclick="toggleCheck(this, 'epcot-food-16')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Kung Fu Punch <span class="text-small text-secondary">(Joy of Tea • China Pavilion, same kiosk as Tipsy Ducks in Love)</span></div>
+                    <div class="item-text">🍹 Violet Sake Slush* <span class="text-small text-secondary">(Outdoor sake counter near Mitsukoshi; frozen preparation needs confirmation)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-10" onclick="toggleCheck(this, 'epcot-drink-10')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-17" onclick="toggleCheck(this, 'epcot-food-17')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Canada Pavilion, outdoor cart along World Showcase Lagoon)</span></div>
+                    <div class="item-text">🍹 Sake Mist <span class="text-small text-secondary">(Kabuki Café • Walk-up kiosk near the red torii gate)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-11" onclick="toggleCheck(this, 'epcot-drink-11')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-18" onclick="toggleCheck(this, 'epcot-food-18')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Italian Margarita <span class="text-small text-secondary">(Gelateria Toscana • Italy Pavilion, outdoor gelato stand facing the lagoon)</span></div>
+                    <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Outdoor sake counter near the Mitsukoshi courtyard)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-12" onclick="toggleCheck(this, 'epcot-drink-12')">
+                <div class="area-head">Morocco</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-19" onclick="toggleCheck(this, 'epcot-food-19')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Japan Pavilion, outdoor sake counter near the Mitsukoshi courtyard)</span></div>
+                    <div class="item-text">🥤 Frozen Mint Tea <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Walk-up counter near the lagoon entrance)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-13" onclick="toggleCheck(this, 'epcot-drink-13')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-20" onclick="toggleCheck(this, 'epcot-food-20')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Germany Pavilion, outdoor beer stand along the promenade)</span></div>
+                    <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Same stand)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-14" onclick="toggleCheck(this, 'epcot-drink-14')">
+                <div class="area-head">France</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-21" onclick="toggleCheck(this, 'epcot-food-21')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Frozen Mint Tea <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Morocco Pavilion, walk-up counter near the lagoon entrance)</span></div>
+                    <div class="item-text">🥖 Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Inside the bakery at the back of the pavilion, beyond the fountain courtyard)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-15" onclick="toggleCheck(this, 'epcot-drink-15')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-22" onclick="toggleCheck(this, 'epcot-food-22')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Morocco Pavilion, same stand)</span></div>
+                    <div class="item-text">🍦 Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop along the rear courtyard, near Les Halles)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-16" onclick="toggleCheck(this, 'epcot-drink-16')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-23" onclick="toggleCheck(this, 'epcot-food-23')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Honey Hibiscus Iced Tea <span class="text-small text-secondary">(Joy of Tea • China Pavilion, lagoon-side kiosk)</span></div>
+                    <div class="item-text">🍨 Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • Same ice cream counter as Croque Glacé)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-17" onclick="toggleCheck(this, 'epcot-drink-17')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-24" onclick="toggleCheck(this, 'epcot-food-24')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Berry Sparkler <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter • American Adventure Pavilion)</span></div>
+                    <div class="item-text">🍫 Chocolate-Hazelnut Croissant <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Same bakery counter as the baguette)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-18" onclick="toggleCheck(this, 'epcot-drink-18')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-25" onclick="toggleCheck(this, 'epcot-food-25')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Moonshine Sour <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter • American Adventure Pavilion)</span></div>
+                    <div class="item-text">🍹 Grand Marnier Orange Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Outdoor kiosk along the lagoon-side promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-19" onclick="toggleCheck(this, 'epcot-drink-19')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-26" onclick="toggleCheck(this, 'epcot-food-26')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost • Outdoor stand between China and Germany)</span></div>
+                    <div class="item-text">🍹 Grey Goose Citron Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Same kiosk as the Orange Slush)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-20" onclick="toggleCheck(this, 'epcot-drink-20')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-27" onclick="toggleCheck(this, 'epcot-food-27')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Italy Pavilion, wine kiosk along the promenade)</span></div>
+                    <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(Check the Les Halles area and nearby beverage kiosks)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-21" onclick="toggleCheck(this, 'epcot-drink-21')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-28" onclick="toggleCheck(this, 'epcot-food-28')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(France Pavilion, check the Les Halles area and nearby beverage kiosks)</span></div>
+                    <div class="item-text">☕ Café Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop near Les Halles Boulangerie-Patisserie)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-22" onclick="toggleCheck(this, 'epcot-drink-22')">
+                <div class="area-head">Canada</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-29" onclick="toggleCheck(this, 'epcot-food-29')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Café Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream shop near Les Halles Boulangerie-Patisserie)</span></div>
+                    <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Outdoor cart along World Showcase Lagoon)</span></div>
                 </div>
             </div>
         </div>
@@ -1102,70 +1049,8 @@
 
     <!-- SUN 11/22 MAGIC KINGDOM -->
     <div class="tab-content" id="sun-mk">
+        <div class="day-title">🏰 Sunday Nov 22 • Magic Kingdom (Primary)</div>
         <div class="daily-view-inject" data-day="1"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🏰 Sunday Nov 22 • Magic Kingdom (Primary)</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>Multi Pass:</strong> Tiana's (G1), Haunted Mansion (G2), Buzz (G2)</p>
-                    <p>⚡ <strong>Single Pass:</strong> TRON</p>
-                    <p>⚡ <strong>Optional:</strong> Seven Dwarfs Mine Train</p>
-                    <p>🍽️ <strong>Dining:</strong> Cake Bake 7:45 AM • Tony's 2:15 PM • Skipper Canteen 6:00 PM <span class="de-badge disc" style="font-size:8px;padding:1px 4px">30% OFF</span>
-                    </p>
-                    <p>🍸 <strong>Lounge:</strong> Beak & Barrel 12:00 PM</p>
-                    <p>🎆 <strong>Shows:</strong> Happily Ever After 8:00 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:45 AM</div>
-                        <div class="timeline-text">🍽️ Cake Bake (BoardWalk Inn)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Early Entry</div>
-                        <div class="timeline-text">Space Mountain or Seven Dwarfs at rope drop</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Tomorrowland: TRON + Space + Buzz</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Cheshire Tail + Haunted Mansion (Fantasyland/Liberty Square)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">12:00 PM</div>
-                        <div class="timeline-text">🍸 Beak & Barrel (lounge)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">2:15 PM</div>
-                        <div class="timeline-text">🍽️ Tony's Town Square Restaurant</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Adventureland/Frontierland: Jungle Cruise, Pirates, Tiana's, Big Thunder</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">6:00 PM</div>
-                        <div class="timeline-text">🍽️ Skipper Canteen (dinner)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">8:00 PM</div>
-                        <div class="timeline-text">🎆 Happily Ever After (8:00 PM)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Rides <span class="section-progress" id="sun-rides-progress">0/9</span></h2>
@@ -1212,82 +1097,78 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 MK Food <span class="section-progress" id="sun-mk-food-progress">0/10</span></h2>
+                <h2>🍴 MK Eats &amp; Drinks <span class="section-progress" id="sun-mk-food-progress">0/15</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
                     <p class="text-small text-secondary">Shared with Thursday MK cleanup day — check off either day</p>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Main Street, U.S.A.</div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Gingerbread Milkshake ❄️ <span class="text-small text-secondary">(Plaza Ice Cream Parlor • Near the central hub)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Cold Brew Float* <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • On the right side walking toward Cinderella Castle)</span></div>
+                </div>
+                <div class="area-head">Adventureland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥟 Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland Spring Roll Cart • At the entrance to Adventureland from the central hub, near the bridge and Sunshine Tree Terrace)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, next to the Gaston fountain and across from Bonjour! Village Gifts, near Be Our Guest Restaurant)</span></div>
+                    <div class="item-text">🍍 Pineapple Upside-Down Cake with DOLE Whip <span class="text-small text-secondary">(Aloha Isle • Beside The Enchanted Tiki Room and near the Swiss Family Treehouse. Check cake availability)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍍 Pineapple Upside-Down Cake with DOLE Whip <span class="text-small text-secondary">(Aloha Isle • Adventureland, beside The Enchanted Tiki Room and near the Swiss Family Treehouse. Check cake availability)</span></div>
+                    <div class="item-text">🥤 Santa Surf Shack Float ❄️ <span class="text-small text-secondary">(Aloha Isle • Beside the Enchanted Tiki Room)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Fantasyland, directly beside Mad Tea Party and across from the entrance to Tomorrowland Speedway)</span></div>
+                    <div class="item-text">🥤 DOLE Whip Float <span class="text-small text-secondary">(Aloha Isle • Same counter as the Santa Surf Shack Float)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
+                <div class="area-head">Frontierland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍥 Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, same counter as the Crème Brûlée Croissant)</span></div>
+                    <div class="item-text">🥓 Candied Bacon Skewer <span class="text-small text-secondary">(Westward Ho • Along the main walkway near Country Bear Musical Jamboree)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
+                <div class="area-head">Liberty Square</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍰 Gingerbread Cake <span class="text-small text-secondary">(Columbia Harbour House • Liberty Square, opposite Haunted Mansion, at the corner where Fantasyland meets Liberty Square)</span></div>
+                    <div class="item-text">🍰 Gingerbread Cake <span class="text-small text-secondary">(Columbia Harbour House • Opposite Haunted Mansion, at the corner where Fantasyland meets Liberty Square)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥓 Candied Bacon Skewer <span class="text-small text-secondary">(Westward Ho • Frontierland, along the main walkway near Country Bear Musical Jamboree)</span></div>
+                    <div class="item-text">🍪 Mickey Whoopie Pie <span class="text-small text-secondary">(Liberty Square Market • Outdoor market cart near Hall of Presidents)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍪 Mickey Whoopie Pie <span class="text-small text-secondary">(Liberty Square Market • Liberty Square, outdoor market cart near Hall of Presidents)</span></div>
+                    <div class="item-text">🧇 Fresh Fruit &amp; Chocolate-Hazelnut Waffle <span class="text-small text-secondary">(Sleepy Hollow Refreshments • Beside Cinderella Castle's left-side approach and near the Liberty Square bridge)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
+                <div class="area-head">Fantasyland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-11" onclick="toggleCheck(this, 'mk-food-11')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🧇 Fresh Fruit &amp; Chocolate-Hazelnut Waffle <span class="text-small text-secondary">(Sleepy Hollow Refreshments • Liberty Square, beside Cinderella Castle's left-side approach and near the Liberty Square bridge)</span></div>
+                    <div class="item-text">🥐 Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Next to the Gaston fountain and across from Bonjour! Village Gifts, near Be Our Guest Restaurant)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-12" onclick="toggleCheck(this, 'mk-food-12')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🧀 Mac &amp; Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Fantasyland, across from Under the Sea - Journey of the Little Mermaid, near Ariel's Grotto. Availability unconfirmed)</span></div>
+                    <div class="item-text">🍥 Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Same counter as the Crème Brûlée Croissant)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 MK Drinks <span class="section-progress" id="sun-mk-drink-progress">0/5</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Thursday MK cleanup day — check off either day</p>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-1" onclick="toggleCheck(this, 'mk-drink-1')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-13" onclick="toggleCheck(this, 'mk-food-13')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Cherry Cordial Cold Brew ❄️ <span class="text-small text-secondary">(Auntie Gravity's Galactic Goodies • Tomorrowland, near Tomorrowland Speedway)</span></div>
+                    <div class="item-text">🥐 Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Directly beside Mad Tea Party and across from the entrance to Tomorrowland Speedway)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-drink-2" onclick="toggleCheck(this, 'mk-drink-2')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-14" onclick="toggleCheck(this, 'mk-food-14')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Santa Surf Shack Float ❄️ <span class="text-small text-secondary">(Aloha Isle • Adventureland, beside the Enchanted Tiki Room)</span></div>
+                    <div class="item-text">🧀 Mac &amp; Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Across from Under the Sea - Journey of the Little Mermaid, near Ariel's Grotto. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-drink-3" onclick="toggleCheck(this, 'mk-drink-3')">
+                <div class="area-head">Tomorrowland</div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-15" onclick="toggleCheck(this, 'mk-food-15')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Gingerbread Milkshake ❄️ <span class="text-small text-secondary">(Plaza Ice Cream Parlor • Main Street, U.S.A., near the central hub)</span></div>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-4" onclick="toggleCheck(this, 'mk-drink-4')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">🥤 DOLE Whip Float <span class="text-small text-secondary">(Aloha Isle • Adventureland, same counter as the Santa Surf Shack Float)</span></div>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-5" onclick="toggleCheck(this, 'mk-drink-5')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">☕ Cold Brew Float* <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • Main Street, U.S.A., on the right side walking toward Cinderella Castle)</span></div>
+                    <div class="item-text">☕ Cherry Cordial Cold Brew ❄️ <span class="text-small text-secondary">(Auntie Gravity's Galactic Goodies • Near Tomorrowland Speedway)</span></div>
                 </div>
             </div>
         </div>
@@ -1316,68 +1197,8 @@
 
     <!-- MON 11/23 HOLLYWOOD STUDIOS -->
     <div class="tab-content" id="mon-hs">
+        <div class="day-title">🎬 Monday Nov 23 • Hollywood Studios</div>
         <div class="daily-view-inject" data-day="2"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🎬 Monday Nov 23 • Hollywood Studios</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>Multi Pass:</strong> Slinky Dog (G1), Tower of Terror (G2), Toy Story Mania (G2)</p>
-                    <p>⚡ <strong>Single Pass:</strong> Rise of the Resistance</p>
-                    <p>⚡ <strong>After first tap:</strong> Rock 'n' Roller Coaster or Smugglers Run</p>
-                    <p>🍽️ <strong>Dining:</strong> Flying Fish 6:45 PM (BoardWalk) <span class="de-badge disc" style="font-size:8px;padding:1px 4px">40% OFF</span></p>
-                    <p>🎆 <strong>Shows:</strong> Fantasmic 8:30 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">Early Entry</div>
-                        <div class="timeline-text">Rock 'n' Roller Coaster or Tower of Terror</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Sunset Blvd: Tower + Rock 'n' Roller</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Toy Story Land: Slinky + Mania</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Lunch</div>
-                        <div class="timeline-text">Ronto Wrap at Galaxy's Edge</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Galaxy's Edge: Rise + Smugglers Run + Black Caf</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">Mickey & Minnie's Runaway Railway</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Walk/boat to BoardWalk</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">6:45 PM</div>
-                        <div class="timeline-text">🍽️ Flying Fish (BoardWalk)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">8:30 PM</div>
-                        <div class="timeline-text">🎆 Fantasmic! (8:30 PM)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Rides <span class="section-progress" id="mon-rides-progress">0/8</span></h2>
@@ -1420,40 +1241,38 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="mon-food-progress">0/5</span></h2>
+                <h2>🍴 Hollywood Studios Eats &amp; Drinks <span class="section-progress" id="mon-food-progress">0/6</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Hollywood Boulevard</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'mon-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🌯 Ronto Wrap <span class="text-small text-secondary">(Ronto Roasters • Star Wars: Galaxy's Edge, inside the Black Spire Outpost marketplace, near Docking Bay 7 and the Millennium Falcon pathway)</span></div>
+                    <div class="item-text">🥕 Carrot Cake Whoopie Pie <span class="text-small text-secondary">(Trolley Car Café (Starbucks) • On the right side as you walk toward the Chinese Theatre from the park entrance)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-2')">
+                <div class="area-head">Commissary Lane</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'mon-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥕 Carrot Cake Whoopie Pie <span class="text-small text-secondary">(Trolley Car Café (Starbucks) • Hollywood Boulevard, on the right side as you walk toward the Chinese Theatre from the park entrance)</span></div>
+                    <div class="item-text">🍰 Linzer Cookie Mousse Torte <span class="text-small text-secondary">(ABC Commissary • Between the Chinese Theatre and Star Tours, near Sci-Fi Dine-In Theater)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-3')">
+                <div class="area-head">Echo Lake</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'mon-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍪 Life Day Wookiee Cookie <span class="text-small text-secondary">(Backlot Express • Echo Lake, behind Star Tours, near Indiana Jones Epic Stunt Spectacular. Also check the Milk Stand in Galaxy's Edge for the seasonal offering)</span></div>
+                    <div class="item-text">🍪 Life Day Wookiee Cookie <span class="text-small text-secondary">(Backlot Express • Behind Star Tours, near Indiana Jones Epic Stunt Spectacular. Also check the Milk Stand in Galaxy's Edge for the seasonal offering)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-4')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">🍰 Linzer Cookie Mousse Torte <span class="text-small text-secondary">(ABC Commissary • Commissary Lane, between the Chinese Theatre and Star Tours, near Sci-Fi Dine-In Theater)</span></div>
-                </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-food-5')">
+                <div class="area-head">Pixar Plaza</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'mon-food-4')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍪 Jack-Jack Num Num Cookie <span class="text-small text-secondary">(Market stand near Pixar Plaza • In the Pixar area near Toy Story Land. Exact operating location may vary)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 Drinks <span class="section-progress" id="mon-drink-progress">0/1</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'mon-drink-1')">
+                <div class="area-head">Galaxy's Edge</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'mon-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Cold Brew Black Caf <span class="text-small text-secondary">(Kat Saka's Kettle • Galaxy's Edge, Black Spire Outpost marketplace near Ronto Roasters)</span></div>
+                    <div class="item-text">🌯 Ronto Wrap <span class="text-small text-secondary">(Ronto Roasters • Inside the Black Spire Outpost marketplace, near Docking Bay 7 and the Millennium Falcon pathway)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'mon-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Cold Brew Black Caf <span class="text-small text-secondary">(Kat Saka's Kettle • Black Spire Outpost marketplace near Ronto Roasters)</span></div>
                 </div>
             </div>
         </div>
@@ -1482,63 +1301,8 @@
 
     <!-- TUE 11/24 ANIMAL KINGDOM -->
     <div class="tab-content" id="tue-ak">
+        <div class="day-title">🦁 Tuesday Nov 24 • Animal Kingdom</div>
         <div class="daily-view-inject" data-day="3"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🦁 Tuesday Nov 24 • Animal Kingdom</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>Single Pass:</strong> Flight of Passage</p>
-                    <p>⚡ <strong>Optional Multi Pass:</strong> Safaris, Zootopia, Na'vi River Journey</p>
-                    <p>🍸 <strong>Drinks:</strong> Nomad Lounge 1:00 PM ✓</p>
-                    <p>🍽️ <strong>Dining:</strong> Yachtsman 7:00 PM (Yacht Club) <span class="de-badge disc" style="font-size:8px;padding:1px 4px">50% OFF</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">Early Entry</div>
-                        <div class="timeline-text">Pandora (Flight of Passage or Na'vi River)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Africa: Kilimanjaro Safaris + Gorilla Falls Trail</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Festival of the Lion King (Harambe Theatre)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">1:00 PM</div>
-                        <div class="timeline-text">🍸 Nomad Lounge (Discovery Island) ✓</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Asia: Everest + Maharajah Jungle Trek + Feathered Friends</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Afternoon</div>
-                        <div class="timeline-text">Zootopia + Tree of Life exhibits</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Evening</div>
-                        <div class="timeline-text">Rideshare to Yacht Club</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:00 PM</div>
-                        <div class="timeline-text">🍽️ Yachtsman Steakhouse (Yacht Club)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Rides <span class="section-progress" id="tue-rides-progress">0/10</span></h2>
@@ -1589,60 +1353,57 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="tue-food-progress">0/8</span></h2>
+                <h2>🍴 Animal Kingdom Eats &amp; Drinks <span class="section-progress" id="tue-food-progress">0/11</span></h2>
             </div>
             <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Discovery Island</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍩 Nomad Lounge Churros <span class="text-small text-secondary">(Nomad Lounge • Discovery Island, next to Tiffins Restaurant, just before the bridge into Pandora - The World of Avatar. You have a 1 PM reservation here; To Go pickup may also be available)</span></div>
+                    <div class="item-text">🍩 Nomad Lounge Churros <span class="text-small text-secondary">(Nomad Lounge • Next to Tiffins Restaurant, just before the bridge into Pandora - The World of Avatar. You have a 1 PM reservation here; To Go pickup may also be available)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-2')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍟 Mr. Kamal's Seasoned Fries <span class="text-small text-secondary">(Mr. Kamal's • Asia, on the walkway between the Tree of Life and Expedition Everest, near the bridge toward the Maharajah Jungle Trek area)</span></div>
+                    <div class="item-text">🍋 Key Lime Pie on a Stick <span class="text-small text-secondary">(Flame Tree Barbecue • Near the Tree of Life, on the pathway toward DinoLand U.S.A.)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-3')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍋 Key Lime Pie on a Stick <span class="text-small text-secondary">(Flame Tree Barbecue • Discovery Island, near the Tree of Life, on the pathway toward DinoLand U.S.A.)</span></div>
+                    <div class="item-text">🍰 Gingerbread Cheesecake Pop <span class="text-small text-secondary">(Flame Tree Barbecue • Same location as Key Lime Pie on a Stick)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-4')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍰 Gingerbread Cheesecake Pop <span class="text-small text-secondary">(Flame Tree Barbecue • Discovery Island, same location as Key Lime Pie on a Stick)</span></div>
+                    <div class="item-text">🍪 Festive Cookie Dough Brownie Ice Cream Sandwich <span class="text-small text-secondary">(Terra Treats • Near the entrance to It's Tough to Be a Bug's former theater area)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-5')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍪 Festive Cookie Dough Brownie Ice Cream Sandwich <span class="text-small text-secondary">(Terra Treats • Discovery Island, near the entrance to It's Tough to Be a Bug's former theater area)</span></div>
+                    <div class="item-text">🍫 Peppermint-Chocolate Cookie Dough Brownie Ice Cream Sandwich <span class="text-small text-secondary">(Santa's Holiday Grove • Holiday snack location; check the park map for the exact stand)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-6')">
+                <div class="area-head">Pandora</div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'tue-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍫 Peppermint-Chocolate Cookie Dough Brownie Ice Cream Sandwich <span class="text-small text-secondary">(Santa's Holiday Grove • Discovery Island, holiday snack location; check the park map for the exact stand)</span></div>
+                    <div class="item-text">🥤 Night Blossom <span class="text-small text-secondary">(Pongu Pongu • Outdoor stand beside Satu'li Canteen)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-7')">
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'tue-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🫓 Arepas <span class="text-small text-secondary">(Kusafiri Coffee Shop &amp; Bakery • Africa, in Harambe village near the entrance to Kilimanjaro Safaris)</span></div>
+                    <div class="item-text">🥤 Nightwraith Blaze <span class="text-small text-secondary">(Pongu Pongu • Same stand as Night Blossom)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-food-8')">
+                <div class="area-head">Africa</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 Festive Chocolate Twist <span class="text-small text-secondary">(Kusafiri / Isle of Java • Africa / Discovery Island, depending on seasonal distribution)</span></div>
+                    <div class="item-text">🫓 Arepas <span class="text-small text-secondary">(Kusafiri Coffee Shop &amp; Bakery • In Harambe village near the entrance to Kilimanjaro Safaris)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 Drinks <span class="section-progress" id="tue-drink-progress">0/3</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-drink-1')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-9')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Night Blossom <span class="text-small text-secondary">(Pongu Pongu • Pandora, outdoor stand beside Satu'li Canteen)</span></div>
+                    <div class="item-text">🥐 Festive Chocolate Twist <span class="text-small text-secondary">(Kusafiri / Isle of Java • Africa or Discovery Island, depending on seasonal distribution)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-drink-2')">
+                <div class="area-head">Asia</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-10')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Nightwraith Blaze <span class="text-small text-secondary">(Pongu Pongu • Pandora, same stand as Night Blossom)</span></div>
+                    <div class="item-text">🍟 Mr. Kamal's Seasoned Fries <span class="text-small text-secondary">(Mr. Kamal's • On the walkway between the Tree of Life and Expedition Everest, near the bridge toward the Maharajah Jungle Trek area)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'tue-drink-3')">
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'tue-food-11')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Vietnamese Iced Coffee <span class="text-small text-secondary">(Royal Anandapur Tea Company • Asia, outdoor tea kiosk near the Yak &amp; Yeti area and bridge toward Expedition Everest)</span></div>
+                    <div class="item-text">☕ Vietnamese Iced Coffee <span class="text-small text-secondary">(Royal Anandapur Tea Company • Outdoor tea kiosk near the Yak &amp; Yeti area and bridge toward Expedition Everest)</span></div>
                 </div>
             </div>
         </div>
@@ -1671,100 +1432,44 @@
 
     <!-- WED 11/25 DISNEY SPRINGS -->
     <div class="tab-content" id="wed-ds">
+        <div class="day-title">🛍️ Wednesday Nov 25 • Disney Springs (Rest Day)</div>
         <div class="daily-view-inject" data-day="4"></div>
         <div class="section">
-            <div class="section-header">
-                <h2>🛍️ Wednesday Nov 25 • Disney Springs (Rest Day)</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>No Lightning Lane</strong> • Rest and relaxation day</p>
-                    <p>🍽️ <strong>Dining:</strong> Wailulu 11:05 AM • Polite Pig ~12:00 PM</p>
-                    <p>🍸 <strong>Drinks:</strong> Jock Lindsey's 3:00 PM</p>
-                    <p>🎆 <strong>Shows:</strong> Cirque du Soleil 5:30 PM</p>
-                    <p>🍽️ <strong>Dinner:</strong> Morimoto 7:30 PM <em>(or Chef Art Smith's / Boathouse)</em></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
+                <h2>🍴 Disney Springs Eats &amp; Drinks <span class="section-progress" id="wed-food-progress">0/7</span></h2>
             </div>
             <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">Sleep in!</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">11:05 AM</div>
-                        <div class="timeline-text">🍽️ Wailulu Bar & Grill (Polynesian)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">~12:00 PM</div>
-                        <div class="timeline-text">🍽️ Polite Pig (Disney Springs)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Disney Springs shopping + Gideon's (virtual queue)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">3:00 PM</div>
-                        <div class="timeline-text">🍸 Jock Lindsey's Hangar Bar (drinks)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">5:30 PM</div>
-                        <div class="timeline-text">🎆 Cirque du Soleil</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:30 PM</div>
-                        <div class="timeline-text">🍽️ Morimoto Asia (dinner) <em>- or Chef Art Smith's / Boathouse</em></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 Food <span class="section-progress" id="wed-food-progress">0/4</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Marketplace</div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'wed-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍪 Gideon's Bakehouse Cookie <span class="text-small text-secondary">(Gideon's Bakehouse • The Landing, next to Morimoto Asia and across the walkway from Jock Lindsey's Hangar Bar. Watch for the virtual queue on busy days)</span></div>
+                    <div class="item-text">🥤 Gingerbread Mickey Cone ❄️ <span class="text-small text-secondary">(Swirls on the Water • Waterfront stand near Rainforest Cafe)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-2')">
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'wed-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍮 Gingerbread Crème Brûlée <span class="text-small text-secondary">(Amorette's Patisserie • Town Center, near the World of Disney store and the central fountain area)</span></div>
+                    <div class="item-text">🥤 DOLE Whip Flight <span class="text-small text-secondary">(Swirls on the Water • Same stand)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-3')">
+                <div class="area-head">The Landing</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'wed-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🧀 Oh Christmas Brie <span class="text-small text-secondary">(Jock Lindsey's Hangar Bar • The Landing, waterfront location next to The Boathouse and near Morimoto Asia. Exception to the walk-up rule)</span></div>
+                    <div class="item-text">🍪 Gideon's Bakehouse Cookie <span class="text-small text-secondary">(Gideon's Bakehouse • Next to Morimoto Asia and across the walkway from Jock Lindsey's Hangar Bar. Watch for the virtual queue on busy days)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-food-4')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'wed-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥩 A Wreath of Wellington <span class="text-small text-secondary">(Jock Lindsey's Hangar Bar • The Landing, same location as Oh Christmas Brie)</span></div>
+                    <div class="item-text">🧀 Oh Christmas Brie <span class="text-small text-secondary">(Jock Lindsey's Hangar Bar • Waterfront location next to The Boathouse and near Morimoto Asia. Exception to the walk-up rule)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 Drinks <span class="section-progress" id="wed-drink-progress">0/3</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-drink-1')">
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'wed-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Gingerbread Mickey Cone ❄️ <span class="text-small text-secondary">(Swirls on the Water • Marketplace, waterfront stand near Rainforest Cafe)</span></div>
+                    <div class="item-text">🥩 A Wreath of Wellington <span class="text-small text-secondary">(Jock Lindsey's Hangar Bar • Same location as Oh Christmas Brie)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-drink-2')">
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'wed-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 DOLE Whip Flight <span class="text-small text-secondary">(Swirls on the Water • Marketplace, same stand)</span></div>
+                    <div class="item-text">🥤 Hot Sipping Ganache ❄️ <span class="text-small text-secondary">(The Ganachery • Near The BOATHOUSE and Jock Lindsey's)</span></div>
                 </div>
-                <div class="checklist-item" onclick="toggleCheck(this, 'wed-drink-3')">
+                <div class="area-head">Town Center</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'wed-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Hot Sipping Ganache ❄️ <span class="text-small text-secondary">(The Ganachery • The Landing, near The BOATHOUSE and Jock Lindsey's)</span></div>
+                    <div class="item-text">🍮 Gingerbread Crème Brûlée <span class="text-small text-secondary">(Amorette's Patisserie • Near the World of Disney store and the central fountain area)</span></div>
                 </div>
             </div>
         </div>
@@ -1800,60 +1505,8 @@
 
     <!-- THU 11/26 MAGIC KINGDOM (THANKSGIVING) -->
     <div class="tab-content" id="thu-mk">
+        <div class="day-title">🦃 Thursday Nov 26 • Magic Kingdom (Thanksgiving Cleanup)</div>
         <div class="daily-view-inject" data-day="5"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🦃 Thursday Nov 26 • Magic Kingdom (Thanksgiving Cleanup)</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>Multi Pass:</strong> Decide after Sunday (missed priorities)</p>
-                    <p>🍽️ <strong>Dining:</strong> Wailulu 11:05 AM (Polynesian) • California Grill 7:10 PM (Contemporary) • Toledo 7:00 PM (Gran Destino)</p>
-                    <p>🍸 <strong>Drinks:</strong> Trader Sam's 1:00 PM • Enchanted Rose 3:00 PM • Steakhouse 71 Lounge 5:30 PM</p>
-                    <p>🎆 <strong>Shows:</strong> Happily Ever After 8:00 PM</p>
-                    <p><strong>Focus:</strong> Catch missed rides/snacks from Sunday + resort bar crawl</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">11:05 AM</div>
-                        <div class="timeline-text">🍽️ Wailulu (Polynesian Village)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">1:00 PM</div>
-                        <div class="timeline-text">🍸 Trader Sam's Grog Grotto (Polynesian)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">3:00 PM</div>
-                        <div class="timeline-text">🍸 Enchanted Rose (Grand Floridian)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">5:30 PM</div>
-                        <div class="timeline-text">🍸 Steakhouse 71 Lounge (Contemporary)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:00 PM</div>
-                        <div class="timeline-text">🍽️ Toledo (Gran Destino Tower)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">7:10 PM</div>
-                        <div class="timeline-text">🍽️ California Grill (Contemporary)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">8:00 PM</div>
-                        <div class="timeline-text">🎆 Happily Ever After (8:00 PM)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Cleanup Rides <span class="section-progress" id="thu-rides-progress">0/0</span></h2>
@@ -1867,82 +1520,78 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 MK Food <span class="section-progress" id="thu-mk-food-progress">0/10</span></h2>
+                <h2>🍴 MK Eats &amp; Drinks <span class="section-progress" id="thu-mk-food-progress">0/15</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
                     <p class="text-small text-secondary">Shared with Sunday MK day — check off either day</p>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Main Street, U.S.A.</div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-1" onclick="toggleCheck(this, 'mk-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Gingerbread Milkshake ❄️ <span class="text-small text-secondary">(Plaza Ice Cream Parlor • Near the central hub)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Cold Brew Float* <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • On the right side walking toward Cinderella Castle)</span></div>
+                </div>
+                <div class="area-head">Adventureland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥟 Cheeseburger Spring Rolls <span class="text-small text-secondary">(Adventureland Spring Roll Cart • At the entrance to Adventureland from the central hub, near the bridge and Sunshine Tree Terrace)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-2" onclick="toggleCheck(this, 'mk-food-2')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, next to the Gaston fountain and across from Bonjour! Village Gifts, near Be Our Guest Restaurant)</span></div>
+                    <div class="item-text">🍍 Pineapple Upside-Down Cake with DOLE Whip <span class="text-small text-secondary">(Aloha Isle • Beside The Enchanted Tiki Room and near the Swiss Family Treehouse. Check cake availability)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-3" onclick="toggleCheck(this, 'mk-food-3')">
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍍 Pineapple Upside-Down Cake with DOLE Whip <span class="text-small text-secondary">(Aloha Isle • Adventureland, beside The Enchanted Tiki Room and near the Swiss Family Treehouse. Check cake availability)</span></div>
+                    <div class="item-text">🥤 Santa Surf Shack Float ❄️ <span class="text-small text-secondary">(Aloha Isle • Beside the Enchanted Tiki Room)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-4" onclick="toggleCheck(this, 'mk-food-4')">
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Fantasyland, directly beside Mad Tea Party and across from the entrance to Tomorrowland Speedway)</span></div>
+                    <div class="item-text">🥤 DOLE Whip Float <span class="text-small text-secondary">(Aloha Isle • Same counter as the Santa Surf Shack Float)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-5" onclick="toggleCheck(this, 'mk-food-5')">
+                <div class="area-head">Frontierland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍥 Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Fantasyland, same counter as the Crème Brûlée Croissant)</span></div>
+                    <div class="item-text">🥓 Candied Bacon Skewer <span class="text-small text-secondary">(Westward Ho • Along the main walkway near Country Bear Musical Jamboree)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-6" onclick="toggleCheck(this, 'mk-food-6')">
+                <div class="area-head">Liberty Square</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍰 Gingerbread Cake <span class="text-small text-secondary">(Columbia Harbour House • Liberty Square, opposite Haunted Mansion, at the corner where Fantasyland meets Liberty Square)</span></div>
+                    <div class="item-text">🍰 Gingerbread Cake <span class="text-small text-secondary">(Columbia Harbour House • Opposite Haunted Mansion, at the corner where Fantasyland meets Liberty Square)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-7" onclick="toggleCheck(this, 'mk-food-7')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥓 Candied Bacon Skewer <span class="text-small text-secondary">(Westward Ho • Frontierland, along the main walkway near Country Bear Musical Jamboree)</span></div>
+                    <div class="item-text">🍪 Mickey Whoopie Pie <span class="text-small text-secondary">(Liberty Square Market • Outdoor market cart near Hall of Presidents)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-8" onclick="toggleCheck(this, 'mk-food-8')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍪 Mickey Whoopie Pie <span class="text-small text-secondary">(Liberty Square Market • Liberty Square, outdoor market cart near Hall of Presidents)</span></div>
+                    <div class="item-text">🧇 Fresh Fruit &amp; Chocolate-Hazelnut Waffle <span class="text-small text-secondary">(Sleepy Hollow Refreshments • Beside Cinderella Castle's left-side approach and near the Liberty Square bridge)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-9" onclick="toggleCheck(this, 'mk-food-9')">
+                <div class="area-head">Fantasyland</div>
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-11" onclick="toggleCheck(this, 'mk-food-11')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🧇 Fresh Fruit &amp; Chocolate-Hazelnut Waffle <span class="text-small text-secondary">(Sleepy Hollow Refreshments • Liberty Square, beside Cinderella Castle's left-side approach and near the Liberty Square bridge)</span></div>
+                    <div class="item-text">🥐 Crème Brûlée Croissant <span class="text-small text-secondary">(Gaston's Tavern • Next to the Gaston fountain and across from Bonjour! Village Gifts, near Be Our Guest Restaurant)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-food-10" onclick="toggleCheck(this, 'mk-food-10')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-12" onclick="toggleCheck(this, 'mk-food-12')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🧀 Mac &amp; Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Fantasyland, across from Under the Sea - Journey of the Little Mermaid, near Ariel's Grotto. Availability unconfirmed)</span></div>
+                    <div class="item-text">🍥 Warm Cinnamon Roll <span class="text-small text-secondary">(Gaston's Tavern • Same counter as the Crème Brûlée Croissant)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 MK Drinks <span class="section-progress" id="thu-mk-drink-progress">0/5</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Sunday MK day — check off either day</p>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-1" onclick="toggleCheck(this, 'mk-drink-1')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-13" onclick="toggleCheck(this, 'mk-food-13')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Cherry Cordial Cold Brew ❄️ <span class="text-small text-secondary">(Auntie Gravity's Galactic Goodies • Tomorrowland, near Tomorrowland Speedway)</span></div>
+                    <div class="item-text">🥐 Cheshire Cat Tail <span class="text-small text-secondary">(Cheshire Café • Directly beside Mad Tea Party and across from the entrance to Tomorrowland Speedway)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-drink-2" onclick="toggleCheck(this, 'mk-drink-2')">
+                <div class="checklist-item" data-kind="eat" data-shared="mk-food-14" onclick="toggleCheck(this, 'mk-food-14')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Santa Surf Shack Float ❄️ <span class="text-small text-secondary">(Aloha Isle • Adventureland, beside the Enchanted Tiki Room)</span></div>
+                    <div class="item-text">🧀 Mac &amp; Cheese Hand Pie <span class="text-small text-secondary">(Prince Eric's Village Market • Across from Under the Sea - Journey of the Little Mermaid, near Ariel's Grotto. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="mk-drink-3" onclick="toggleCheck(this, 'mk-drink-3')">
+                <div class="area-head">Tomorrowland</div>
+                <div class="checklist-item" data-kind="drink" data-shared="mk-food-15" onclick="toggleCheck(this, 'mk-food-15')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Gingerbread Milkshake ❄️ <span class="text-small text-secondary">(Plaza Ice Cream Parlor • Main Street, U.S.A., near the central hub)</span></div>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-4" onclick="toggleCheck(this, 'mk-drink-4')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">🥤 DOLE Whip Float <span class="text-small text-secondary">(Aloha Isle • Adventureland, same counter as the Santa Surf Shack Float)</span></div>
-                </div>
-                <div class="checklist-item" data-shared="mk-drink-5" onclick="toggleCheck(this, 'mk-drink-5')">
-                    <div class="checkbox"></div>
-                    <div class="item-text">☕ Cold Brew Float* <span class="text-small text-secondary">(Main Street Bakery (Starbucks) • Main Street, U.S.A., on the right side walking toward Cinderella Castle)</span></div>
+                    <div class="item-text">☕ Cherry Cordial Cold Brew ❄️ <span class="text-small text-secondary">(Auntie Gravity's Galactic Goodies • Near Tomorrowland Speedway)</span></div>
                 </div>
             </div>
         </div>
@@ -1959,72 +1608,8 @@
 
     <!-- FRI 11/27 EPCOT (FULL RIDE DAY) -->
     <div class="tab-content" id="fri-epcot">
+        <div class="day-title">🌍 Friday Nov 27 • EPCOT (Full Ride Day)</div>
         <div class="daily-view-inject" data-day="6"></div>
-        <div class="section">
-            <div class="section-header">
-                <h2>🌍 Friday Nov 27 • EPCOT (Full Ride Day)</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>Multi Pass:</strong> Test Track (G1), Soarin' (G2), Living with the Land (G2)</p>
-                    <p>⚡ <strong>Single Pass:</strong> Guardians of the Galaxy</p>
-                    <p>⚡ <strong>After first tap:</strong> Remy or Frozen</p>
-                    <p>🎉 <strong>Festival of the Holidays</strong> (EPCOT seasonal event)</p>
-                    <p>🍽️ <strong>Dining:</strong> Les Halles 9:00 AM • Space 220 12:30 PM</p>
-                    <p>🍸 <strong>Drinks:</strong> GEO-82 4:20 PM</p>
-                    <p>🍽️ <strong>Dining (evening):</strong> Spice Road Table 8:15 PM
-                    </p>
-                    <p>🎆 <strong>Shows:</strong> Candlelight 6:30 PM • Luminous 9:00 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">9:00 AM</div>
-                        <div class="timeline-text">🍽️ Les Halles Boulangerie (France Pavilion)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Morning</div>
-                        <div class="timeline-text">World Showcase to front: Remy, Frozen, Test Track</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">The Land: Soarin' + Living with the Land (Holiday)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">12:30 PM</div>
-                        <div class="timeline-text">🍽️ Space 220 (lunch)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Guardians + Mission: SPACE + Spaceship Earth</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">4:20 PM</div>
-                        <div class="timeline-text">🍸 GEO-82 (drinks)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">6:30 PM</div>
-                        <div class="timeline-text">🎆 Candlelight Processional (6:30 PM)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">8:15 PM</div>
-                        <div class="timeline-text">🍽️ Spice Road Table (8:15 PM)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">9:00 PM</div>
-                        <div class="timeline-text">🎆 Luminous (9:00 PM) + walk home to BoardWalk</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
                 <h2>🎢 Rides <span class="section-progress" id="fri-rides-progress">0/9</span></h2>
@@ -2071,138 +1656,139 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍦 EPCOT Food <span class="section-progress" id="fri-epcot-food-progress">0/7</span></h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="fri-epcot-food-progress">0/29</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Saturday EPCOT — check off either day</p>
+                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day</p>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Mexico</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥖 Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, inside the bakery at the back of the pavilion, beyond the fountain courtyard)</span></div>
+                    <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Outdoor stand beside the pyramid)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
+                <div class="area-head">Norway</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍦 Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream shop along the rear courtyard, near Les Halles)</span></div>
+                    <div class="item-text">🥐 School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍨 Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, same ice cream counter as Croque Glacé)</span></div>
+                    <div class="item-text">☕🍹 Frozen Viking Coffee <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥐 School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                    <div class="item-text">☕ Kristoff Kaffe <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Same bakery as Frozen Viking Coffee)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
+                <div class="area-head">China</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍓 Tanghulu (Candied Fruit Skewers) <span class="text-small text-secondary">(Joy of Tea • China Pavilion, outdoor kiosk on the World Showcase promenade, facing the lagoon. Availability unconfirmed)</span></div>
+                    <div class="item-text">🍓 Tanghulu (Candied Fruit Skewers) <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk on the World Showcase promenade, facing the lagoon. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍦 Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Café • Japan Pavilion, outdoor kiosk near the red torii gate beside the lagoon. Availability unconfirmed)</span></div>
+                    <div class="item-text">☕🍹 Tipsy Ducks in Love <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk beside the lagoon)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍫 Chocolate-Hazelnut Croissant <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • France Pavilion, same bakery counter as the baguette)</span></div>
+                    <div class="item-text">🍹 Kung Fu Punch <span class="text-small text-secondary">(Joy of Tea • Same kiosk as Tipsy Ducks in Love)</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍹 EPCOT Drinks <span class="section-progress" id="fri-epcot-drink-progress">0/22</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared with Saturday EPCOT — check off either day</p>
-                </div>
-                <div class="checklist-item" data-shared="epcot-drink-1" onclick="toggleCheck(this, 'epcot-drink-1')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-8" onclick="toggleCheck(this, 'epcot-food-8')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Grand Marnier Orange Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • France Pavilion, outdoor kiosk along the lagoon-side promenade)</span></div>
+                    <div class="item-text">🥤 Honey Hibiscus Iced Tea <span class="text-small text-secondary">(Joy of Tea • Lagoon-side kiosk)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-2" onclick="toggleCheck(this, 'epcot-drink-2')">
+                <div class="area-head">Between China &amp; Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕🍹 Frozen Viking Coffee <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                    <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-3" onclick="toggleCheck(this, 'epcot-drink-3')">
+                <div class="area-head">Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕🍹 Tipsy Ducks in Love <span class="text-small text-secondary">(Joy of Tea • China Pavilion, outdoor kiosk beside the lagoon)</span></div>
+                    <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Outdoor beer stand along the promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-4" onclick="toggleCheck(this, 'epcot-drink-4')">
+                <div class="area-head">Italy</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-11" onclick="toggleCheck(this, 'epcot-food-11')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Violet Sake Slush* <span class="text-small text-secondary">(Japan Pavilion, outdoor sake counter near Mitsukoshi; frozen preparation needs confirmation)</span></div>
+                    <div class="item-text">🍹 Italian Margarita <span class="text-small text-secondary">(Gelateria Toscana • Outdoor gelato stand facing the lagoon)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-5" onclick="toggleCheck(this, 'epcot-drink-5')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-12" onclick="toggleCheck(this, 'epcot-food-12')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Mexico Pavilion, outdoor stand beside the pyramid)</span></div>
+                    <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Wine kiosk along the promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-6" onclick="toggleCheck(this, 'epcot-drink-6')">
+                <div class="area-head">American Adventure</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-13" onclick="toggleCheck(this, 'epcot-food-13')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Grey Goose Citron Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • France Pavilion, same kiosk as the Orange Slush)</span></div>
+                    <div class="item-text">🥤 Berry Sparkler <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-7" onclick="toggleCheck(this, 'epcot-drink-7')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-14" onclick="toggleCheck(this, 'epcot-food-14')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Kristoff Kaffe <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Norway Pavilion, same bakery as Frozen Viking Coffee)</span></div>
+                    <div class="item-text">🍹 Moonshine Sour <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-8" onclick="toggleCheck(this, 'epcot-drink-8')">
+                <div class="area-head">Japan</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-15" onclick="toggleCheck(this, 'epcot-food-15')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Sake Mist <span class="text-small text-secondary">(Kabuki Café • Japan Pavilion, walk-up kiosk near the red torii gate)</span></div>
+                    <div class="item-text">🍦 Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Café • Outdoor kiosk near the red torii gate beside the lagoon. Availability unconfirmed)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-9" onclick="toggleCheck(this, 'epcot-drink-9')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-16" onclick="toggleCheck(this, 'epcot-food-16')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Kung Fu Punch <span class="text-small text-secondary">(Joy of Tea • China Pavilion, same kiosk as Tipsy Ducks in Love)</span></div>
+                    <div class="item-text">🍹 Violet Sake Slush* <span class="text-small text-secondary">(Outdoor sake counter near Mitsukoshi; frozen preparation needs confirmation)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-10" onclick="toggleCheck(this, 'epcot-drink-10')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-17" onclick="toggleCheck(this, 'epcot-food-17')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Canada Pavilion, outdoor cart along World Showcase Lagoon)</span></div>
+                    <div class="item-text">🍹 Sake Mist <span class="text-small text-secondary">(Kabuki Café • Walk-up kiosk near the red torii gate)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-11" onclick="toggleCheck(this, 'epcot-drink-11')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-18" onclick="toggleCheck(this, 'epcot-food-18')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Italian Margarita <span class="text-small text-secondary">(Gelateria Toscana • Italy Pavilion, outdoor gelato stand facing the lagoon)</span></div>
+                    <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Outdoor sake counter near the Mitsukoshi courtyard)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-12" onclick="toggleCheck(this, 'epcot-drink-12')">
+                <div class="area-head">Morocco</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-19" onclick="toggleCheck(this, 'epcot-food-19')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Japan Pavilion, outdoor sake counter near the Mitsukoshi courtyard)</span></div>
+                    <div class="item-text">🥤 Frozen Mint Tea <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Walk-up counter near the lagoon entrance)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-13" onclick="toggleCheck(this, 'epcot-drink-13')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-20" onclick="toggleCheck(this, 'epcot-food-20')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Germany Pavilion, outdoor beer stand along the promenade)</span></div>
+                    <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Same stand)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-14" onclick="toggleCheck(this, 'epcot-drink-14')">
+                <div class="area-head">France</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-21" onclick="toggleCheck(this, 'epcot-food-21')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Frozen Mint Tea <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Morocco Pavilion, walk-up counter near the lagoon entrance)</span></div>
+                    <div class="item-text">🥖 Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Inside the bakery at the back of the pavilion, beyond the fountain courtyard)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-15" onclick="toggleCheck(this, 'epcot-drink-15')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-22" onclick="toggleCheck(this, 'epcot-food-22')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Morocco Pavilion, same stand)</span></div>
+                    <div class="item-text">🍦 Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop along the rear courtyard, near Les Halles)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-16" onclick="toggleCheck(this, 'epcot-drink-16')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-23" onclick="toggleCheck(this, 'epcot-food-23')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Honey Hibiscus Iced Tea <span class="text-small text-secondary">(Joy of Tea • China Pavilion, lagoon-side kiosk)</span></div>
+                    <div class="item-text">🍨 Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • Same ice cream counter as Croque Glacé)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-17" onclick="toggleCheck(this, 'epcot-drink-17')">
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-24" onclick="toggleCheck(this, 'epcot-food-24')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🥤 Berry Sparkler <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter • American Adventure Pavilion)</span></div>
+                    <div class="item-text">🍫 Chocolate-Hazelnut Croissant <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Same bakery counter as the baguette)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-18" onclick="toggleCheck(this, 'epcot-drink-18')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-25" onclick="toggleCheck(this, 'epcot-food-25')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Moonshine Sour <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter • American Adventure Pavilion)</span></div>
+                    <div class="item-text">🍹 Grand Marnier Orange Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Outdoor kiosk along the lagoon-side promenade)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-19" onclick="toggleCheck(this, 'epcot-drink-19')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-26" onclick="toggleCheck(this, 'epcot-food-26')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost • Outdoor stand between China and Germany)</span></div>
+                    <div class="item-text">🍹 Grey Goose Citron Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Same kiosk as the Orange Slush)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-20" onclick="toggleCheck(this, 'epcot-drink-20')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-27" onclick="toggleCheck(this, 'epcot-food-27')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Italy Pavilion, wine kiosk along the promenade)</span></div>
+                    <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(Check the Les Halles area and nearby beverage kiosks)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-21" onclick="toggleCheck(this, 'epcot-drink-21')">
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-28" onclick="toggleCheck(this, 'epcot-food-28')">
                     <div class="checkbox"></div>
-                    <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(France Pavilion, check the Les Halles area and nearby beverage kiosks)</span></div>
+                    <div class="item-text">☕ Café Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop near Les Halles Boulangerie-Patisserie)</span></div>
                 </div>
-                <div class="checklist-item" data-shared="epcot-drink-22" onclick="toggleCheck(this, 'epcot-drink-22')">
+                <div class="area-head">Canada</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-29" onclick="toggleCheck(this, 'epcot-food-29')">
                     <div class="checkbox"></div>
-                    <div class="item-text">☕ Café Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • France Pavilion, ice cream shop near Les Halles Boulangerie-Patisserie)</span></div>
+                    <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Outdoor cart along World Showcase Lagoon)</span></div>
                 </div>
             </div>
         </div>
@@ -2231,51 +1817,143 @@
 
     <!-- SAT 11/28 DEPARTURE -->
     <div class="tab-content" id="sat-depart">
+        <div class="day-title">✈️ Saturday Nov 28 • Departure</div>
         <div class="daily-view-inject" data-day="7"></div>
         <div class="section">
-            <div class="section-header">
-                <h2>✈️ Saturday Nov 28 • Departure</h2>
-            </div>
-            <div class="section-content expanded">
-                <div class="info-card">
-                    <p>⚡ <strong>No Lightning Lane</strong> • Checkout and departure</p>
-                    <p>🍽️ <strong>Dining:</strong> Cake Bake 8:30 AM (BoardWalk)</p>
-                    <p>🎾 <strong>Activity:</strong> Mini Golf 11:45 AM</p>
-                    <p>✈️ <strong>Flight:</strong> Departs 6:00 PM</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📍 Day Flow</h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="depart-epcot-food-progress">0/29</span></h2>
             </div>
             <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">8:30 AM</div>
-                        <div class="timeline-text">🍽️ Cake Bake (BoardWalk Inn)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">11:45 AM</div>
-                        <div class="timeline-text">🎾 Mini Golf</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Late Morning</div>
-                        <div class="timeline-text">Crescent Lake walk (BoardWalk → Beach Club → Yacht Club → Swan/Dolphin)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Checkout</div>
-                        <div class="timeline-text">Return to BoardWalk, checkout</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">Afternoon</div>
-                        <div class="timeline-text">Head to airport</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-time">6:00 PM</div>
-                        <div class="timeline-text">✈️ Flight departs</div>
-                    </div>
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day</p>
+                </div>
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">Mexico</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-1" onclick="toggleCheck(this, 'epcot-food-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Outdoor stand beside the pyramid)</span></div>
+                </div>
+                <div class="area-head">Norway</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-2" onclick="toggleCheck(this, 'epcot-food-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥐 School Bread <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-3" onclick="toggleCheck(this, 'epcot-food-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕🍹 Frozen Viking Coffee <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Bakery on the left side of the main walkway toward Frozen Ever After)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-4" onclick="toggleCheck(this, 'epcot-food-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Kristoff Kaffe <span class="text-small text-secondary">(Kringla Bakeri og Kafe • Same bakery as Frozen Viking Coffee)</span></div>
+                </div>
+                <div class="area-head">China</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-5" onclick="toggleCheck(this, 'epcot-food-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍓 Tanghulu (Candied Fruit Skewers) <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk on the World Showcase promenade, facing the lagoon. Availability unconfirmed)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-6" onclick="toggleCheck(this, 'epcot-food-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕🍹 Tipsy Ducks in Love <span class="text-small text-secondary">(Joy of Tea • Outdoor kiosk beside the lagoon)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-7" onclick="toggleCheck(this, 'epcot-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Kung Fu Punch <span class="text-small text-secondary">(Joy of Tea • Same kiosk as Tipsy Ducks in Love)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-8" onclick="toggleCheck(this, 'epcot-food-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Honey Hibiscus Iced Tea <span class="text-small text-secondary">(Joy of Tea • Lagoon-side kiosk)</span></div>
+                </div>
+                <div class="area-head">Between China &amp; Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost)</span></div>
+                </div>
+                <div class="area-head">Germany</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Outdoor beer stand along the promenade)</span></div>
+                </div>
+                <div class="area-head">Italy</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-11" onclick="toggleCheck(this, 'epcot-food-11')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Italian Margarita <span class="text-small text-secondary">(Gelateria Toscana • Outdoor gelato stand facing the lagoon)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-12" onclick="toggleCheck(this, 'epcot-food-12')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Wine kiosk along the promenade)</span></div>
+                </div>
+                <div class="area-head">American Adventure</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-13" onclick="toggleCheck(this, 'epcot-food-13')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Berry Sparkler <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-14" onclick="toggleCheck(this, 'epcot-food-14')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Moonshine Sour <span class="text-small text-secondary">(Regal Eagle outdoor beverage counter)</span></div>
+                </div>
+                <div class="area-head">Japan</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-15" onclick="toggleCheck(this, 'epcot-food-15')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍦 Japanese Wafer Ice Cream Sandwich <span class="text-small text-secondary">(Kabuki Café • Outdoor kiosk near the red torii gate beside the lagoon. Availability unconfirmed)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-16" onclick="toggleCheck(this, 'epcot-food-16')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Violet Sake Slush* <span class="text-small text-secondary">(Outdoor sake counter near Mitsukoshi; frozen preparation needs confirmation)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-17" onclick="toggleCheck(this, 'epcot-food-17')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Sake Mist <span class="text-small text-secondary">(Kabuki Café • Walk-up kiosk near the red torii gate)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-18" onclick="toggleCheck(this, 'epcot-food-18')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Outdoor sake counter near the Mitsukoshi courtyard)</span></div>
+                </div>
+                <div class="area-head">Morocco</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-19" onclick="toggleCheck(this, 'epcot-food-19')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Frozen Mint Tea <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Walk-up counter near the lagoon entrance)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-20" onclick="toggleCheck(this, 'epcot-food-20')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Oasis Sips &amp; Sweets • Same stand)</span></div>
+                </div>
+                <div class="area-head">France</div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-21" onclick="toggleCheck(this, 'epcot-food-21')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥖 Fresh Baguette <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Inside the bakery at the back of the pavilion, beyond the fountain courtyard)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-22" onclick="toggleCheck(this, 'epcot-food-22')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍦 Croque Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop along the rear courtyard, near Les Halles)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-23" onclick="toggleCheck(this, 'epcot-food-23')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍨 Ice Cream Macaron <span class="text-small text-secondary">(L'Artisan des Glaces • Same ice cream counter as Croque Glacé)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" data-shared="epcot-food-24" onclick="toggleCheck(this, 'epcot-food-24')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍫 Chocolate-Hazelnut Croissant <span class="text-small text-secondary">(Les Halles Boulangerie-Patisserie • Same bakery counter as the baguette)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-25" onclick="toggleCheck(this, 'epcot-food-25')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Grand Marnier Orange Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Outdoor kiosk along the lagoon-side promenade)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-26" onclick="toggleCheck(this, 'epcot-food-26')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Grey Goose Citron Slush <span class="text-small text-secondary">(Les Vins des Chefs de France • Same kiosk as the Orange Slush)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-27" onclick="toggleCheck(this, 'epcot-food-27')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(Check the Les Halles area and nearby beverage kiosks)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-28" onclick="toggleCheck(this, 'epcot-food-28')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Café Glacé <span class="text-small text-secondary">(L'Artisan des Glaces • Ice cream shop near Les Halles Boulangerie-Patisserie)</span></div>
+                </div>
+                <div class="area-head">Canada</div>
+                <div class="checklist-item" data-kind="drink" data-shared="epcot-food-29" onclick="toggleCheck(this, 'epcot-food-29')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Outdoor cart along World Showcase Lagoon)</span></div>
                 </div>
             </div>
         </div>
@@ -2634,6 +2312,22 @@
         });
 
         // Section toggle
+        function filterEats(btn, kind) {
+            const sec = btn.closest('.section-content');
+            sec.querySelectorAll('.eat-chip').forEach(b => b.classList.toggle('active', b === btn));
+            sec.querySelectorAll('.checklist-item[data-kind]').forEach(it => {
+                it.style.display = (kind === 'all' || it.dataset.kind === kind) ? '' : 'none';
+            });
+            sec.querySelectorAll('.area-head').forEach(h => {
+                let n = h.nextElementSibling, vis = false;
+                while (n && !n.classList.contains('area-head')) {
+                    if (n.classList.contains('checklist-item') && n.style.display !== 'none') vis = true;
+                    n = n.nextElementSibling;
+                }
+                h.style.display = vis ? '' : 'none';
+            });
+        }
+
         function toggleSection(header) {
             const content = header.nextElementSibling;
             content.classList.toggle('expanded');
@@ -2698,13 +2392,7 @@
             updateProgress('fri-epcot-food-progress', 'epcot-food-');
             updateProgress('sun-mk-food-progress', 'mk-food-');
             updateProgress('thu-mk-food-progress', 'mk-food-');
-            updateProgress('sat-epcot-drink-progress', 'epcot-drink-');
-            updateProgress('fri-epcot-drink-progress', 'epcot-drink-');
-            updateProgress('sun-mk-drink-progress', 'mk-drink-');
-            updateProgress('thu-mk-drink-progress', 'mk-drink-');
-            updateProgress('mon-drink-progress', 'mon-drink-');
-            updateProgress('tue-drink-progress', 'tue-drink-');
-            updateProgress('wed-drink-progress', 'wed-drink-');
+            updateProgress('depart-epcot-food-progress', 'epcot-food-');
 
             // Master rides progress
             updateProgress('master-mk-progress', 'master-mk-');
