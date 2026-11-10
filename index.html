@@ -616,6 +616,10 @@
         .checklist-item.fw .item-text { color: #f472b6; }
         .checklist-item.fw .item-text .text-secondary { color: rgba(244,114,182,0.65); }
         .venue-head { margin: 8px 0 4px 2px; font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+        .checklist-item.fh .item-text { color: #4ade80; }
+        .checklist-item.fh .item-text .text-secondary { color: rgba(74,222,128,0.65); }
+        .venue-head.fh { color: #4ade80; }
+        .checklist-item.in-venue.fh { border-left-color: rgba(74,222,128,0.6); }
         .venue-head.fw { color: #f472b6; }
         .checklist-item.in-venue { margin-left: 16px; border-left: 3px solid var(--border); border-radius: 0 8px 8px 0; }
         .checklist-item.in-venue.fw { border-left-color: rgba(244,114,182,0.6); }
@@ -1844,11 +1848,11 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="fri-epcot-food-progress">0/29</span></h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="fri-epcot-food-progress">0/60</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day</p>
+                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day. Green entries are Festival of the Holidays items (Fri 11/27 and Sat 11/28 only)</p>
                 </div>
                 <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
                 <div class="area-head">France</div>
@@ -1887,6 +1891,37 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(Check the Les Halles area and nearby beverage kiosks)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Le Marché de Noël</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-1" onclick="toggleCheck(this, 'epcot-fhfood-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Gingerbread Macaron <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-2" onclick="toggleCheck(this, 'epcot-fhfood-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Smoked Salmon Brioche <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-3" onclick="toggleCheck(this, 'epcot-fhfood-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Hot Chocolate Martini <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-4" onclick="toggleCheck(this, 'epcot-fhfood-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Vin Chaud French Mulled Wine <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="area-head">Between France &amp; Morocco</div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: L'Chaim! Holiday Kitchen</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-5" onclick="toggleCheck(this, 'epcot-fhfood-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥪 Pastrami on Rye <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-6" onclick="toggleCheck(this, 'epcot-fhfood-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Smoked Salmon Potato Latke <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-7" onclick="toggleCheck(this, 'epcot-fhfood-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen New York Whiskey Sour <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
                 <div class="area-head">Morocco</div>
                 <div class="venue-head">Oasis Sips &amp; Sweets</div>
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-19" onclick="toggleCheck(this, 'epcot-food-19')">
@@ -1896,6 +1931,10 @@
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-20" onclick="toggleCheck(this, 'epcot-food-20')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Same stand)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-8" onclick="toggleCheck(this, 'epcot-fhfood-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🌯 Moroccan-spiced Lamb Wrap <span class="text-small text-secondary">(Holidays • Tangierine Café • Morocco Pavilion)</span></div>
                 </div>
                 <div class="area-head">Japan</div>
                 <div class="venue-head">Kabuki Café</div>
@@ -1916,6 +1955,19 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Near the Mitsukoshi courtyard)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Shi Wasu</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-9" onclick="toggleCheck(this, 'epcot-fhfood-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍣 Sushi Tree Roll <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-10" onclick="toggleCheck(this, 'epcot-fhfood-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍓 Strawberry Bun <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-11" onclick="toggleCheck(this, 'epcot-fhfood-11')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Yuzu Refresher <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
                 <div class="area-head">American Adventure</div>
                 <div class="venue-head">Regal Eagle outdoor beverage counter</div>
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-13" onclick="toggleCheck(this, 'epcot-food-13')">
@@ -1935,10 +1987,36 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Wine kiosk along the promenade)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Tuscany</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-13" onclick="toggleCheck(this, 'epcot-fhfood-13')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍕 Montanara Fried Pizza <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-14" onclick="toggleCheck(this, 'epcot-fhfood-14')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍫 Pizza e Cioccolato <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-15" onclick="toggleCheck(this, 'epcot-fhfood-15')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Blood Orange Margarita <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
                 <div class="area-head">Germany</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Outdoor beer stand along the promenade)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Bavaria</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-16" onclick="toggleCheck(this, 'epcot-fhfood-16')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Pork Schnitzel with Spätzle <span class="text-small text-secondary">(Germany Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-17" onclick="toggleCheck(this, 'epcot-fhfood-17')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🧀 Cheese Fondue Bread Bowl <span class="text-small text-secondary">(Germany Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-18" onclick="toggleCheck(this, 'epcot-fhfood-18')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Glühwein (Hot Spiced Wine) <span class="text-small text-secondary">(Germany Pavilion)</span></div>
                 </div>
                 <div class="area-head">Between Germany &amp; China</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
@@ -1982,10 +2060,73 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Outdoor stand beside the pyramid)</span></div>
                 </div>
+                <div class="area-head">World Discovery</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-19" onclick="toggleCheck(this, 'epcot-fhfood-19')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍰 Apple-Caramel Crumb Cake <span class="text-small text-secondary">(Holidays • Holiday Hearth Desserts • Odyssey Pavilion)</span></div>
+                </div>
+                <div class="area-head">World Celebration</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-20" onclick="toggleCheck(this, 'epcot-fhfood-20')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥪 Reuben Croquettes <span class="text-small text-secondary">(Holidays • Favorites of Festivals Past • CommuniCore Plaza)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Experimental Prototype Cookies of Tomorrow</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-21" onclick="toggleCheck(this, 'epcot-fhfood-21')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Ginger-Molasses Cookie <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-22" onclick="toggleCheck(this, 'epcot-fhfood-22')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Salted Caramel Spaceship Earth Cookie <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-23" onclick="toggleCheck(this, 'epcot-fhfood-23')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Gingerbread Milk Shake <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="drink" data-shared="epcot-fhfood-24" onclick="toggleCheck(this, 'epcot-fhfood-24')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Spiced Caramel Apple Drink <span class="text-small text-secondary">(Holidays • Connections Eatery • World Celebration)</span></div>
+                </div>
+                <div class="area-head">World Showcase Entrance</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-25" onclick="toggleCheck(this, 'epcot-fhfood-25')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🌰 Fire-roasted Chestnuts <span class="text-small text-secondary">(Holidays • Chestnuts &amp; Good Cheer • Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="drink" data-shared="epcot-fhfood-26" onclick="toggleCheck(this, 'epcot-fhfood-26')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Festive Hot Cocoa Flight <span class="text-small text-secondary">(Holidays • Holiday Sweets &amp; Treats • Near Port of Entry)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Swirled Showcase</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-27" onclick="toggleCheck(this, 'epcot-fhfood-27')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍫 Liquid Nitrogen Chocolate-Peppermint Mousse <span class="text-small text-secondary">(Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-28" onclick="toggleCheck(this, 'epcot-fhfood-28')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Yuletide Float <span class="text-small text-secondary">(Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="area-head">World Showcase (location to verify)</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-12" onclick="toggleCheck(this, 'epcot-fhfood-12')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Kālua Pork <span class="text-small text-secondary">(Holidays • Mele Kalikimaka • World Showcase, location to verify)</span></div>
+                </div>
                 <div class="area-head">Canada</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-29" onclick="toggleCheck(this, 'epcot-food-29')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Outdoor cart along World Showcase Lagoon)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Yukon</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-29" onclick="toggleCheck(this, 'epcot-fhfood-29')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Beef Bourguignon <span class="text-small text-secondary">(Canada Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-30" onclick="toggleCheck(this, 'epcot-fhfood-30')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Seared Salmon <span class="text-small text-secondary">(Canada Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-31" onclick="toggleCheck(this, 'epcot-fhfood-31')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Maple Leaf Shortbread Cookie <span class="text-small text-secondary">(Canada Pavilion)</span></div>
                 </div>
             </div>
         </div>
@@ -2018,11 +2159,11 @@
         <div class="daily-view-inject" data-day="7"></div>
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="depart-epcot-food-progress">0/29</span></h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="depart-epcot-food-progress">0/60</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
-                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day</p>
+                    <p class="text-small text-secondary">Shared across all EPCOT days (Sat 11/21, Fri 11/27, Sat 11/28) — check off any day. Green entries are Festival of the Holidays items (Fri 11/27 and Sat 11/28 only)</p>
                 </div>
                 <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
                 <div class="area-head">France</div>
@@ -2061,6 +2202,37 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Frozen Frosé* <span class="text-small text-secondary">(Check the Les Halles area and nearby beverage kiosks)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Le Marché de Noël</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-1" onclick="toggleCheck(this, 'epcot-fhfood-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Gingerbread Macaron <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-2" onclick="toggleCheck(this, 'epcot-fhfood-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Smoked Salmon Brioche <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-3" onclick="toggleCheck(this, 'epcot-fhfood-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Hot Chocolate Martini <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-4" onclick="toggleCheck(this, 'epcot-fhfood-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Vin Chaud French Mulled Wine <span class="text-small text-secondary">(France Pavilion)</span></div>
+                </div>
+                <div class="area-head">Between France &amp; Morocco</div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: L'Chaim! Holiday Kitchen</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-5" onclick="toggleCheck(this, 'epcot-fhfood-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥪 Pastrami on Rye <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-6" onclick="toggleCheck(this, 'epcot-fhfood-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Smoked Salmon Potato Latke <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-7" onclick="toggleCheck(this, 'epcot-fhfood-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen New York Whiskey Sour <span class="text-small text-secondary">(Between France and Morocco)</span></div>
+                </div>
                 <div class="area-head">Morocco</div>
                 <div class="venue-head">Oasis Sips &amp; Sweets</div>
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-19" onclick="toggleCheck(this, 'epcot-food-19')">
@@ -2070,6 +2242,10 @@
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-20" onclick="toggleCheck(this, 'epcot-food-20')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥤 Frozen Citrus-Pomegranate Slush <span class="text-small text-secondary">(Same stand)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-8" onclick="toggleCheck(this, 'epcot-fhfood-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🌯 Moroccan-spiced Lamb Wrap <span class="text-small text-secondary">(Holidays • Tangierine Café • Morocco Pavilion)</span></div>
                 </div>
                 <div class="area-head">Japan</div>
                 <div class="venue-head">Kabuki Café</div>
@@ -2090,6 +2266,19 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Tokyo Sunset <span class="text-small text-secondary">(Near the Mitsukoshi courtyard)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Shi Wasu</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-9" onclick="toggleCheck(this, 'epcot-fhfood-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍣 Sushi Tree Roll <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-10" onclick="toggleCheck(this, 'epcot-fhfood-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍓 Strawberry Bun <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-11" onclick="toggleCheck(this, 'epcot-fhfood-11')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Yuzu Refresher <span class="text-small text-secondary">(Japan Pavilion)</span></div>
+                </div>
                 <div class="area-head">American Adventure</div>
                 <div class="venue-head">Regal Eagle outdoor beverage counter</div>
                 <div class="checklist-item in-venue" data-kind="drink" data-shared="epcot-food-13" onclick="toggleCheck(this, 'epcot-food-13')">
@@ -2109,10 +2298,36 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Limoncello Spritz* <span class="text-small text-secondary">(Wine kiosk along the promenade)</span></div>
                 </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Tuscany</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-13" onclick="toggleCheck(this, 'epcot-fhfood-13')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍕 Montanara Fried Pizza <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-14" onclick="toggleCheck(this, 'epcot-fhfood-14')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍫 Pizza e Cioccolato <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-15" onclick="toggleCheck(this, 'epcot-fhfood-15')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Blood Orange Margarita <span class="text-small text-secondary">(Italy Pavilion)</span></div>
+                </div>
                 <div class="area-head">Germany</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-10" onclick="toggleCheck(this, 'epcot-food-10')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍺 Schöfferhofer Grapefruit Hefeweizen <span class="text-small text-secondary">(Outdoor beer stand along the promenade)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Bavaria</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-16" onclick="toggleCheck(this, 'epcot-fhfood-16')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Pork Schnitzel with Spätzle <span class="text-small text-secondary">(Germany Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-17" onclick="toggleCheck(this, 'epcot-fhfood-17')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🧀 Cheese Fondue Bread Bowl <span class="text-small text-secondary">(Germany Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-18" onclick="toggleCheck(this, 'epcot-fhfood-18')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Glühwein (Hot Spiced Wine) <span class="text-small text-secondary">(Germany Pavilion)</span></div>
                 </div>
                 <div class="area-head">Between Germany &amp; China</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-9" onclick="toggleCheck(this, 'epcot-food-9')">
@@ -2156,10 +2371,73 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Classic Frozen Margarita <span class="text-small text-secondary">(Choza de Margarita • Outdoor stand beside the pyramid)</span></div>
                 </div>
+                <div class="area-head">World Discovery</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-19" onclick="toggleCheck(this, 'epcot-fhfood-19')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍰 Apple-Caramel Crumb Cake <span class="text-small text-secondary">(Holidays • Holiday Hearth Desserts • Odyssey Pavilion)</span></div>
+                </div>
+                <div class="area-head">World Celebration</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-20" onclick="toggleCheck(this, 'epcot-fhfood-20')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥪 Reuben Croquettes <span class="text-small text-secondary">(Holidays • Favorites of Festivals Past • CommuniCore Plaza)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Experimental Prototype Cookies of Tomorrow</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-21" onclick="toggleCheck(this, 'epcot-fhfood-21')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Ginger-Molasses Cookie <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-22" onclick="toggleCheck(this, 'epcot-fhfood-22')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Salted Caramel Spaceship Earth Cookie <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-23" onclick="toggleCheck(this, 'epcot-fhfood-23')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Gingerbread Milk Shake <span class="text-small text-secondary">(CommuniCore Hall)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="drink" data-shared="epcot-fhfood-24" onclick="toggleCheck(this, 'epcot-fhfood-24')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Spiced Caramel Apple Drink <span class="text-small text-secondary">(Holidays • Connections Eatery • World Celebration)</span></div>
+                </div>
+                <div class="area-head">World Showcase Entrance</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-25" onclick="toggleCheck(this, 'epcot-fhfood-25')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🌰 Fire-roasted Chestnuts <span class="text-small text-secondary">(Holidays • Chestnuts &amp; Good Cheer • Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="checklist-item fh" data-kind="drink" data-shared="epcot-fhfood-26" onclick="toggleCheck(this, 'epcot-fhfood-26')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Festive Hot Cocoa Flight <span class="text-small text-secondary">(Holidays • Holiday Sweets &amp; Treats • Near Port of Entry)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Swirled Showcase</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-27" onclick="toggleCheck(this, 'epcot-fhfood-27')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍫 Liquid Nitrogen Chocolate-Peppermint Mousse <span class="text-small text-secondary">(Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="drink" data-shared="epcot-fhfood-28" onclick="toggleCheck(this, 'epcot-fhfood-28')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Yuletide Float <span class="text-small text-secondary">(Imagination! to World Showcase walkway)</span></div>
+                </div>
+                <div class="area-head">World Showcase (location to verify)</div>
+                <div class="checklist-item fh" data-kind="eat" data-shared="epcot-fhfood-12" onclick="toggleCheck(this, 'epcot-fhfood-12')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Kālua Pork <span class="text-small text-secondary">(Holidays • Mele Kalikimaka • World Showcase, location to verify)</span></div>
+                </div>
                 <div class="area-head">Canada</div>
                 <div class="checklist-item" data-kind="drink" data-shared="epcot-food-29" onclick="toggleCheck(this, 'epcot-food-29')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Ottawa Apple <span class="text-small text-secondary">(Canada Popcorn Cart • Outdoor cart along World Showcase Lagoon)</span></div>
+                </div>
+                <div class="venue-head fh">🎄 Festival of the Holidays booth: Yukon</div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-29" onclick="toggleCheck(this, 'epcot-fhfood-29')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Beef Bourguignon <span class="text-small text-secondary">(Canada Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-30" onclick="toggleCheck(this, 'epcot-fhfood-30')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Seared Salmon <span class="text-small text-secondary">(Canada Pavilion)</span></div>
+                </div>
+                <div class="checklist-item in-venue fh" data-kind="eat" data-shared="epcot-fhfood-31" onclick="toggleCheck(this, 'epcot-fhfood-31')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Maple Leaf Shortbread Cookie <span class="text-small text-secondary">(Canada Pavilion)</span></div>
                 </div>
             </div>
         </div>
@@ -2603,10 +2881,10 @@
 
             // Shared food progress (EPCOT and MK)
             updateProgress('sat-epcot-food-progress', 'epcot-food-', 'epcot-fwfood-');
-            updateProgress('fri-epcot-food-progress', 'epcot-food-');
+            updateProgress('fri-epcot-food-progress', 'epcot-food-', 'epcot-fhfood-');
             updateProgress('sun-mk-food-progress', 'mk-food-');
             updateProgress('thu-mk-food-progress', 'mk-food-');
-            updateProgress('depart-epcot-food-progress', 'epcot-food-');
+            updateProgress('depart-epcot-food-progress', 'epcot-food-', 'epcot-fhfood-');
 
             // Master rides progress
             updateProgress('master-mk-progress', 'master-mk-');
