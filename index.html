@@ -1039,6 +1039,171 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
+                <h2>🍷 Food &amp; Wine Festival <span class="section-progress" id="sat-epcot-fw-progress">0/37</span></h2>
+            </div>
+            <div class="section-content">
+                <div class="info-card mb-8">
+                    <p class="text-small text-secondary">Saturday 11/21 only (last day of Food &amp; Wine). 🍹 = alcoholic, 🥤 = nonalcoholic. Booth menus and locations change, so confirm in the app.</p>
+                </div>
+                <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
+                <div class="area-head">1. France → Morocco</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-1')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐌 Trio d'Escargots <span class="text-small text-secondary">(France • France Pavilion, lagoon-side festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-2')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥐 Brioche aux Épices with Three-Cheese Mornay <span class="text-small text-secondary">(France • France Pavilion, lagoon-side festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-3')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Chilled French Cosmo <span class="text-small text-secondary">(France • France Pavilion, lagoon-side festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-4')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🧀 Pão de Queijo (Cheese Bread) <span class="text-small text-secondary">(Brazil • Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-5')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Caipirinha <span class="text-small text-secondary">(Brazil • Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-6')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕🍹 Chilled Belgian Coffee with Chocolate Liqueur <span class="text-small text-secondary">(Belgium • Between France and Morocco)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍪 Chocolate-Pistachio Cookie <span class="text-small text-secondary">(Tangierine Café • Morocco Pavilion, café counter)</span></div>
+                </div>
+                <div class="area-head">2. Japan → Italy</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-8')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🦐 Gulf Coast-style Seafood Roll <span class="text-small text-secondary">(Hops &amp; Barley • American Adventure Pavilion, lagoon-side kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-9')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥪 Smoked Brisket and Cheddar Melt <span class="text-small text-secondary">(Hops &amp; Barley • American Adventure Pavilion, lagoon-side kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-10')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Amaretto Bellini <span class="text-small text-secondary">(Italy • Italy Pavilion, festival kiosk)</span></div>
+                </div>
+                <div class="area-head">3. Spain → Mexico</div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-11')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Summer in Spain <span class="text-small text-secondary">(Spain • Between Italy and Germany)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-12')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Wiener Schnitzel <span class="text-small text-secondary">(Germany • Germany Pavilion, festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-13')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🧀 Tartiflette <span class="text-small text-secondary">(The Alps • Between Germany and African Outpost)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-14')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🧀 Warm Raclette Swiss Cheese on Baguette <span class="text-small text-secondary">(The Alps • Between Germany and African Outpost)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-15')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍛 Chicken Tikka Masala <span class="text-small text-secondary">(India • Between African Outpost and China)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-16')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Mango Lassi with Aged Rum <span class="text-small text-secondary">(India • Between African Outpost and China)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-17')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Mango Lassi (Nonalcoholic) <span class="text-small text-secondary">(India • Between African Outpost and China)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-18')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Strawberry-Jasmine Cocktail <span class="text-small text-secondary">(China • China Pavilion, festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-19')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Baijiu Punch <span class="text-small text-secondary">(China • China Pavilion, festival kiosk)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-20')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍧 Paleta de Moras <span class="text-small text-secondary">(Mexico • Between Mexico Pavilion and Disney Traders)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-21')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍖 Roasted Lamb Chop <span class="text-small text-secondary">(Australia • Between Mexico and Port of Entry)</span></div>
+                </div>
+                <div class="area-head">4. World Discovery → World Celebration</div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-22')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Frozen Pomegranate &amp; Raspberry Tea (Nonalcoholic) <span class="text-small text-secondary">(Brew-Wing Lab • Odyssey building, between Mexico and Test Track)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-23')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Hard Cider Flight <span class="text-small text-secondary">(Brew-Wing Lab • Odyssey building, between Mexico and Test Track)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-24')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥧 Seafood Pot Pie <span class="text-small text-secondary">(Coastal Eats • World Discovery, near Creations Shop and Test Track)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-25')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥟 Basil Pesto Chicken Dumplings <span class="text-small text-secondary">(Gyozas of the Galaxy • World Discovery, near Guardians of the Galaxy)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-26')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥟 Street Corn-style Dumplings <span class="text-small text-secondary">(Gyozas of the Galaxy • World Discovery, near Guardians of the Galaxy)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-27')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Rodizio-style Grilled Beef Skewer <span class="text-small text-secondary">(Flavors from Fire • World Discovery, near Creations Shop)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-28')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Frozen S'mores (Nonalcoholic) <span class="text-small text-secondary">(Festival Favorites • CommuniCore Hall, World Celebration)</span></div>
+                </div>
+                <div class="area-head">5. World Nature → Canada → International Gateway</div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-29')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Red Wine-braised Beef Short Rib <span class="text-small text-secondary">(Earth Eats • World Nature, between The Land and Imagination!)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-30')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🐟 Cast Iron-seared River Trout <span class="text-small text-secondary">(Bramblewood Bites • Walkway between Imagination! and World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-31')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍰 Freshly Baked Carrot Cake <span class="text-small text-secondary">(Milled &amp; Mulled • Same walkway toward World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-32')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Frozen Szarlotka with Bison Grass Vodka <span class="text-small text-secondary">(Swirled Showcase • Walkway between Imagination! and World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-33')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥤 Frozen Szarlotka (Nonalcoholic) <span class="text-small text-secondary">(Swirled Showcase • Walkway between Imagination! and World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-34')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Irish Milk Shake <span class="text-small text-secondary">(Swirled Showcase • Walkway between Imagination! and World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-35')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Strawberry Beer Float <span class="text-small text-secondary">(Swirled Showcase • Walkway between Imagination! and World Showcase)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-36')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍹 Mimosa Flight <span class="text-small text-secondary">(Shimmering Sips • Near Port of Entry, Canada side)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-37')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Canadian Filet Mignon <span class="text-small text-secondary">(Canada • Canada Pavilion, festival kiosk)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
                 <h2>📝 Live Notes</h2>
             </div>
             <div class="section-content">
@@ -2393,6 +2558,7 @@
             updateProgress('sun-mk-food-progress', 'mk-food-');
             updateProgress('thu-mk-food-progress', 'mk-food-');
             updateProgress('depart-epcot-food-progress', 'epcot-food-');
+            updateProgress('sat-epcot-fw-progress', 'epcot-fwfood-');
 
             // Master rides progress
             updateProgress('master-mk-progress', 'master-mk-');
