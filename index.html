@@ -2567,20 +2567,23 @@
             { d:2, s:465,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'7:45 AM', link:MDE },
             { d:1, s:720,  dur:60,  name:'Beak & Barrel',            cat:'lounge',  time:'12:00 PM', link:MDE },
             { d:1, s:855,  dur:60,  name:"Tony's Town Square",       cat:'dining',  time:'2:15 PM', link:MDE },
-            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM', link:MDE, discount:30 },
+            { d:1, s:1080, dur:90,  name:'Skipper Canteen',          cat:'dining',  time:'6:00 PM', group:'sun-dinner', link:MDE, discount:30 },
             { d:1, s:1200, dur:30,  name:'Happily Ever After', cat:'show',   time:'8:00 PM' },
+            { d:1, s:1155, dur:120, name:'California Grill',         cat:'dining',  time:'7:15 PM', group:'sun-dinner', alt:true, link:MDE },
+            { d:1, s:1260, dur:30,  name:'Disney Starlight',         cat:'show',    time:'9:00 PM', note:'Date not confirmed' },
             { d:2, s:720,  dur:60,  name:'BaseLine Tap House',       cat:'lounge',  time:'~12:00 PM', res:'walk' },
             { d:2, s:855,  dur:60,  name:"Oga's Cantina",            cat:'lounge',  time:'2:15 PM', link:MDE },
             { d:2, s:1125, dur:105, name:'Flying Fish',              cat:'dining',  time:'6:45 PM', link:MDE, discount:40 },
-            { d:2, s:1230, dur:30,  name:'Fantasmic!',     cat:'show',    time:'8:30 PM' },
+            { d:2, s:1110, dur:30,  name:'Fantasmic!',     cat:'show',    time:'6:30 PM' },
             { d:3, s:780,  dur:60,  name:'Nomad Lounge',             cat:'lounge',  time:'1:00 PM', link:MDE },
             { d:3, s:1140, dur:90,  name:'Yachtsman Steakhouse',     cat:'dining',  time:'7:00 PM', link:MDE, discount:50 },
             { d:4, s:720,  dur:90,  name:'Polite Pig',               cat:'dining',  time:'~12:00 PM', res:'walk' },
             { d:4, s:900,  dur:60,  name:"Jock Lindsey's",           cat:'lounge',  time:'~3:00 PM', res:'walk' },
             { d:4, s:1050, dur:90,  name:'Cirque du Soleil',         cat:'show',    time:'5:30 PM', link:'https://www.cirquedusoleil.com/drawn-to-life' },
-            { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', link:'https://www.opentable.com/r/morimoto-asia-orlando' },
-            { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:'https://www.opentable.com/r/chef-art-smiths-homecomin-orlando' },
-            { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:'https://www.opentable.com/r/the-boathouse-orlando' },
+            { d:4, s:1170, dur:90,  name:'Morimoto Asia',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', link:'https://www.opentable.com/r/morimoto-asia-orlando', note:"Danielle's OpenTable" },
+            { d:4, s:1170, dur:90,  name:"Chef Art Smith's",         cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:MDE, note:'Booked via Disney Dining' },
+            { d:4, s:1170, dur:90,  name:'The Boathouse',            cat:'dining',  time:'7:30 PM', group:'wed-dinner', alt:true, link:'https://www.opentable.com/r/the-boathouse-orlando', conf:'2111924349', note:'Booked on my OpenTable' },
+            { d:4, s:1260, dur:60,  name:"Gideon's Bakehouse",     cat:'dining',  time:'~9:00 PM', res:'walk' },
             { d:5, s:665,  dur:90,  name:'Wailulu',                  cat:'dining',  time:'11:05 AM', link:MDE },
             { d:5, s:780,  dur:60,  name:"Trader Sam's",             cat:'lounge',  time:'~1:00 PM', res:'vq' },
             { d:5, s:900,  dur:60,  name:'Enchanted Rose',           cat:'lounge',  time:'~3:00 PM', res:'vq' },
@@ -2593,7 +2596,7 @@
             { d:6, s:980,  dur:60,  name:'GEO-82',                   cat:'lounge',  time:'4:20 PM', link:MDE },
             { d:6, s:1110, dur:60,  name:'Candlelight Processional', cat:'show',    time:'6:30 PM', res:'walk' },
             { d:6, s:1215, dur:90,  name:'Spice Road Table',         cat:'dining',  time:'8:15 PM', link:MDE },
-            { d:6, s:1260, dur:30,  name:'Luminous',          cat:'show',    time:'9:00 PM' },
+            { d:6, s:1275, dur:30,  name:'Luminous',          cat:'show',    time:'9:15 PM' },
             { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM', link:MDE },
             { d:7, s:705,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'11:45 AM', conf:'356273232352' },
             { d:7, s:1154, dur:163, name:'MCO → EWR',                cat:'travel',  time:'7:34 PM → 10:17 PM' }
@@ -2716,7 +2719,7 @@
                         <div class="dt-dot ${ev.cat}"></div>
                         <div class="dt-event ${ev.cat}${ev.link ? ' has-link' : ''}${ev.res ? ' no-res' : ''}"${ev.link ? ` onclick="window.open('${ev.link}','_blank')"` : ''}>
                             <div class="de-name">${(ev.link && !ev.res) ? `<span class="de-res-dot" style="background:var(--cat-${ev.cat})"></span>` : ''}${ev.name}${ev.res ? `<span class="de-badge ${ev.res}">${ev.res === 'vq' ? 'VQ' : 'WALK-UP'}</span>` : ''}${ev.discount ? `<span class="de-badge disc">${ev.discount}% OFF</span>` : ''}${manageLink}</div>
-                            <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min${ev.conf ? ` &middot; Conf #${ev.conf}` : ''}</div>
+                            <div class="de-detail">${SCHED_CAT_LABELS[ev.cat]} &middot; ${ev.dur} min${ev.conf ? ` &middot; Conf #${ev.conf}` : ''}${ev.note ? ` &middot; ${ev.note}` : ''}</div>
                             ${alts.length ? `<div class="de-alt">Or: ${alts.map(a => a.name).join(', ')}${altManageLinks ? ' ' + altManageLinks : ''}</div>` : ''}
                         </div>
                     </div>
