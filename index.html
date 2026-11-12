@@ -910,7 +910,7 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="sat-epcot-food-progress">0/66</span></h2>
+                <h2>🍴 EPCOT Eats &amp; Drinks <span class="section-progress" id="sat-epcot-food-progress">0/70</span></h2>
             </div>
             <div class="section-content">
                 <div class="info-card mb-8">
@@ -1064,6 +1064,10 @@
                     <div class="checkbox"></div>
                     <div class="item-text">🍹 Outpost Lemonade <span class="text-small text-secondary">(Refreshment Outpost)</span></div>
                 </div>
+                <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-39')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍲 Berbere Spiced Beef Stew <span class="text-small text-secondary">(F&amp;W • Refreshment Outpost)</span></div>
+                </div>
                 <div class="venue-head fw">🍷 Food &amp; Wine booth: The Alps</div>
                 <div class="checklist-item in-venue fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-13')">
                     <div class="checkbox"></div>
@@ -1135,6 +1139,10 @@
                 <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-20')">
                     <div class="checkbox"></div>
                     <div class="item-text">🍧 Paleta de Moras <span class="text-small text-secondary">(F&amp;W • Mexico • Between Mexico Pavilion and Disney Traders)</span></div>
+                </div>
+                <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-38')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🍤 Shrimp Tempura Taco <span class="text-small text-secondary">(F&amp;W • Mexico • Mexico Pavilion, festival kiosk)</span></div>
                 </div>
                 <div class="area-head">Between Mexico &amp; Port of Entry</div>
                 <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-21')">
@@ -1216,6 +1224,15 @@
                 <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-37')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥩 Canadian Filet Mignon <span class="text-small text-secondary">(F&amp;W • Canada • Canada Pavilion, festival kiosk)</span></div>
+                </div>
+                <div class="area-head">Flavor of Fire &amp; Year-round Coffee</div>
+                <div class="checklist-item fw" data-kind="eat" onclick="toggleCheck(this, 'epcot-fwfood-40')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥩 Grilled Beef <span class="text-small text-secondary">(F&amp;W • Flavor of Fire • confirm booth location on the festival map)</span></div>
+                </div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'epcot-fwfood-41')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Coffee (year-round) <span class="text-small text-secondary">(Which coffee and where: confirm)</span></div>
                 </div>
             </div>
         </div>
@@ -1426,7 +1443,7 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍴 Hollywood Studios Eats &amp; Drinks <span class="section-progress" id="mon-food-progress">0/6</span></h2>
+                <h2>🍴 Hollywood Studios Eats &amp; Drinks <span class="section-progress" id="mon-food-progress">0/7</span></h2>
             </div>
             <div class="section-content">
                 <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
@@ -1458,6 +1475,11 @@
                 <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'mon-food-6')">
                     <div class="checkbox"></div>
                     <div class="item-text">☕ Cold Brew Black Caf <span class="text-small text-secondary">(Kat Saka's Kettle • Black Spire Outpost marketplace near Ronto Roasters)</span></div>
+                </div>
+                <div class="area-head">Epic Cold Brew Spectacular</div>
+                <div class="checklist-item" data-kind="drink" onclick="toggleCheck(this, 'mon-food-7')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">☕ Epic Cold Brew Spectacular <span class="text-small text-secondary">(Hollywood Studios)</span></div>
                 </div>
             </div>
         </div>
@@ -1538,7 +1560,7 @@
 
         <div class="section">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🍴 Animal Kingdom Eats &amp; Drinks <span class="section-progress" id="tue-food-progress">0/11</span></h2>
+                <h2>🍴 Animal Kingdom Eats &amp; Drinks <span class="section-progress" id="tue-food-progress">0/12</span></h2>
             </div>
             <div class="section-content">
                 <div class="eat-filter"><button class="eat-chip active" onclick="filterEats(this,'all')">All</button><button class="eat-chip" onclick="filterEats(this,'eat')">🍴 Eats</button><button class="eat-chip" onclick="filterEats(this,'drink')">🍹 Drinks</button></div>
@@ -1583,6 +1605,10 @@
                 <div class="checklist-item in-venue" data-kind="eat" onclick="toggleCheck(this, 'tue-food-9')">
                     <div class="checkbox"></div>
                     <div class="item-text">🥐 Festive Chocolate Twist <span class="text-small text-secondary">(Africa or Discovery Island, depending on seasonal distribution. Kusafiri or Isle of Java)</span></div>
+                </div>
+                <div class="checklist-item in-venue" data-kind="drink" onclick="toggleCheck(this, 'tue-food-12')">
+                    <div class="checkbox"></div>
+                    <div class="item-text">🥥 Coconut-Flavored Iced Coffee <span class="text-small text-secondary">(Kusafiri Coffee Shop &amp; Bakery, Africa)</span></div>
                 </div>
                 <div class="area-head">Asia</div>
                 <div class="checklist-item" data-kind="eat" onclick="toggleCheck(this, 'tue-food-10')">
