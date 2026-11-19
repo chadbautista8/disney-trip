@@ -36,6 +36,8 @@
             --cat-travel: #e34948; --cat-travel-bg: rgba(227,73,72,0.15);
             --cat-lounge: #fbbf24; --cat-lounge-bg: rgba(251,191,36,0.15);
             --cat-leisure: #e87ba4; --cat-leisure-bg: rgba(232,123,164,0.15);
+            --cat-guest: #22d3ee; --cat-guest-bg: rgba(34,211,238,0.15);
+            --cat-remind: #a3e635; --cat-remind-bg: rgba(163,230,53,0.15);
         }
 
         body {
@@ -581,6 +583,8 @@
         .wt-ev.travel   { background: var(--cat-travel-bg);  border-color: var(--cat-travel);  color: var(--cat-travel); }
         .wt-ev.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge);  color: var(--cat-lounge); }
         .wt-ev.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); color: var(--cat-leisure); }
+        .wt-ev.guest    { background: var(--cat-guest-bg);   border-color: var(--cat-guest);   color: var(--cat-guest); }
+        .wt-ev.remind   { background: var(--cat-remind-bg);  border-color: var(--cat-remind);  color: var(--cat-remind); border-left-style: dotted; }
         .wt-ev.alt-opt  { opacity: 0.55; border-left-style: dashed; }
         .res-badge { display: block; font-size: 7px; font-weight: 700; letter-spacing: 0.3px; padding: 1px 3px; border-radius: 3px; line-height: 1; text-transform: uppercase; width: fit-content; margin-top: 1px; }
         .res-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
@@ -645,12 +649,16 @@
         .dt-event.travel   { background: var(--cat-travel-bg);  border-color: var(--cat-travel); }  .dt-event.travel .de-name  { color: var(--cat-travel); }
         .dt-event.lounge   { background: var(--cat-lounge-bg);  border-color: var(--cat-lounge); }  .dt-event.lounge .de-name  { color: var(--cat-lounge); }
         .dt-event.leisure  { background: var(--cat-leisure-bg); border-color: var(--cat-leisure); }  .dt-event.leisure .de-name { color: var(--cat-leisure); }
+        .dt-event.guest    { background: var(--cat-guest-bg);   border-color: var(--cat-guest); }   .dt-event.guest .de-name   { color: var(--cat-guest); }
+        .dt-event.remind   { background: var(--cat-remind-bg);  border-color: var(--cat-remind); }  .dt-event.remind .de-name  { color: var(--cat-remind); }
         .dt-dot.dining  { background: var(--cat-dining); }
         .dt-dot.show    { background: var(--cat-show); }
         .dt-dot.ride    { background: var(--cat-ride); }
         .dt-dot.travel  { background: var(--cat-travel); }
         .dt-dot.lounge  { background: var(--cat-lounge); }
         .dt-dot.leisure { background: var(--cat-leisure); }
+        .dt-dot.guest   { background: var(--cat-guest); }
+        .dt-dot.remind  { background: var(--cat-remind); }
         .de-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.3px; padding: 2px 5px; border-radius: 4px; margin-left: 8px; text-transform: uppercase; vertical-align: middle; }
         .de-badge.vq { background: rgba(167,139,250,0.3); color: #c4b5fd; }
         .de-badge.walk { background: rgba(167,139,250,0.3); color: #c4b5fd; }
@@ -2860,6 +2868,8 @@
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-travel)"></div>Travel</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-lounge)"></div>Drinks / Lounge</div>
             <div class="legend-item"><div class="legend-dot" style="background:var(--cat-leisure)"></div>Leisure</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-guest)"></div>Guest Relations</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--cat-remind)"></div>Reminder</div>
             <div class="legend-item"><span class="de-badge vq" style="margin-left:0">VQ</span>Virtual Queue</div>
             <div class="legend-item"><span class="de-badge walk" style="margin-left:0">WALK</span>Walk-Up</div>
             <div class="legend-item"><span class="de-badge disc" style="margin-left:0">% OFF</span>Coupon</div>
@@ -3207,7 +3217,8 @@
         ];
         const SCHED_CAT_LABELS = {
             dining:'Dining', show:'Show / Fireworks', ride:'Ride / Attraction',
-            travel:'Travel', lounge:'Drinks / Lounge', leisure:'Leisure'
+            travel:'Travel', lounge:'Drinks / Lounge', leisure:'Leisure',
+            guest:'Guest Relations', remind:'Reminder'
         };
         const MDE = 'https://disneyworld.disney.go.com/plan/';
         const EVENTS = [
@@ -3266,6 +3277,14 @@
             { d:6, s:675, dur:30, name:"Soarin' Across America", cat:'ride', time:"11:15 AM\u201312:15 PM", pref:"11:15 AM", note:"Multi Pass" },
             { d:6, s:840, dur:30, name:"Test Track", cat:'ride', time:"1:35\u20132:35 PM", pref:"2:00 PM", note:"Multi Pass" },
             { d:6, s:900, dur:30, name:"Guardians of the Galaxy", cat:'ride', time:"2:30\u20133:30 PM", pref:"3:00 PM", note:"Single Pass" },
+            { d:0, s:780, dur:30, name:"Guest Relations: Guardians", cat:'guest', time:"1:00 PM", note:"For Guardians" },
+            { d:1, s:540, dur:30, name:"Guest Relations: TRON", cat:'guest', time:"9:00 AM", note:"For TRON" },
+            { d:2, s:540, dur:30, name:"Guest Relations: Rise of the Resistance", cat:'guest', time:"9:00 AM", note:"For Rise of the Resistance", side:'r' },
+            { d:3, s:540, dur:30, name:"Guest Relations: Avatar", cat:'guest', time:"9:00 AM", note:"For Avatar Flight of Passage" },
+            { d:6, s:540, dur:30, name:"Guest Relations: Guardians", cat:'guest', time:"9:00 AM", note:"For Guardians", side:'r' },
+            { d:1, s:895, dur:30, name:"Look for Space Mountain", cat:'remind', time:"2:55 PM", note:"After Haunted Mansion", side:'r' },
+            { d:2, s:645, dur:30, name:"Look for Smugglers Run, Slinky Dog Dash, Mickey & Minnie's Runaway Railway", cat:'remind', time:"10:45 AM", note:"After Rock 'n' Roller Coaster (Muppets)" },
+            { d:6, s:650, dur:25, name:"Look for Remy's Ratatouille Adventure", cat:'remind', time:"10:50 AM", note:"After Mission: SPACE", side:'r' },
             { d:7, s:510,  dur:90,  name:'Cake Bake',                cat:'dining',  time:'8:30 AM', link:MDE },
             { d:7, s:705,  dur:90,  name:'Mini Golf',                cat:'leisure', time:'11:45 AM', conf:'356273232352' },
             { d:7, s:1154, dur:163, name:'MCO → EWR',                cat:'travel',  time:'7:34 PM → 10:17 PM' }
@@ -3319,8 +3338,8 @@
                         ev._left = `${(gi / gl) * 100}%`;
                         ev._width = `${(1 / gl) * 100 - 1}%`;
                     } else {
-                        ev._left = '2px';
-                        ev._width = 'calc(100% - 4px)';
+                        ev._left = ev.side === 'r' ? '50%' : '2px';
+                        ev._width = ev.side === 'r' ? 'calc(50% - 2px)' : 'calc(100% - 4px)';
                     }
                 });
                 dayEvs.forEach(ev => {
